@@ -10,6 +10,7 @@
     "client.ItemRendererMixin",
     "client.MinecraftMixin",
     "client.ModeBakeryMixin",
+    "client.packet.MovePartyPokemonToPCHandlerMixin",
     "client.ui.PCGUIMixin",
     "client.ui.SummaryCompanionMixin",
     "client.ui.SummaryMixin",
@@ -31,7 +32,6 @@
     "battle.ShowdownInterpreterMixin",
     "battle.ShowdownSpeciesMixin",
     "battle.StartInstructionMixin",
-    "client.packet.MovePartyPokemonToPCHandlerMixin",
     "minecraft.ItemStackMixin"
   ],
   "injectors": {
