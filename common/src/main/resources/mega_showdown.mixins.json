@@ -21,6 +21,7 @@
     "PokemonEntityMixin",
     "PokemonMixin",
     "PokemonP1Mixin",
+    "PokemonSpeciesMixin",
     "battle.BattleGimmickButtonCompanionMixin",
     "battle.BattleGimmickButtonMixin",
     "battle.ClientBattleMixin",

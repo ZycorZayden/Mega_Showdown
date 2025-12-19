@@ -272,6 +272,21 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(MegaShowdownBlocks.MAX_MUSHROOM.get().asItem());
         basicItem(MegaShowdownItems.STAR_CORE.get());
 
-        basicItem(MegaShowdownItems.TERA_POUCH.get());
+        basicItem(MegaShowdownItems.TERA_POUCH_WHITE.get());
+        basicItem(MegaShowdownItems.TERA_POUCH_ORANGE.get());
+        basicItem(MegaShowdownItems.TERA_POUCH_MAGENTA.get());
+        basicItem(MegaShowdownItems.TERA_POUCH_LIGHT_BLUE.get());
+        basicItem(MegaShowdownItems.TERA_POUCH_YELLOW.get());
+        basicItem(MegaShowdownItems.TERA_POUCH_LIME.get());
+        basicItem(MegaShowdownItems.TERA_POUCH_PINK.get());
+        basicItem(MegaShowdownItems.TERA_POUCH_GRAY.get());
+        basicItem(MegaShowdownItems.TERA_POUCH_LIGHT_GRAY.get());
+        basicItem(MegaShowdownItems.TERA_POUCH_CYAN.get());
+        basicItem(MegaShowdownItems.TERA_POUCH_PURPLE.get());
+        basicItem(MegaShowdownItems.TERA_POUCH_BLUE.get());
+        basicItem(MegaShowdownItems.TERA_POUCH_BROWN.get());
+        basicItem(MegaShowdownItems.TERA_POUCH_GREEN.get());
+        basicItem(MegaShowdownItems.TERA_POUCH_RED.get());
+        basicItem(MegaShowdownItems.TERA_POUCH_BLACK.get());
     }
 }

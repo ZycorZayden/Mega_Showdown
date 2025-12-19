@@ -760,13 +760,162 @@ public class ModRecipeProvider extends RecipeProvider {
 
 
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MegaShowdownItems.TERA_POUCH.get())
-                .pattern(" A ")
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MegaShowdownItems.TERA_POUCH_WHITE.get())
+                .pattern(" D ")
                 .pattern("LPL")
                 .pattern("LLL")
-                .define('A', Items.CYAN_DYE)
+                .define('D', Items.WHITE_DYE)
                 .define('L', Items.LEATHER)
                 .define('P', Items.BLAZE_POWDER)
                 .unlockedBy("has_blaze_powder", has(Items.BLAZE_POWDER)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MegaShowdownItems.TERA_POUCH_ORANGE.get())
+                .pattern(" D ")
+                .pattern("LPL")
+                .pattern("LLL")
+                .define('D', Items.ORANGE_DYE)
+                .define('L', Items.LEATHER)
+                .define('P', Items.BLAZE_POWDER)
+                .unlockedBy("has_blaze_powder", has(Items.BLAZE_POWDER))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MegaShowdownItems.TERA_POUCH_MAGENTA.get())
+                .pattern(" D ")
+                .pattern("LPL")
+                .pattern("LLL")
+                .define('D', Items.MAGENTA_DYE)
+                .define('L', Items.LEATHER)
+                .define('P', Items.BLAZE_POWDER)
+                .unlockedBy("has_blaze_powder", has(Items.BLAZE_POWDER))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MegaShowdownItems.TERA_POUCH_LIGHT_BLUE.get())
+                .pattern(" D ")
+                .pattern("LPL")
+                .pattern("LLL")
+                .define('D', Items.LIGHT_BLUE_DYE)
+                .define('L', Items.LEATHER)
+                .define('P', Items.BLAZE_POWDER)
+                .unlockedBy("has_blaze_powder", has(Items.BLAZE_POWDER))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MegaShowdownItems.TERA_POUCH_YELLOW.get())
+                .pattern(" D ")
+                .pattern("LPL")
+                .pattern("LLL")
+                .define('D', Items.YELLOW_DYE)
+                .define('L', Items.LEATHER)
+                .define('P', Items.BLAZE_POWDER)
+                .unlockedBy("has_blaze_powder", has(Items.BLAZE_POWDER))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MegaShowdownItems.TERA_POUCH_LIME.get())
+                .pattern(" D ")
+                .pattern("LPL")
+                .pattern("LLL")
+                .define('D', Items.LIME_DYE)
+                .define('L', Items.LEATHER)
+                .define('P', Items.BLAZE_POWDER)
+                .unlockedBy("has_blaze_powder", has(Items.BLAZE_POWDER))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MegaShowdownItems.TERA_POUCH_PINK.get())
+                .pattern(" D ")
+                .pattern("LPL")
+                .pattern("LLL")
+                .define('D', Items.PINK_DYE)
+                .define('L', Items.LEATHER)
+                .define('P', Items.BLAZE_POWDER)
+                .unlockedBy("has_blaze_powder", has(Items.BLAZE_POWDER))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MegaShowdownItems.TERA_POUCH_GRAY.get())
+                .pattern(" D ")
+                .pattern("LPL")
+                .pattern("LLL")
+                .define('D', Items.GRAY_DYE)
+                .define('L', Items.LEATHER)
+                .define('P', Items.BLAZE_POWDER)
+                .unlockedBy("has_blaze_powder", has(Items.BLAZE_POWDER))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MegaShowdownItems.TERA_POUCH_LIGHT_GRAY.get())
+                .pattern(" D ")
+                .pattern("LPL")
+                .pattern("LLL")
+                .define('D', Items.LIGHT_GRAY_DYE)
+                .define('L', Items.LEATHER)
+                .define('P', Items.BLAZE_POWDER)
+                .unlockedBy("has_blaze_powder", has(Items.BLAZE_POWDER))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MegaShowdownItems.TERA_POUCH_CYAN.get())
+                .pattern(" D ")
+                .pattern("LPL")
+                .pattern("LLL")
+                .define('D', Items.CYAN_DYE)
+                .define('L', Items.LEATHER)
+                .define('P', Items.BLAZE_POWDER)
+                .unlockedBy("has_blaze_powder", has(Items.BLAZE_POWDER))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MegaShowdownItems.TERA_POUCH_PURPLE.get())
+                .pattern(" D ")
+                .pattern("LPL")
+                .pattern("LLL")
+                .define('D', Items.PURPLE_DYE)
+                .define('L', Items.LEATHER)
+                .define('P', Items.BLAZE_POWDER)
+                .unlockedBy("has_blaze_powder", has(Items.BLAZE_POWDER))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MegaShowdownItems.TERA_POUCH_BLUE.get())
+                .pattern(" D ")
+                .pattern("LPL")
+                .pattern("LLL")
+                .define('D', Items.BLUE_DYE)
+                .define('L', Items.LEATHER)
+                .define('P', Items.BLAZE_POWDER)
+                .unlockedBy("has_blaze_powder", has(Items.BLAZE_POWDER))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MegaShowdownItems.TERA_POUCH_BROWN.get())
+                .pattern("   ")
+                .pattern("LPL")
+                .pattern("LLL")
+                .define('L', Items.LEATHER)
+                .define('P', Items.BLAZE_POWDER)
+                .unlockedBy("has_blaze_powder", has(Items.BLAZE_POWDER))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MegaShowdownItems.TERA_POUCH_GREEN.get())
+                .pattern(" D ")
+                .pattern("LPL")
+                .pattern("LLL")
+                .define('D', Items.GREEN_DYE)
+                .define('L', Items.LEATHER)
+                .define('P', Items.BLAZE_POWDER)
+                .unlockedBy("has_blaze_powder", has(Items.BLAZE_POWDER))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MegaShowdownItems.TERA_POUCH_RED.get())
+                .pattern(" D ")
+                .pattern("LPL")
+                .pattern("LLL")
+                .define('D', Items.RED_DYE)
+                .define('L', Items.LEATHER)
+                .define('P', Items.BLAZE_POWDER)
+                .unlockedBy("has_blaze_powder", has(Items.BLAZE_POWDER))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MegaShowdownItems.TERA_POUCH_BLACK.get())
+                .pattern(" D ")
+                .pattern("LPL")
+                .pattern("LLL")
+                .define('D', Items.BLACK_DYE)
+                .define('L', Items.LEATHER)
+                .define('P', Items.BLAZE_POWDER)
+                .unlockedBy("has_blaze_powder", has(Items.BLAZE_POWDER))
+                .save(recipeOutput);
     }
 }

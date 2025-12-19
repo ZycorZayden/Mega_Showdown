@@ -859,7 +859,28 @@ public class MegaShowdownItems {
     public static final RegistrySupplier<Item> ADRENALINE_ORB = registerTooltipItem("adrenaline_orb", MegaShowdownTabs.COMPI_TAB);
     public static final RegistrySupplier<Item> SOUL_DEW = registerTooltipItem("soul_dew", MegaShowdownTabs.COMPI_TAB);
 
-    public static final RegistrySupplier<Item> TERA_POUCH = registerItem("tera_pouch", () -> new TeraPouch(new Item.Properties().stacksTo(1).arch$tab(MegaShowdownTabs.KEY_TAB)));
+    public static final RegistrySupplier<Item> TERA_POUCH_WHITE = registerTeraPouch("tera_pouch_white");
+    public static final RegistrySupplier<Item> TERA_POUCH_ORANGE = registerTeraPouch("tera_pouch_orange");
+    public static final RegistrySupplier<Item> TERA_POUCH_MAGENTA = registerTeraPouch("tera_pouch_magenta");
+    public static final RegistrySupplier<Item> TERA_POUCH_LIGHT_BLUE = registerTeraPouch("tera_pouch_light_blue");
+    public static final RegistrySupplier<Item> TERA_POUCH_YELLOW = registerTeraPouch("tera_pouch_yellow");
+    public static final RegistrySupplier<Item> TERA_POUCH_LIME = registerTeraPouch("tera_pouch_lime");
+    public static final RegistrySupplier<Item> TERA_POUCH_PINK = registerTeraPouch("tera_pouch_pink");
+    public static final RegistrySupplier<Item> TERA_POUCH_GRAY = registerTeraPouch("tera_pouch_gray");
+    public static final RegistrySupplier<Item> TERA_POUCH_LIGHT_GRAY = registerTeraPouch("tera_pouch_light_gray");
+    public static final RegistrySupplier<Item> TERA_POUCH_CYAN = registerTeraPouch("tera_pouch_cyan");
+    public static final RegistrySupplier<Item> TERA_POUCH_PURPLE = registerTeraPouch("tera_pouch_purple");
+    public static final RegistrySupplier<Item> TERA_POUCH_BLUE = registerTeraPouch("tera_pouch_blue");
+    public static final RegistrySupplier<Item> TERA_POUCH_BROWN = registerTeraPouch("tera_pouch_brown");
+    public static final RegistrySupplier<Item> TERA_POUCH_GREEN = registerTeraPouch("tera_pouch_green");
+    public static final RegistrySupplier<Item> TERA_POUCH_RED = registerTeraPouch("tera_pouch_red");
+    public static final RegistrySupplier<Item> TERA_POUCH_BLACK = registerTeraPouch("tera_pouch_black");
+
+    private static RegistrySupplier<Item> registerTeraPouch(String name) {
+        return registerItem(name, () -> new TeraPouch(
+                new Item.Properties().stacksTo(1).arch$tab(MegaShowdownTabs.KEY_TAB)
+        ));
+    }
 
     private static RegistrySupplier<Item> registerFormChangeInteractItem(String name,
                                                                          String form_name,

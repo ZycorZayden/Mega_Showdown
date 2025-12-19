@@ -1,6 +1,6 @@
 # TODO
-- Clean the config class
 - Dynamax first get in pokeball then throw
+- Fix mega's not reverting when outside mega is off 
 
 # Future
 - Make custom weather datapackable
