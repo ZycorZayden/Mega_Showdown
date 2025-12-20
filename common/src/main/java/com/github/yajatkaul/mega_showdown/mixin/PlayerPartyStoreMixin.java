@@ -12,7 +12,6 @@ public class PlayerPartyStoreMixin {
     @Inject(method = "initialize", at = @At("TAIL"))
     private void pokemonInit(CallbackInfo ci) {
         PlayerPartyStore playerPartyStore = (PlayerPartyStore) (Object) this;
-
         AspectUtils.revertPokemonsIfRequired(playerPartyStore);
     }
 }

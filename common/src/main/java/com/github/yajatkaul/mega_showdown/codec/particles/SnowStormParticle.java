@@ -122,6 +122,7 @@ public record SnowStormParticle(
 
     private void resetFormChangingState(PokemonEntity context, CompoundTag pokemonPersistentData) {
         context.setNoAi(false);
+
         pokemonPersistentData.remove("form_changing");
         pokemonPersistentData.remove("apply_aspects");
     }

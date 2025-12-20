@@ -13,7 +13,6 @@ import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokem
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdatePacket;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.properties.UnaspectPropertyType;
-import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.codec.Effect;
 import com.github.yajatkaul.mega_showdown.gimmick.MaxGimmick;
 import com.github.yajatkaul.mega_showdown.tag.MegaShowdownTags;
@@ -26,8 +25,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.biome.Biome;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class AspectUtils {
     public static void applyAspects(Pokemon pokemon, List<String> aspects) {
@@ -69,8 +67,16 @@ public class AspectUtils {
                 .orElseGet(ArrayList::new);
     }
 
+    public static final Set<UUID> battleDisconnecter = new HashSet<>();
+
     public static void revertPokemonsIfRequired(ServerPlayer player) {
-        if (player == null) return;
+        if (player == null || battleDisconnecter.contains(player.getUUID())) {
+            if (player != null) {
+                battleDisconnecter.remove(player.getUUID());
+            }
+            return;
+        }
+
         PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
         for (Pokemon pokemon : playerPartyStore) {
             AspectUtils.revertPokemonsIfRequired(pokemon);
@@ -165,8 +171,6 @@ public class AspectUtils {
     public static void updatePackets(BattlePokemon battlePokemon) {
         Pokemon pokemon = battlePokemon.getEntity().getPokemon();
         PokemonBattle battle = battlePokemon.getActor().getBattle();
-
-        pokemon.updateAspects();
 
         if (battlePokemon.actor.getType().equals(ActorType.PLAYER)) {
             battle.sendUpdate(new AbilityUpdatePacket(battlePokemon::getEffectedPokemon, pokemon.getAbility().getTemplate()));

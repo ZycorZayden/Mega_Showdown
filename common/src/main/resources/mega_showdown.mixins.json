@@ -24,6 +24,7 @@
     "PokemonSpeciesMixin",
     "battle.BattleGimmickButtonCompanionMixin",
     "battle.BattleGimmickButtonMixin",
+    "battle.BattleRegistryMixin",
     "battle.ClientBattleMixin",
     "battle.EndInstructionMixin",
     "battle.GimmickTileMixin",
