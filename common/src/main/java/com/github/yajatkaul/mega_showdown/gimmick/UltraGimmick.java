@@ -18,44 +18,50 @@ import java.util.List;
 
 public class UltraGimmick {
     public static void ultraBurstToggle(Pokemon pokemon) {
-        if (!MegaShowdownConfig.outSideUltraBurst) {
-            return;
-        }
+        if (!MegaShowdownConfig.outSideUltraBurst || pokemon.getPersistentData().getBoolean("form_changing")) return;
 
+        if (isUltra(pokemon)) {
+            unUltraBurst(pokemon);
+        } else if (canUltraBurst(pokemon)) {
+            ultraBurst(pokemon);
+        }
+    }
+
+    private static void ultraBurst(Pokemon pokemon) {
         ServerPlayer player = pokemon.getOwnerPlayer();
 
-        if (canUltraBurst(pokemon)) {
-            if (player != null && !AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.Z_RING) && !AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.OMNI_RING)) {
-                player.displayClientMessage(Component.translatable("message.mega_showdown.no_z_ring")
-                        .withStyle(ChatFormatting.RED), true);
-                return;
-            } else if (pokemon.getAspects().contains("dawn-fusion")) {
-                pokemon.getPersistentData().putString("necrozma_form", "prism_fusion=dawn");
-                AspectUtils.appendRevertDataPokemon(
-                        Effect.getEffect("mega_showdown:ultra_burst"),
-                        List.of("prism_fusion=dawn"),
-                        pokemon,
-                        "revert_aspects"
-                );
-            } else {
-                pokemon.getPersistentData().putString("necrozma_form", "prism_fusion=dawn");
-                AspectUtils.appendRevertDataPokemon(
-                        Effect.getEffect("mega_showdown:ultra_burst"),
-                        List.of("prism_fusion=dawn"),
-                        pokemon,
-                        "revert_aspects"
-                );
-            }
-
-            Effect.getEffect("mega_showdown:ultra_burst").applyEffects(pokemon, List.of("prism_fusion=ultra"), null);
-            pokemon.setTradeable(false);
-        } else if (pokemon.getAspects().contains("ultra-fusion")) {
-            String org_form = pokemon.getPersistentData().getString("necrozma_form");
-            pokemon.getPersistentData().remove("necrozma_form");
-
-            Effect.getEffect("mega_showdown:ultra_burst").revertEffects(pokemon, List.of(org_form), null);
-            pokemon.setTradeable(true);
+        if (player != null && !AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.Z_RING) && !AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.OMNI_RING)) {
+            player.displayClientMessage(Component.translatable("message.mega_showdown.no_z_ring")
+                    .withStyle(ChatFormatting.RED), true);
+            return;
+        } else if (pokemon.getAspects().contains("dawn-fusion")) {
+            pokemon.getPersistentData().putString("necrozma_form", "prism_fusion=dawn");
+            AspectUtils.appendRevertDataPokemon(
+                    Effect.getEffect("mega_showdown:ultra_burst"),
+                    List.of("prism_fusion=dawn"),
+                    pokemon,
+                    "revert_aspects"
+            );
+        } else {
+            pokemon.getPersistentData().putString("necrozma_form", "prism_fusion=dawn");
+            AspectUtils.appendRevertDataPokemon(
+                    Effect.getEffect("mega_showdown:ultra_burst"),
+                    List.of("prism_fusion=dawn"),
+                    pokemon,
+                    "revert_aspects"
+            );
         }
+
+        Effect.getEffect("mega_showdown:ultra_burst").applyEffects(pokemon, List.of("prism_fusion=ultra"), null);
+        pokemon.setTradeable(false);
+    }
+
+    private static void unUltraBurst(Pokemon pokemon) {
+        String org_form = pokemon.getPersistentData().getString("necrozma_form");
+        pokemon.getPersistentData().remove("necrozma_form");
+
+        Effect.getEffect("mega_showdown:ultra_burst").revertEffects(pokemon, List.of(org_form), null);
+        pokemon.setTradeable(true);
     }
 
     public static void ultraBurstInBattle(Pokemon pokemon, BattlePokemon battlePokemon) {
@@ -87,5 +93,9 @@ public class UltraGimmick {
             return pokemon.getAspects().contains("dawn-fusion") || pokemon.getAspects().contains("dusk-fusion");
         }
         return false;
+    }
+
+    public static boolean isUltra(Pokemon pokemon) {
+        return pokemon.getAspects().contains("ultra-fusion");
     }
 }

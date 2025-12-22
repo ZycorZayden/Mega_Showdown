@@ -21,7 +21,7 @@ public class MovePartyPokemonToPCHandlerMixin {
     private void onMove(MovePartyPokemonToPCPacket packet, MinecraftServer server, ServerPlayer player, CallbackInfo ci) {
         Pokemon pokemon = PlayerUtils.getPCPokemonFromUUID(player, packet.getPokemonID());
 
-        if (pokemon != null && pokemon.getAspects().stream().anyMatch(MegaGimmick.getMegaAspects()::contains)) {
+        if (pokemon != null && MegaGimmick.isMega(pokemon)) {
             MegaGimmick.megaToggle(pokemon);
         }
     }

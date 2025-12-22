@@ -9,6 +9,7 @@ import com.github.yajatkaul.mega_showdown.utils.AccessoriesUtils;
 import com.github.yajatkaul.mega_showdown.utils.PlayerUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 
 public class GimmickTurnCheck {
@@ -45,43 +46,50 @@ public class GimmickTurnCheck {
         }
     }
 
-    public static boolean hasGimmick(ShowdownMoveset.Gimmick gimmick, ServerPlayer player) {
-        boolean hasOmniRing = AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.OMNI_RING);
+    public static boolean hasGimmick(ShowdownMoveset.Gimmick gimmick, LivingEntity user) {
+        boolean hasOmniRing = AccessoriesUtils.checkTagInAccessories(user, MegaShowdownTags.Items.OMNI_RING);
 
         switch (gimmick) {
             case DYNAMAX -> {
                 if (!MegaShowdownConfig.dynamax) return false;
                 if (hasOmniRing) return true;
 
-                return AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.DYNAMAX_BAND);
+                return AccessoriesUtils.checkTagInAccessories(user, MegaShowdownTags.Items.DYNAMAX_BAND);
             }
             case TERASTALLIZATION -> {
                 if (!MegaShowdownConfig.teralization) return false;
                 if (hasOmniRing) return true;
 
-                boolean hasTerapagos = PlayerUtils.hasPokemon(player, "Terapagos");
-                ItemStack teraOrb = AccessoriesUtils.findFirstItemWithTag(player, MegaShowdownTags.Items.TERA_ORB);
+                ItemStack teraOrb = AccessoriesUtils.findFirstItemWithTag(user, MegaShowdownTags.Items.TERA_ORB);
+                if (user instanceof ServerPlayer player) {
+                    boolean hasTerapagos = PlayerUtils.hasPokemon(player, "Terapagos");
 
-                if (teraOrb.isEmpty()) return false;
+                    if (teraOrb.isEmpty()) return false;
 
-                if (hasTerapagos) {
-                    teraOrb.setDamageValue(0);
+                    if (hasTerapagos) {
+                        teraOrb.setDamageValue(0);
+                    }
+
+                    return teraOrb.getDamageValue() < 100;
                 }
 
-                return teraOrb.getDamageValue() < 100;
+                return teraOrb != ItemStack.EMPTY;
             }
             case Z_POWER -> {
                 if (!MegaShowdownConfig.zMoves) return false;
                 if (hasOmniRing) return true;
 
-                return AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.Z_RING);
+                return AccessoriesUtils.checkTagInAccessories(user, MegaShowdownTags.Items.Z_RING);
             }
             case MEGA_EVOLUTION -> {
                 if (!MegaShowdownConfig.mega) return false;
 
-                boolean hasMegaAccess = AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.MEGA_BRACELET);
+                boolean hasMegaAccess = AccessoriesUtils.checkTagInAccessories(user, MegaShowdownTags.Items.MEGA_BRACELET);
 
-                return (hasMegaAccess || hasOmniRing) && !MegaGimmick.hasMega(player);
+                if (user instanceof ServerPlayer player) {
+                    return (hasMegaAccess || hasOmniRing) && !MegaGimmick.hasMega(player);
+                }
+                return hasMegaAccess || hasOmniRing;
             }
         }
 

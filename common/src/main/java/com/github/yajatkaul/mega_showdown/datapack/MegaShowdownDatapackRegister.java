@@ -61,17 +61,6 @@ public class MegaShowdownDatapackRegister {
         FORM_CHANGE_INTERACT_REGISTRY = server.registryAccess().registryOrThrow(MegaShowdownDatapackRegister.FORM_CHANGE_INTERACT_REGISTRY_KEY);
         Z_CRYSTAL_ITEM_REGISTRY = server.registryAccess().registryOrThrow(MegaShowdownDatapackRegister.Z_CRYSTAL_ITEM_REGISTRY_KEY);
 
-        for (MegaGimmick megaGimmick : MEGA_REGISTRY) {
-            for (String aspect : megaGimmick.aspect_conditions().apply_aspects()) {
-                String[] split = aspect.split("=");
-                if (split[1].equals("true") || split[1].equals("false")) {
-                    MegaGimmick.appendMegaAspect(split[0]);
-                } else {
-                    MegaGimmick.appendMegaAspect(split[1]);
-                }
-            }
-        }
-
         CobblemonHeldItemManager.INSTANCE.registerStackRemap(stack -> {
             ShowdownItem showdownItem = RegistryLocator.getComponent(ShowdownItem.class, stack);
             if (showdownItem != null) {

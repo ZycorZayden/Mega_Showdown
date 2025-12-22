@@ -5,3 +5,4 @@
 - Fixed outside mega's glitch allowing outside mega
 - Fixed the type changing not working with z crystals
 - Added miradon koriadon with riding
+- Fixed multiple mega glitch

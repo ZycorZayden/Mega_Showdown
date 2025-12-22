@@ -370,7 +370,7 @@ public class CobbleEvents {
 
         if (megaGimmick != null
                 && megaGimmick.pokemons().contains(pokemon.getSpecies().getName())
-                && pokemon.getAspects().stream().anyMatch(MegaGimmick.getMegaAspects()::contains)) {
+                && MegaGimmick.isMega(pokemon)) {
             MegaGimmick.megaToggle(pokemon);
         }
 

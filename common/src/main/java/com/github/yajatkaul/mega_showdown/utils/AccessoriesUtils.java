@@ -21,7 +21,7 @@ public class AccessoriesUtils {
                 .orElse(false);
     }
 
-    public static ItemStack findFirstItemWithTag(Player player, TagKey<Item> tag) {
+    public static ItemStack findFirstItemWithTag(LivingEntity player, TagKey<Item> tag) {
         return AccessoriesCapability.getOptionally(player)
                 .map(capability -> capability.getAllEquipped()
                         .stream()

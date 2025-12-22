@@ -19,9 +19,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public record MegaGimmick(
         String showdown_id,
@@ -33,14 +31,9 @@ public record MegaGimmick(
             Codec.list(Codec.STRING).fieldOf("pokemons").forGetter(MegaGimmick::pokemons),
             AspectSetCodec.CODEC.fieldOf("aspect").forGetter(MegaGimmick::aspect_conditions)
     ).apply(instance, MegaGimmick::new));
-    private static final Set<String> mega_aspects = new HashSet<>(Set.of("mega", "mega_y", "mega_x"));
 
-    public static void appendMegaAspect(String aspect) {
-        mega_aspects.add(aspect);
-    }
-
-    public static Set<String> getMegaAspects() {
-        return mega_aspects;
+    public static boolean isMega(Pokemon pokemon) {
+        return pokemon.getPersistentData().getBoolean("mega_evolved");
     }
 
     public static boolean hasMega(ServerPlayer player) {
@@ -52,13 +45,13 @@ public record MegaGimmick(
         PCStore pcStore = Cobblemon.INSTANCE.getStorage().getPC(player);
 
         for (Pokemon pokemon : playerPartyStore) {
-            if (pokemon.getAspects().stream().anyMatch(mega_aspects::contains)) {
+            if (pokemon.getPersistentData().getBoolean("mega_evolved")) {
                 return true;
             }
         }
 
         for (Pokemon pokemon : pcStore) {
-            if (pokemon.getAspects().stream().anyMatch(mega_aspects::contains)) {
+            if (pokemon.getPersistentData().getBoolean("mega_evolved")) {
                 return true;
             }
         }
@@ -80,7 +73,7 @@ public record MegaGimmick(
                         pokemon,
                         "battle_end_revert"
                 );
-            } else if (megaGimmick.canMega(pokemon)) {
+            } else {
                 Effect.getEffect("mega_showdown:mega_evolution").applyEffectsBattle(pokemon, megaGimmick.aspect_conditions.apply_aspects(), null, battlePokemon);
 
                 AspectUtils.appendRevertDataPokemon(
@@ -93,93 +86,101 @@ public record MegaGimmick(
         }
     }
 
-    private static void megaEvolve(Pokemon pokemon, List<String> aspects, List<String> revertAspects) {
-        AspectUtils.appendRevertDataPokemon(
-                Effect.getEffect("mega_showdown:mega_evolution"),
-                revertAspects,
-                pokemon,
-                "revert_aspects"
-        );
+    public static void megaToggle(Pokemon pokemon) {
+        if (!MegaShowdownConfig.outSideMega || pokemon == null || pokemon.getPersistentData().getBoolean("form_changing")) {
+            return;
+        }
+        if (pokemon.getPersistentData().getBoolean("mega_evolved")) {
+            unmegaEvolve(pokemon);
+        } else {
+            megaEvolve(pokemon);
+        }
+    }
 
-        Effect.getEffect("mega_showdown:mega_evolution").applyEffects(pokemon, aspects, null);
+    private static void megaEvolve(Pokemon pokemon) {
+        ItemStack heldItem = pokemon.heldItem();
+        MegaGimmick megaGimmick = RegistryLocator.getComponent(MegaGimmick.class, heldItem);
 
+        if (pokemon.getSpecies().getName().equals("Rayquaza")) {
+            AspectUtils.appendRevertDataPokemon(
+                    Effect.getEffect("mega_showdown:mega_evolution"),
+                    List.of("mega_evolution=none"),
+                    pokemon,
+                    "revert_aspects"
+            );
+            Effect.getEffect("mega_showdown:mega_evolution").applyEffects(pokemon, List.of("mega_evolution=none"), null);
+        } else if (megaGimmick != null){
+            AspectUtils.appendRevertDataPokemon(
+                    Effect.getEffect("mega_showdown:mega_evolution"),
+                    megaGimmick.aspect_conditions.revert_aspects(),
+                    pokemon,
+                    "revert_aspects"
+            );
+            Effect.getEffect("mega_showdown:mega_evolution").applyEffects(pokemon, megaGimmick.aspect_conditions.apply_aspects(), null);
+        }
+        pokemon.getPersistentData().putBoolean("mega_evolved", true);
         pokemon.setTradeable(false);
     }
 
-    public static void megaToggle(Pokemon pokemon) {
-        if (!MegaShowdownConfig.outSideMega ||
-                pokemon == null ||
-                pokemon.getPersistentData().getBoolean("form_changing")
-        ) {
-            return;
-        }
+    private static void unmegaEvolve(Pokemon pokemon) {
+        ItemStack heldItem = pokemon.heldItem();
+        MegaGimmick megaGimmick = RegistryLocator.getComponent(MegaGimmick.class, heldItem);
 
+        if (pokemon.getSpecies().getName().equals("Rayquaza")) {
+            pokemon.getPersistentData().remove("mega_evolved");
+            Effect.getEffect("mega_showdown:mega_evolution").revertEffects(pokemon, List.of("mega_evolution=none"), null);
+        } else if (megaGimmick != null) {
+            pokemon.getPersistentData().remove("mega_evolved");
+            Effect.getEffect("mega_showdown:mega_evolution").revertEffects(pokemon, megaGimmick.aspect_conditions.revert_aspects(), null);
+        }
+        pokemon.setTradeable(true);
+    }
+
+    public static boolean canMega(Pokemon pokemon) {
         ServerPlayer player = pokemon.getOwnerPlayer();
 
         ItemStack heldItem = pokemon.heldItem();
         MegaGimmick megaGimmick = RegistryLocator.getComponent(MegaGimmick.class, heldItem);
 
-        if (megaGimmick != null || pokemon.getSpecies().getName().equals("Rayquaza")) {
-            if (pokemon.getAspects().stream().anyMatch(mega_aspects::contains)) {
-                if (pokemon.getSpecies().getName().equals("Rayquaza")) {
-                    Effect.getEffect("mega_showdown:mega_evolution").revertEffects(pokemon, List.of("mega_evolution=none"), null);
-                } else {
-                    Effect.getEffect("mega_showdown:mega_evolution").revertEffects(pokemon, megaGimmick.aspect_conditions.revert_aspects(), null);
-                }
-                pokemon.setTradeable(true);
-            } else if (pokemon.getSpecies().getName().equals("Rayquaza")) {
-                if (player != null &&
-                        !AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.MEGA_BRACELET) &&
-                        !AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.OMNI_RING)) {
-                    player.displayClientMessage(Component.translatable("message.mega_showdown.no_mega_bracelet")
-                            .withStyle(ChatFormatting.RED), true);
-                    return;
-                }
-
-                boolean found = false;
-                for (int i = 0; i < 4; i++) {
-                    if (pokemon.getMoveSet().getMoves().get(i).getName().equals("dragonascent")) {
-                        MegaGimmick.megaEvolve(pokemon, List.of("mega_evolution=mega"), List.of("mega_evolution=none"));
-                        found = true;
-                        break;
-                    }
-                }
-                if (!found) {
-                    if (player != null) {
-                        player.displayClientMessage(Component.translatable("message.mega_showdown.rayquaza_no_dragonascent")
-                                .withStyle(ChatFormatting.RED), true);
-                    }
-                }
-            } else if (megaGimmick.canMega(pokemon)) {
-                if (player != null &&
-                        !AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.MEGA_BRACELET) &&
-                        !AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.OMNI_RING)) {
-                    player.displayClientMessage(Component.translatable("message.mega_showdown.no_mega_bracelet")
-                            .withStyle(ChatFormatting.RED), true);
-                    return;
-                }
-
-                MegaGimmick.megaEvolve(pokemon, megaGimmick.aspect_conditions.apply_aspects(), megaGimmick.aspect_conditions.revert_aspects());
-            }
-        } else {
-            player.displayClientMessage(Component.translatable("message.mega_showdown.no_or_incorrect_mega_stone")
-                    .withStyle(ChatFormatting.RED), true);
-        }
-    }
-
-    public boolean canMega(Pokemon pokemon) {
-        ServerPlayer player = pokemon.getOwnerPlayer();
+        if (!pokemon.getSpecies().getName().equals("Rayquaza") && megaGimmick == null) return false;
 
         if (player != null && hasMega(player)) {
-            player.displayClientMessage(Component.translatable("message.mega_showdown.mega_limit")
-                    .withStyle(ChatFormatting.RED), true);
             return false;
         }
 
-        if (!this.aspect_conditions.validate_apply(pokemon)) {
+        if (pokemon.getSpecies().getName().equals("Rayquaza")) {
+            if (player != null &&
+                    !AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.MEGA_BRACELET) &&
+                    !AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.OMNI_RING)) {
+                player.displayClientMessage(Component.translatable("message.mega_showdown.no_mega_bracelet")
+                        .withStyle(ChatFormatting.RED), true);
+                return false;
+            }
+
+            boolean found = false;
+            for (int i = 0; i < 4; i++) {
+                if (pokemon.getMoveSet().getMoves().get(i).getName().equals("dragonascent")) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                if (player != null) {
+                    player.displayClientMessage(Component.translatable("message.mega_showdown.rayquaza_no_dragonascent")
+                            .withStyle(ChatFormatting.RED), true);
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        }
+
+        if (megaGimmick == null) return false;
+
+        if (!megaGimmick.aspect_conditions.validate_apply(pokemon)) {
             return false;
         }
 
-        return this.pokemons.contains(pokemon.getSpecies().getName());
+        return megaGimmick.pokemons.contains(pokemon.getSpecies().getName());
     }
 }
