@@ -6,3 +6,10 @@
 - Fixed the type changing not working with z crystals
 - Added miradon koriadon with riding
 - Fixed multiple mega glitch
+- Fixed Gmax Gengar scaling
+- Added new Meloetta
+- More seat locator's on Rayquaza (Sherbet)
+- Implemented Koraidon/Miraidon
+- Fixed Scaling with Zygarde/Greninja particles
+- Updated Zygarde's Particles
+- New Mega Evolution Particles (commissioned by xiaoxiao5464)

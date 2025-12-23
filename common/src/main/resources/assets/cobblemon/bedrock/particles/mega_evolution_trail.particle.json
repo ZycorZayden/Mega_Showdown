@@ -1,0 +1,73 @@
+{
+	"format_version": "1.10.0",
+	"particle_effect": {
+		"description": {
+			"identifier": "cobblemon:mega_evolution_trail",
+			"basic_render_parameters": {
+				"material": "particles_alpha",
+				"texture": "textures/particles/generic/orb/largefadeorb"
+			}
+		},
+		"curves": {
+			"variable.size": {
+				"type": "catmull_rom",
+				"input": "variable.particle_age",
+				"horizontal_range": "variable.particle_lifetime",
+				"nodes": [0, 0.08, 0.25, 0.07, 0, 0]
+			},
+			"variable.tornado": {
+				"type": "linear",
+				"input": "variable.particle_age",
+				"horizontal_range": "variable.particle_lifetime",
+				"nodes": [0, 0.2, 0.16, 0.34, 0.68, 0.6, 0.82, 0.85, 1.08]
+			}
+		},
+		"components": {
+			"minecraft:emitter_initialization": {
+				"creation_expression": "variable.theta = -variable.particle_age * 360 + variable.particle_random_2 * 180;variable.phi = -90 + variable.particle_age * 90;"
+			},
+			"minecraft:emitter_rate_steady": {
+				"spawn_rate": 45,
+				"max_particles": 1000
+			},
+			"minecraft:emitter_lifetime_looping": {
+				"active_time": 3
+			},
+			"minecraft:emitter_shape_point": {},
+			"minecraft:particle_lifetime_expression": {
+				"max_lifetime": 2
+			},
+			"minecraft:particle_motion_parametric": {
+				"relative_position": ["math.cos(-variable.particle_age * 360 + variable.particle_random_2 * 180) * math.cos(-90 + variable.particle_age * 90) * 1.65 * math.max(1, q.entity_size / 1)", "math.sin(-90 + variable.particle_age * 90) * 1.65 * math.max(1, q.entity_size / 1) + 1 ", "math.sin(-variable.particle_age * 360 + variable.particle_random_2 * 180) * math.cos(-90 + variable.particle_age * 90) * 1.65 * math.max(1, q.entity_size / 1)"]
+			},
+			"minecraft:particle_appearance_billboard": {
+				"size": ["variable.particle_age * variable.size * math.max(1, q.entity_size / 1)", "variable.particle_age * variable.size * math.max(1, q.entity_size / 1)"],
+				"facing_camera_mode": "rotate_xyz",
+				"uv": {
+					"texture_width": 143,
+					"texture_height": 13,
+					"flipbook": {
+						"base_UV": [0, 0],
+						"size_UV": [13, 13],
+						"step_UV": [13, 0],
+						"frames_per_second": 15,
+						"max_frame": 11,
+						"stretch_to_lifetime": true,
+						"loop": true
+					}
+				}
+			},
+			"minecraft:particle_appearance_tinting": {
+				"color": {
+					"interpolant": "(v.particle_age / v.particle_lifetime) * variable.particle_random_4",
+					"gradient": {
+						"0.03": "#EBF24CFF",
+						"0.21": "#E8FFFFFF",
+						"0.5": "#EDFF0BE9",
+						"0.86": "#EDD027FF"
+					}
+				}
+			}
+		}
+	}
+}
