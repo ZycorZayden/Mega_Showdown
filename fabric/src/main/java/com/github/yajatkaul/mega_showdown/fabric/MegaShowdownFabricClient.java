@@ -6,12 +6,15 @@ import com.github.yajatkaul.mega_showdown.block.MegaShowdownBlockEntities;
 import com.github.yajatkaul.mega_showdown.block.MegaShowdownBlocks;
 import com.github.yajatkaul.mega_showdown.block.block_entity.renderer.PedestalBlockEntityRenderer;
 import com.github.yajatkaul.mega_showdown.render.ItemRenderingLoader;
+import com.github.yajatkaul.mega_showdown.render.renderTypes.MSDRenderTypes;
 import com.github.yajatkaul.mega_showdown.screen.MegaShowdownMenuTypes;
 import com.github.yajatkaul.mega_showdown.screen.custom.screen.TeraPouchScreen;
 import com.github.yajatkaul.mega_showdown.screen.custom.screen.ZygardeCubeScreen;
+import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import dev.architectury.registry.ReloadListenerRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.rendering.v1.CoreShaderRegistrationCallback;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
@@ -51,5 +54,15 @@ public final class MegaShowdownFabricClient implements ClientModInitializer {
         );
 
         BlockEntityRenderers.register(MegaShowdownBlockEntities.PEDESTAL_BLOCK_ENTITY.get(), PedestalBlockEntityRenderer::new);
+
+        CoreShaderRegistrationCallback.EVENT.register(context -> {
+            context.register(
+                    ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "tera_shader"),
+                    DefaultVertexFormat.NEW_ENTITY,
+                    shader -> {
+                        MSDRenderTypes.teraShader = shader;
+                    }
+            );
+        });
     }
 }

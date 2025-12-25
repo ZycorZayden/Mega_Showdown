@@ -5,10 +5,13 @@ import com.github.yajatkaul.mega_showdown.MegaShowdownClient;
 import com.github.yajatkaul.mega_showdown.block.MegaShowdownBlockEntities;
 import com.github.yajatkaul.mega_showdown.block.block_entity.renderer.PedestalBlockEntityRenderer;
 import com.github.yajatkaul.mega_showdown.render.ItemRenderingLoader;
+import com.github.yajatkaul.mega_showdown.render.renderTypes.MSDRenderTypes;
 import com.github.yajatkaul.mega_showdown.screen.MegaShowdownMenuTypes;
 import com.github.yajatkaul.mega_showdown.screen.custom.screen.TeraPouchScreen;
 import com.github.yajatkaul.mega_showdown.screen.custom.screen.ZygardeCubeScreen;
+import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import dev.architectury.registry.ReloadListenerRegistry;
+import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
@@ -20,7 +23,10 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
+import net.neoforged.neoforge.client.event.RegisterShadersEvent;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
+
+import java.io.IOException;
 
 @EventBusSubscriber(modid = MegaShowdown.MOD_ID, value = Dist.CLIENT)
 public class MegaShowdownNeoForgeClient {
@@ -63,5 +69,12 @@ public class MegaShowdownNeoForgeClient {
                 false,
                 Pack.Position.TOP
         );
+    }
+
+    @SubscribeEvent
+    public static void shaderRegistry(RegisterShadersEvent event) throws IOException {
+        event.registerShader(new ShaderInstance(event.getResourceProvider(), ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "tera_shader"), DefaultVertexFormat.NEW_ENTITY), shaderInstance -> {
+            MSDRenderTypes.teraShader = shaderInstance;
+        });
     }
 }
