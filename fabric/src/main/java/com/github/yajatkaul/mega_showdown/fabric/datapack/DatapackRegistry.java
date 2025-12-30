@@ -1,6 +1,7 @@
 package com.github.yajatkaul.mega_showdown.fabric.datapack;
 
 import com.github.yajatkaul.mega_showdown.codec.*;
+import com.github.yajatkaul.mega_showdown.codec.teraHat.TeraHatCodec;
 import com.github.yajatkaul.mega_showdown.gimmick.MaxGimmick;
 import com.github.yajatkaul.mega_showdown.gimmick.MegaGimmick;
 import net.fabricmc.fabric.api.event.registry.DynamicRegistries;
@@ -10,7 +11,6 @@ import static com.github.yajatkaul.mega_showdown.datapack.MegaShowdownDatapackRe
 public class DatapackRegistry {
     public static void register() {
         DynamicRegistries.registerSynced(EFFECT_REGISTRY_KEY, Effect.CODEC);
-
         DynamicRegistries.registerSynced(FORM_CHANGE_TOGGLE_INTERACT_REGISTRY_KEY, FormChangeToggleInteractItem.CODEC);
         DynamicRegistries.registerSynced(FORM_CHANGE_INTERACT_REGISTRY_KEY, FormChangeInteractItem.CODEC);
         DynamicRegistries.registerSynced(SOLO_FUSION_REGISTRY_KEY, SoloFusion.CODEC);
@@ -21,5 +21,6 @@ public class DatapackRegistry {
         DynamicRegistries.registerSynced(BATTLE_FORM_CHANGE_REGISTRY_KEY, BattleFormChange.CODEC);
         DynamicRegistries.registerSynced(SHOWDOWN_ITEM_REGISTRY_KEY, ShowdownItem.CODEC);
         DynamicRegistries.registerSynced(Z_CRYSTAL_ITEM_REGISTRY_KEY, ZCrystal.CODEC);
+        DynamicRegistries.registerSynced(TERA_HAT_CONFIG_REGISTRY_KEY, TeraHatCodec.CODEC);
     }
 }

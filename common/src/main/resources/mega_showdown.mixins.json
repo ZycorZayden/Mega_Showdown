@@ -7,11 +7,13 @@
     "MoveSlotWidgetMixin",
     "battle.BattleMoveSelectionMixin",
     "client.ItemRendererMixin",
+    "client.LivingEntityRendererMixin",
     "client.ModeBakeryMixin",
+    "client.PokemonRendererMixin",
     "client.ui.PCGUIMixin",
     "client.ui.SummaryCompanionMixin",
     "client.ui.SummaryMixin",
-    "minecraft.ItemInHandRendererMixin"
+    "minecraft.ItemInHandRendererMixin",
   ],
   "mixins": [
     "GraalShowdownUnbundlerMixin",

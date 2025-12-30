@@ -7,6 +7,10 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import java.util.List;
 
 public record AspectSetCodec(
+        List<String> required_forms_apply,
+        List<String> blacklisted_forms_revert,
+        List<String> required_forms_revert,
+        List<String> blacklisted_forms_apply,
         List<List<String>> required_aspects_apply,
         List<List<String>> blacklist_aspects_apply,
         List<List<String>> required_aspects_revert,
@@ -15,6 +19,10 @@ public record AspectSetCodec(
         List<String> revert_aspects
 ) {
     public static final Codec<AspectSetCodec> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+            Codec.list(Codec.STRING).optionalFieldOf("required_forms_apply", List.of()).forGetter(AspectSetCodec::required_forms_apply),
+            Codec.list(Codec.STRING).optionalFieldOf("blacklisted_forms_revert", List.of()).forGetter(AspectSetCodec::blacklisted_forms_revert),
+            Codec.list(Codec.STRING).optionalFieldOf("required_forms_revert", List.of()).forGetter(AspectSetCodec::required_forms_revert),
+            Codec.list(Codec.STRING).optionalFieldOf("blacklisted_forms_apply", List.of()).forGetter(AspectSetCodec::blacklisted_forms_apply),
             Codec.list(Codec.list(Codec.STRING)).optionalFieldOf("required_aspects_apply", List.of()).forGetter(AspectSetCodec::required_aspects_apply),
             Codec.list(Codec.list(Codec.STRING)).optionalFieldOf("blacklist_aspects_apply", List.of()).forGetter(AspectSetCodec::blacklist_aspects_apply),
             Codec.list(Codec.list(Codec.STRING)).optionalFieldOf("required_aspects_revert", List.of()).forGetter(AspectSetCodec::required_aspects_revert),
@@ -24,30 +32,16 @@ public record AspectSetCodec(
     ).apply(instance, AspectSetCodec::new));
 
     public boolean validate_apply(Pokemon pokemon) {
-        if (this.blacklist_aspects_apply
-                .stream()
-                .flatMap(List::stream)
-                .anyMatch(pokemon.getAspects()::contains)) {
-            return false;
-        }
-
-        return this.required_aspects_apply
-                .stream()
-                .flatMap(List::stream)
-                .allMatch(pokemon.getAspects()::contains);
+        if (this.blacklist_aspects_apply.stream().flatMap(List::stream).anyMatch(pokemon.getAspects()::contains)) return false;
+        if (this.blacklisted_forms_apply.contains(pokemon.getForm().getName())) return false;
+        if (!this.required_forms_apply.contains(pokemon.getForm().getName())) return false;
+        return this.required_aspects_apply.stream().flatMap(List::stream).allMatch(pokemon.getAspects()::contains);
     }
 
     public boolean validate_revert(Pokemon pokemon) {
-        if (this.blacklist_aspects_revert
-                .stream()
-                .flatMap(List::stream)
-                .anyMatch(pokemon.getAspects()::contains)) {
-            return false;
-        }
-
-        return this.required_aspects_revert
-                .stream()
-                .flatMap(List::stream)
-                .allMatch(pokemon.getAspects()::contains);
+        if (this.blacklist_aspects_revert.stream().flatMap(List::stream).anyMatch(pokemon.getAspects()::contains)) return false;
+        if (this.blacklisted_forms_revert.contains(pokemon.getForm().getName())) return false;
+        if (!this.required_forms_revert.contains(pokemon.getForm().getName())) return false;
+        return this.required_aspects_revert.stream().flatMap(List::stream).allMatch(pokemon.getAspects()::contains);
     }
 }

@@ -3,7 +3,7 @@
   "showdown_form_change_id": "busted",
   "aspects": {
     "apply_aspects": ["disguise_form=busted"],
-    "revert_aspects": ["disguise_form=normal"]
+    "revert_aspects": ["disguise_form=disguised"]
   },
   "effect": "mega_showdown:end_rod"
 }

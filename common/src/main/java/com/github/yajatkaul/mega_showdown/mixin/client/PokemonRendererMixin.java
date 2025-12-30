@@ -1,4 +1,4 @@
-package com.github.yajatkaul.mega_showdown.mixin;
+package com.github.yajatkaul.mega_showdown.mixin.client;
 
 import com.cobblemon.mod.common.client.entity.PokemonClientDelegate;
 import com.cobblemon.mod.common.client.render.MatrixWrapper;
@@ -8,8 +8,13 @@ import com.cobblemon.mod.common.client.render.models.blockbench.repository.Varyi
 import com.cobblemon.mod.common.client.render.pokemon.PokemonRenderer;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.block.block_entity.renderer.state.TeraHatState;
+import com.github.yajatkaul.mega_showdown.codec.teraHat.TeraHatCodec;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
+import com.github.yajatkaul.mega_showdown.datapack.MegaShowdownDatapackRegister;
+import com.github.yajatkaul.mega_showdown.render.renderTypes.MSDRenderTypes;
+import com.github.yajatkaul.mega_showdown.utils.GlowHandler;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
@@ -25,10 +30,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Mixin(value = PokemonRenderer.class)
 public class PokemonRendererMixin {
@@ -63,10 +65,18 @@ public class PokemonRendererMixin {
             if (headLocator == null) return;
 
             poseStack.pushPose();
+
+            Optional<TeraHatCodec> teraHatCodec = MegaShowdownDatapackRegister.TERA_HAT_CONFIG_REGISTRY.getOptional(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, pokemon.getSpecies().getName().toLowerCase(Locale.ROOT)));
+
             poseStack.mulPose(headLocator.getMatrix());
             poseStack.mulPose(Axis.XP.rotationDegrees(180));
             poseStack.mulPose(Axis.YP.rotationDegrees(180));
             poseStack.translate(0.08, 0.0, 0.0);
+
+            teraHatCodec.ifPresent((teraHat) -> {
+                List<Float> scale = TeraHatCodec.getScaleForHat(pokemon, aspect.get(), teraHat);
+                poseStack.scale(scale.get(0), scale.get(1), scale.get(2));
+            });
 
             // Update state BEFORE getting model
             mega_showdown$aspects.clear(); // Clear and re-add
@@ -100,7 +110,13 @@ public class PokemonRendererMixin {
             );
 
             // Render
-            VertexConsumer vertexConsumer = buffer.getBuffer(RenderType.entityCutout(texture));
+            VertexConsumer vertexConsumer;
+            if (MegaShowdownConfig.legacyTeraEffect) {
+                vertexConsumer = buffer.getBuffer(RenderType.entityCutout(texture));
+            } else {
+                vertexConsumer = buffer.getBuffer(MSDRenderTypes.pokemonShader(texture));
+            }
+
             model.render(mega_showdown$context, poseStack, vertexConsumer, packedLight, OverlayTexture.NO_OVERLAY, -0x1);
 
             model.withLayerContext(
