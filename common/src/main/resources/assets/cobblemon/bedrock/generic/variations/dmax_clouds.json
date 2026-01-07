@@ -1,0 +1,19 @@
+{
+  "name": "cobblemon:dmax_clouds",
+  "order": 1,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:dmax_clouds",
+      "model": "cobblemon:dmax_clouds.geo",
+      "texture": "cobblemon:textures/dmax/dmax_clouds.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "emissive": true,
+          "texture": "cobblemon:textures/dmax/dmax_clouds.png"
+        }
+      ]
+    }
+  ]
+}

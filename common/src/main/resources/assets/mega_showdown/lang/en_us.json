@@ -628,5 +628,25 @@
   "message.mega_showdown.no_mega_bracelet": "No mega bracelet",
   "message.mega_showdown.no_z_ring": "No Z-ring",
 
-  "cobblemon.ui.stats.dynamax_level": "Dynamax Level"
+  "cobblemon.ui.stats.dynamax_level": "Dynamax Level",
+
+  "menu.tera_pouch": "Tera Pouch",
+
+  "item.mega_showdown.tera_pouch_white": "Tera Pouch White",
+  "item.mega_showdown.tera_pouch_orange": "Tera Pouch Orange",
+  "item.mega_showdown.tera_pouch_magenta": "Tera Pouch Magenta",
+  "item.mega_showdown.tera_pouch_light_blue": "Tera Pouch Light Blue",
+  "item.mega_showdown.tera_pouch_yellow": "Tera Pouch Yellow",
+  "item.mega_showdown.tera_pouch_lime": "Tera Pouch Lime",
+  "item.mega_showdown.tera_pouch_pink": "Tera Pouch Pink",
+  "item.mega_showdown.tera_pouch_gray": "Tera Pouch Gray",
+  "item.mega_showdown.tera_pouch_light_gray": "Tera Pouch Light Gray",
+  "item.mega_showdown.tera_pouch_cyan": "Tera Pouch Cyan",
+  "item.mega_showdown.tera_pouch_purple": "Tera Pouch Purple",
+  "item.mega_showdown.tera_pouch_blue": "Tera Pouch Blue",
+  "item.mega_showdown.tera_pouch_brown": "Tera Pouch",
+  "item.mega_showdown.tera_pouch_green": "Tera Pouch Green",
+  "item.mega_showdown.tera_pouch_red": "Tera Pouch Red",
+  "item.mega_showdown.tera_pouch_black": "Tera Pouch Black",
+  "tooltip.mega_showdown.tera_pouch.tooltip": "A pouch to store all your tera shards at one place"
 }

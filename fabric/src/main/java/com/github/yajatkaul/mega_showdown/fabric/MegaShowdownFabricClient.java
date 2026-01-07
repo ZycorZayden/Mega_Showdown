@@ -5,9 +5,14 @@ import com.github.yajatkaul.mega_showdown.MegaShowdownClient;
 import com.github.yajatkaul.mega_showdown.block.MegaShowdownBlockEntities;
 import com.github.yajatkaul.mega_showdown.block.MegaShowdownBlocks;
 import com.github.yajatkaul.mega_showdown.block.block_entity.renderer.PedestalBlockEntityRenderer;
+import com.github.yajatkaul.mega_showdown.render.LayerDataLoader;
 import com.github.yajatkaul.mega_showdown.render.ItemRenderingLoader;
+import com.github.yajatkaul.mega_showdown.render.RegisterShaderEvent;
+import com.github.yajatkaul.mega_showdown.render.renderTypes.MSDRenderTypes;
 import com.github.yajatkaul.mega_showdown.screen.MegaShowdownMenuTypes;
-import com.github.yajatkaul.mega_showdown.screen.custom.ZygardeCubeScreen;
+import com.github.yajatkaul.mega_showdown.screen.custom.screen.TeraPouchScreen;
+import com.github.yajatkaul.mega_showdown.screen.custom.screen.ZygardeCubeScreen;
+import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import dev.architectury.registry.ReloadListenerRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -25,7 +30,11 @@ public final class MegaShowdownFabricClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         ReloadListenerRegistry.register(PackType.CLIENT_RESOURCES, new ItemRenderingLoader());
+        ReloadListenerRegistry.register(PackType.CLIENT_RESOURCES, new LayerDataLoader());
+
         MenuScreens.register(MegaShowdownMenuTypes.ZYGARDE_CUBE_MENU.get(), ZygardeCubeScreen::new);
+        MenuScreens.register(MegaShowdownMenuTypes.TERA_POUCH_MENU.get(), TeraPouchScreen::new);
+
         MegaShowdownClient.init();
 
         BlockRenderLayerMap.INSTANCE.putBlock(MegaShowdownBlocks.GRACIDEA_FLOWER.get(), RenderType.cutout());
@@ -48,5 +57,13 @@ public final class MegaShowdownFabricClient implements ClientModInitializer {
         );
 
         BlockEntityRenderers.register(MegaShowdownBlockEntities.PEDESTAL_BLOCK_ENTITY.get(), PedestalBlockEntityRenderer::new);
+
+        RegisterShaderEvent.EVENT.register((event) -> {
+            MSDRenderTypes.teraShader = event.create(
+                    ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "tera_shader"),
+                    DefaultVertexFormat.NEW_ENTITY,
+                    true
+            );
+        });
     }
 }

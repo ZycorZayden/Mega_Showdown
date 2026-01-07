@@ -19,14 +19,17 @@ import com.cobblemon.mod.common.api.events.pokemon.PokemonSentEvent;
 import com.cobblemon.mod.common.api.events.pokemon.RidePokemonEvent;
 import com.cobblemon.mod.common.api.events.pokemon.healing.PokemonHealedEvent;
 import com.cobblemon.mod.common.api.item.HealingSource;
-import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.api.types.tera.TeraTypes;
 import com.cobblemon.mod.common.battles.dispatch.UntilDispatch;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
+import com.cobblemon.mod.common.client.render.models.blockbench.bedrock.animation.BedrockActiveAnimation;
+import com.cobblemon.mod.common.client.render.models.blockbench.bedrock.animation.BedrockAnimationRepository;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.properties.AspectPropertyType;
+import com.cobblemon.mod.common.pokemon.properties.UnaspectPropertyType;
+import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.github.yajatkaul.mega_showdown.api.event.DynamaxEndCallback;
 import com.github.yajatkaul.mega_showdown.api.event.DynamaxStartCallback;
@@ -50,10 +53,12 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -169,7 +174,7 @@ public class CobbleEvents {
     private static void pokemonSent(PokemonSentEvent.Post event) {
         PokemonEntity pokemon = event.getPokemonEntity();
 
-        if (pokemon.getPokemon().getPersistentData().getBoolean("is_tera")) {
+        if (pokemon.getPokemon().getPersistentData().getBoolean("is_tera") && MegaShowdownConfig.legacyTeraEffect) {
             GlowHandler.applyTeraGlow(pokemon);
         }
     }
@@ -187,14 +192,26 @@ public class CobbleEvents {
         }
 
         if (pokemon.getPersistentData().getBoolean("is_tera")) {
-            pokemon.getPersistentData().putBoolean("is_tera", false);
+            pokemon.getAspects().stream().filter(a -> a.startsWith("msd:tera_")).forEach(name -> {
+                UnaspectPropertyType.INSTANCE.fromString(name).apply(pokemon);
+            });
+            if (pokemon.getEntity() != null) {
+                if (MegaShowdownConfig.legacyTeraEffect) {
+                    pokemon.getEntity().removeEffect(MobEffects.GLOWING);
+                }
+            }
+            pokemon.getPersistentData().remove("is_tera");
         }
 
         if (pokemon.getPersistentData().getBoolean("is_max")) {
-            pokemon.getPersistentData().putBoolean("is_max", false);
-            if (pokemon.getEntity() != null) {
-                MaxGimmick.startGradualScalingDown(pokemon.getEntity());
+            if (pokemon.getAspects().contains("gmax")) {
+                Effect.getEffect("mega_showdown:dynamax").revertEffectsBattle(pokemon, List.of("dynamax_form=none"), null, event.getKilled());
+            } else {
+                UnaspectPropertyType.INSTANCE.fromString("msd:dmax").apply(pokemon);
+                Effect.getEffect("mega_showdown:dynamax").revertEffectsBattle(pokemon, List.of(), null, event.getKilled());
             }
+            MaxGimmick.startGradualScalingDown(pokemon);
+            pokemon.getPersistentData().putBoolean("is_max", false);
         }
     }
 
@@ -205,14 +222,13 @@ public class CobbleEvents {
 
     private static void dynamaxEnded(PokemonBattle battle, BattlePokemon battlePokemon) {
         Pokemon pokemon = battlePokemon.getEffectedPokemon();
-        MaxGimmick.startGradualScalingDown(pokemon.getEntity());
+        MaxGimmick.startGradualScalingDown(pokemon);
 
         if (battlePokemon.getEntity().getPokemon().getAspects().contains("gmax")) {
-            battle.dispatchToFront(() -> {
-                new StringSpeciesFeature("dynamax_form", "none").apply(pokemon);
-                AspectUtils.updatePackets(battlePokemon);
-                return new UntilDispatch(() -> true);
-            });
+            Effect.getEffect("mega_showdown:dynamax").revertEffectsBattle(pokemon, List.of("dynamax_form=none"), null, battlePokemon);
+        } else {
+            UnaspectPropertyType.INSTANCE.fromString("msd:dmax").apply(pokemon);
+            Effect.getEffect("mega_showdown:dynamax").revertEffectsBattle(pokemon, List.of(), null, battlePokemon);
         }
     }
 
@@ -220,8 +236,7 @@ public class CobbleEvents {
         Pokemon pokemon = battlePokemon.getEffectedPokemon();
 
         if (gmax) {
-            new StringSpeciesFeature("dynamax_form", "gmax").apply(pokemon);
-            AspectUtils.updatePackets(battlePokemon);
+            Effect.getEffect("mega_showdown:dynamax").applyEffectsBattle(pokemon, List.of("dynamax_form=gmax"), null, battlePokemon);
             AspectUtils.appendRevertDataPokemon(
                     Effect.empty(),
                     List.of("dynamax_form=none"),
@@ -230,15 +245,17 @@ public class CobbleEvents {
             );
 
             battle.dispatchToFront(() -> new UntilDispatch(() -> true));
+        } else {
+            AspectPropertyType.INSTANCE.fromString("msd:dmax").apply(pokemon);
+            Effect.getEffect("mega_showdown:dynamax").applyEffectsBattle(pokemon, List.of(), null, battlePokemon);
         }
 
         pokemon.getPersistentData().putBoolean("is_max", true);
-        battle.dispatchWaitingToFront(3, () -> Unit.INSTANCE);
 
         PokemonEntity pokemonEntity = pokemon.getEntity();
 
         if (pokemonEntity != null) {
-            MaxGimmick.startGradualScaling(pokemon.getEntity(), MegaShowdownConfig.dynamaxScaleFactor);
+            MaxGimmick.startGradualScaling(pokemon, MegaShowdownConfig.dynamaxScaleFactor);
 
             BlockPos entityPos = pokemon.getEntity().getOnPos();
             pokemonEntity.level().playSound(
@@ -280,11 +297,22 @@ public class CobbleEvents {
         PokemonEntity pokemonEntity = event.getPokemon().getEffectedPokemon().getEntity();
         Pokemon pokemon = pokemonEntity.getPokemon();
 
+        Effect.getEffect("mega_showdown:tera_init_" + pokemon.getTeraType().showdownId().toLowerCase(Locale.ROOT)).applyEffectsBattle(pokemon, List.of(), null, event.getPokemon());
+
         AspectPropertyType.INSTANCE.fromString("msd:tera_" + pokemon.getTeraType().showdownId()).apply(pokemon);
         AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "tera/terastallized");
 
+        AspectPropertyType.INSTANCE.fromString("play_tera").apply(pokemon);
+
+        pokemonEntity.after(3f, () -> {
+            UnaspectPropertyType.INSTANCE.fromString("play_tera").apply(pokemon);
+            return Unit.INSTANCE;
+        });
+
         pokemon.getPersistentData().putBoolean("is_tera", true);
-        GlowHandler.applyTeraGlow(pokemonEntity);
+        if (MegaShowdownConfig.legacyTeraEffect) {
+            GlowHandler.applyTeraGlow(pokemonEntity);
+        }
 
         ServerPlayer player = pokemon.getOwnerPlayer();
         if (!PlayerUtils.hasPokemon(player, "Terapagos")) {
@@ -294,16 +322,14 @@ public class CobbleEvents {
             }
         }
 
-        event.getBattle().dispatchWaitingToFront(2f, () -> {
-            PokemonBehaviourHelper.Companion.playAnimation(pokemonEntity, Set.of("cry"), List.of());
-            return Unit.INSTANCE;
-        });
+        event.getBattle().dispatchWaitingToFront(3.5f, () -> Unit.INSTANCE);
 
-        BlockPos entityPos = pokemonEntity.getOnPos();
-        pokemonEntity.level().playSound(
-                null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
-                MegaShowdownSounds.TERASTALLIZATION.get(),
-                SoundSource.PLAYERS, 0.2f, 0.8f
+        Effect.getEffect("mega_showdown:tera_" + pokemon.getTeraType().showdownId().toLowerCase(Locale.ROOT)).applyEffectsBattleLoop(pokemon, List.of(), null, event.getPokemon());
+        AspectUtils.appendRevertDataPokemon(
+                Effect.getEffect("mega_showdown:tera_" + pokemon.getTeraType().showdownId().toLowerCase(Locale.ROOT)),
+                List.of(),
+                pokemon,
+                "battle_end_revert"
         );
     }
 
@@ -321,13 +347,13 @@ public class CobbleEvents {
 
         event.getBattle().getPlayers().forEach(serverPlayer -> {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
-            AspectUtils.revertPokemonsIfRequired(playerPartyStore);
+            AspectUtils.revertPokemonsIfRequiredBattleStart(playerPartyStore);
         });
     }
 
     private static void hookBattleStarted(BattleStartedEvent.Post event) {
         event.getBattle().getOnEndHandlers().add((battle -> {
-            battle.getPlayers().forEach(AspectUtils::revertPokemonsIfRequired);
+            battle.getPlayers().forEach(AspectUtils::revertPokemonsIfRequiredBattleEnd);
             return Unit.INSTANCE;
         }));
     }
@@ -378,7 +404,7 @@ public class CobbleEvents {
 
         if (megaGimmick != null
                 && megaGimmick.pokemons().contains(pokemon.getSpecies().getName())
-                && pokemon.getAspects().stream().anyMatch(MegaGimmick.getMegaAspects()::contains)) {
+                && MegaGimmick.isMega(pokemon)) {
             MegaGimmick.megaToggle(pokemon);
         }
 

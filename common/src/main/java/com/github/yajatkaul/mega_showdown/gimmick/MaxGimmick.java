@@ -1,15 +1,12 @@
 package com.github.yajatkaul.mega_showdown.gimmick;
 
-import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
+import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.gimmick.codec.AspectSetCodec;
 import com.github.yajatkaul.mega_showdown.utils.GlowHandler;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.AttributeInstance;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -25,59 +22,52 @@ public record MaxGimmick(
             Codec.STRING.fieldOf("gmax_move").forGetter(MaxGimmick::gmaxMove),
             AspectSetCodec.CODEC.fieldOf("aspect_conditions").forGetter(MaxGimmick::aspectSetCodec)
     ).apply(instance, MaxGimmick::new));
-    private static final Map<LivingEntity, ScalingData> ACTIVE_SCALING_ANIMATIONS = new HashMap<>();
+    private static final Map<Pokemon, ScalingData> ACTIVE_SCALING_ANIMATIONS = new HashMap<>();
     private static final int DEFAULT_SCALING_DURATION = 60;
 
-    public static void startGradualScaling(PokemonEntity entity, float targetScale) {
+    public static void startGradualScaling(Pokemon entity, float targetScale) {
         if (entity == null) return;
 
-        GlowHandler.applyDynamaxGlow(entity);
+        GlowHandler.applyDynamaxGlow(entity.getEntity());
 
-        AttributeInstance scaleAttr = entity.getAttribute(Attributes.SCALE);
-        if (scaleAttr == null) return;
-
-        float startScale = (float) scaleAttr.getBaseValue();
+        float startScale = entity.getScaleModifier();
         ScalingData scalingData = new ScalingData(startScale, targetScale, DEFAULT_SCALING_DURATION);
 
         ACTIVE_SCALING_ANIMATIONS.put(entity, scalingData);
     }
 
-    public static void startGradualScalingDown(PokemonEntity entity) {
-        if (entity == null) return;
+    public static void startGradualScalingDown(Pokemon pokemon) {
+        if (pokemon == null) return;
 
-        entity.removeEffect(MobEffects.GLOWING);
+        pokemon.getEntity().removeEffect(MobEffects.GLOWING);
 
-        AttributeInstance scaleAttr = entity.getAttribute(Attributes.SCALE);
-        if (scaleAttr == null) return;
+        float startScale = pokemon.getScaleModifier();
+        ScalingData scalingData = new ScalingData(startScale, pokemon.getForm().getBaseScale(), DEFAULT_SCALING_DURATION);
 
-        float startScale = (float) scaleAttr.getBaseValue();
-        ScalingData scalingData = new ScalingData(startScale, 1, DEFAULT_SCALING_DURATION);
-
-        ACTIVE_SCALING_ANIMATIONS.put(entity, scalingData);
+        ACTIVE_SCALING_ANIMATIONS.put(pokemon, scalingData);
     }
 
     public static void updateScalingAnimations(MinecraftServer server) {
         if (server == null) return;
 
-        Iterator<Map.Entry<LivingEntity, ScalingData>> iterator = ACTIVE_SCALING_ANIMATIONS.entrySet().iterator();
+        Iterator<Map.Entry<Pokemon, ScalingData>> iterator = ACTIVE_SCALING_ANIMATIONS.entrySet().iterator();
 
         while (iterator.hasNext()) {
-            Map.Entry<LivingEntity, ScalingData> entry = iterator.next();
-            LivingEntity entity = entry.getKey();
+            Map.Entry<Pokemon, ScalingData> entry = iterator.next();
+            Pokemon entity = entry.getKey();
             ScalingData data = entry.getValue();
             data.currentTick++;
 
-            if (!entity.isAlive()) {
+            if (entity.getEntity() == null) {
                 iterator.remove();
+                entity.setScaleModifier(entity.getForm().getBaseScale());
                 continue;
             }
 
-            AttributeInstance scaleAttr = entity.getAttribute(Attributes.SCALE);
-            if (scaleAttr != null) {
-                float progress = Math.min(1.0f, (float) data.currentTick / data.durationTicks);
-                float newScale = data.startScale + (data.targetScale - data.startScale) * progress;
-                scaleAttr.setBaseValue(newScale);
-            }
+            float progress = Math.min(1.0f, (float) data.currentTick / data.durationTicks);
+            float newScale = data.startScale + (data.targetScale - data.startScale) * progress;
+
+            entity.setScaleModifier(newScale);
 
             if (data.currentTick >= data.durationTicks) {
                 iterator.remove();

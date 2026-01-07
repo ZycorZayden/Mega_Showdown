@@ -1,6 +1,7 @@
 # TODO
-- Clean the config class
 - Dynamax first get in pokeball then throw
+- Battle outro for miradon and koriadon
+- Fix tera and dmax at the same time
 
 # Future
 - Make custom weather datapackable

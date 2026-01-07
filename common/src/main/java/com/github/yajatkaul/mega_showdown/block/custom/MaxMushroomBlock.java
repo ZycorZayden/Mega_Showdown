@@ -52,7 +52,7 @@ public class MaxMushroomBlock extends SweetBerryBushBlock implements Bonemealabl
     @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         int age = state.getValue(AGE);
-        if (age < 3 && level.getRawBrightness(pos.above(), 0) >= 9 && random.nextInt(5) == 0) {
+        if (age < 3 && random.nextInt(5) == 0) {
             level.setBlock(pos, state.setValue(AGE, age + 1), 2);
             level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(state));
         }

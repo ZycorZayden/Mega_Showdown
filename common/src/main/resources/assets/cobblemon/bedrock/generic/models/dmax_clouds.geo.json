@@ -1,0 +1,36 @@
+{
+  "format_version": "1.12.0",
+  "minecraft:geometry": [
+    {
+      "description": {
+        "identifier": "geometry.dmax_clouds",
+        "texture_width": 256,
+        "texture_height": 256,
+        "visible_bounds_width": 13,
+        "visible_bounds_height": 5.5,
+        "visible_bounds_offset": [0, 2.25, 0]
+      },
+      "bones": [
+        {
+          "name": "dmax_clouds",
+          "pivot": [0, 0, 0]
+        },
+        {
+          "name": "dmax_clouds2",
+          "parent": "dmax_clouds",
+          "pivot": [0, 0, 0],
+          "cubes": [
+            {"origin": [-9, 0.25, 21], "size": [18, 7, 0], "inflate": 0.01, "uv": [150, 90]},
+            {"origin": [-9, 0.25, -22.5], "size": [18, 7, 0], "inflate": 0.01, "uv": [0, 169]},
+            {"origin": [21.8, 0.25, -9.775], "size": [0, 7, 18], "inflate": 0.01, "uv": [166, 119]},
+            {"origin": [-21.8, 0.25, -9.775], "size": [0, 7, 18], "inflate": 0.01, "uv": [130, 124]},
+            {"origin": [-21.8, 0.25, -27.775], "size": [0, 7, 18], "inflate": 0.01, "pivot": [-21.8, 3.75, -9.775], "rotation": [0, -45, 0], "uv": [94, 124]},
+            {"origin": [21.8, 0.25, -27.775], "size": [0, 7, 18], "inflate": 0.01, "pivot": [21.8, 3.75, -9.775], "rotation": [0, 45, 0], "uv": [0, 144]},
+            {"origin": [-24.35, 0.25, 14.6], "size": [18, 7, 0], "inflate": 0.01, "pivot": [-15.35, 3.75, 14.6], "rotation": [0, -45, 0], "uv": [138, 115]},
+            {"origin": [6.4, 0.25, 14.6], "size": [18, 7, 0], "inflate": 0.01, "pivot": [15.4, 3.75, 14.6], "rotation": [0, 45, 0], "uv": [164, 36]}
+          ]
+        }
+      ]
+    }
+  ]
+}

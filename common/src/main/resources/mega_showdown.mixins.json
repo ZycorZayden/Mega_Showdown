@@ -5,11 +5,11 @@
   "minVersion": "0.8",
   "client": [
     "MoveSlotWidgetMixin",
-    "PokemonRendererMixin",
     "battle.BattleMoveSelectionMixin",
     "client.ItemRendererMixin",
+    "client.LivingEntityRendererMixin",
     "client.ModeBakeryMixin",
-    "client.packet.MovePartyPokemonToPCHandlerMixin",
+    "client.PokemonRendererMixin",
     "client.ui.PCGUIMixin",
     "client.ui.SummaryCompanionMixin",
     "client.ui.SummaryMixin",
@@ -18,11 +18,13 @@
   "mixins": [
     "GraalShowdownUnbundlerMixin",
     "PlayerPartyStoreMixin",
+    "PokemonAccessor",
     "PokemonClientDelegateMixin",
     "PokemonEntityMixin",
-    "PokemonMixin",
+    "PokemonSpeciesMixin",
     "battle.BattleGimmickButtonCompanionMixin",
     "battle.BattleGimmickButtonMixin",
+    "battle.BattleRegistryMixin",
     "battle.ClientBattleMixin",
     "battle.EndInstructionMixin",
     "battle.GimmickTileMixin",
@@ -32,7 +34,8 @@
     "battle.ShowdownInterpreterMixin",
     "battle.ShowdownSpeciesMixin",
     "battle.StartInstructionMixin",
-    "minecraft.ItemStackMixin"
+    "minecraft.ItemStackMixin",
+    "packet.MovePartyPokemonToPCHandlerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

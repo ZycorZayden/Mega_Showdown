@@ -1,7 +1,12 @@
 package com.github.yajatkaul.mega_showdown.command;
 
+import com.cobblemon.mod.common.Cobblemon;
+import com.cobblemon.mod.common.api.pokemon.feature.SpeciesFeatureAssignments;
+import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
+import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
 import com.github.yajatkaul.mega_showdown.datapack.MegaShowdownDatapackRegister;
+import com.github.yajatkaul.mega_showdown.gimmick.MegaGimmick;
 import com.github.yajatkaul.mega_showdown.utils.RegistryLocator;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
@@ -19,6 +24,8 @@ import static net.minecraft.commands.Commands.literal;
 public class MegaShowdownCommands {
     public static void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext context, Commands.CommandSelection environment) {
         dispatcher.register(literal("msd")
+                .then(literal("hard_reset_mega")
+                        .executes(MegaShowdownCommands::hard_reset_mega))
                 .then(literal("apply")
                         .requires(req -> req.hasPermission(4))
                         .then(argument("type", StringArgumentType.string())
@@ -82,6 +89,25 @@ public class MegaShowdownCommands {
                                             return builder.buildFuture();
                                         })))))
         );
+    }
+
+    private static int hard_reset_mega(CommandContext<CommandSourceStack> context) {
+        ServerPlayer player = context.getSource().getPlayer();
+        if (player == null) {
+            return 0;
+        }
+
+        PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
+
+        for (Pokemon pokemon : playerPartyStore) {
+            boolean hasMega = SpeciesFeatureAssignments.getFeatures(pokemon.getSpecies()).stream()
+                    .anyMatch(pokemon.getAspects()::contains);
+            if (hasMega) {
+                MegaGimmick.unmegaEvolve(pokemon);
+            }
+        }
+
+        return 1;
     }
 
     private static int applyComponent(CommandContext<CommandSourceStack> context) {

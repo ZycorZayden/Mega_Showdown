@@ -10,6 +10,7 @@ import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.github.yajatkaul.mega_showdown.creative.MegaShowdownTabs;
 import com.github.yajatkaul.mega_showdown.item.custom.DebugStick;
+import com.github.yajatkaul.mega_showdown.item.custom.TeraPouch;
 import com.github.yajatkaul.mega_showdown.item.custom.ToolTipItem;
 import com.github.yajatkaul.mega_showdown.item.custom.dynamax.DynamaxCandy;
 import com.github.yajatkaul.mega_showdown.item.custom.dynamax.MaxHoney;
@@ -149,43 +150,43 @@ public class MegaShowdownItems {
     public static final RegistrySupplier<Item> SPARKLING_STONE_DARK = registerItem("sparkling_stone_dark", () -> new ToolTipItem(new Item.Properties().arch$tab(MegaShowdownTabs.Z_TAB)));
     public static final RegistrySupplier<Item> BLANK_Z = registerItem("blank_z", () -> new ToolTipItem(new Item.Properties().arch$tab(MegaShowdownTabs.Z_TAB)));
     // Elemental Z-Crystals
-    public static final RegistrySupplier<Item> NORMALIUM_Z = registerZElementalCrystals("normalium_z", ElementalTypes.INSTANCE.getNORMAL());
-    public static final RegistrySupplier<Item> BUGINIUM_Z = registerZElementalCrystals("buginium_z", ElementalTypes.INSTANCE.getBUG());
-    public static final RegistrySupplier<Item> DARKINIUM_Z = registerZElementalCrystals("darkinium_z", ElementalTypes.INSTANCE.getDARK());
-    public static final RegistrySupplier<Item> DRAGONIUM_Z = registerZElementalCrystals("dragonium_z", ElementalTypes.INSTANCE.getDRAGON());
-    public static final RegistrySupplier<Item> ELECTRIUM_Z = registerZElementalCrystals("electrium_z", ElementalTypes.INSTANCE.getELECTRIC());
-    public static final RegistrySupplier<Item> FAIRIUM_Z = registerZElementalCrystals("fairium_z", ElementalTypes.INSTANCE.getFAIRY());
-    public static final RegistrySupplier<Item> FIGHTINIUM_Z = registerZElementalCrystals("fightinium_z", ElementalTypes.INSTANCE.getFIGHTING());
-    public static final RegistrySupplier<Item> FIRIUM_Z = registerZElementalCrystals("firium_z", ElementalTypes.INSTANCE.getFIRE());
-    public static final RegistrySupplier<Item> FLYINIUM_Z = registerZElementalCrystals("flyinium_z", ElementalTypes.INSTANCE.getFLYING());
-    public static final RegistrySupplier<Item> GHOSTIUM_Z = registerZElementalCrystals("ghostium_z", ElementalTypes.INSTANCE.getGHOST());
-    public static final RegistrySupplier<Item> GRASSIUM_Z = registerZElementalCrystals("grassium_z", ElementalTypes.INSTANCE.getGRASS());
-    public static final RegistrySupplier<Item> GROUNDIUM_Z = registerZElementalCrystals("groundium_z", ElementalTypes.INSTANCE.getGROUND());
-    public static final RegistrySupplier<Item> ICIUM_Z = registerZElementalCrystals("icium_z", ElementalTypes.INSTANCE.getICE());
-    public static final RegistrySupplier<Item> POISONIUM_Z = registerZElementalCrystals("poisonium_z", ElementalTypes.INSTANCE.getPOISON());
-    public static final RegistrySupplier<Item> PSYCHIUM_Z = registerZElementalCrystals("psychium_z", ElementalTypes.INSTANCE.getPSYCHIC());
-    public static final RegistrySupplier<Item> ROCKIUM_Z = registerZElementalCrystals("rockium_z", ElementalTypes.INSTANCE.getROCK());
-    public static final RegistrySupplier<Item> STEELIUM_Z = registerZElementalCrystals("steelium_z", ElementalTypes.INSTANCE.getSTEEL());
-    public static final RegistrySupplier<Item> WATERIUM_Z = registerZElementalCrystals("waterium_z", ElementalTypes.INSTANCE.getWATER());
+    public static final RegistrySupplier<Item> NORMALIUM_Z = registerZElementalCrystals("normalium_z", ElementalTypes.NORMAL);
+    public static final RegistrySupplier<Item> BUGINIUM_Z = registerZElementalCrystals("buginium_z", ElementalTypes.BUG);
+    public static final RegistrySupplier<Item> DARKINIUM_Z = registerZElementalCrystals("darkinium_z", ElementalTypes.DARK);
+    public static final RegistrySupplier<Item> DRAGONIUM_Z = registerZElementalCrystals("dragonium_z", ElementalTypes.DRAGON);
+    public static final RegistrySupplier<Item> ELECTRIUM_Z = registerZElementalCrystals("electrium_z", ElementalTypes.ELECTRIC);
+    public static final RegistrySupplier<Item> FAIRIUM_Z = registerZElementalCrystals("fairium_z", ElementalTypes.FAIRY);
+    public static final RegistrySupplier<Item> FIGHTINIUM_Z = registerZElementalCrystals("fightinium_z", ElementalTypes.FIGHTING);
+    public static final RegistrySupplier<Item> FIRIUM_Z = registerZElementalCrystals("firium_z", ElementalTypes.FIRE);
+    public static final RegistrySupplier<Item> FLYINIUM_Z = registerZElementalCrystals("flyinium_z", ElementalTypes.FLYING);
+    public static final RegistrySupplier<Item> GHOSTIUM_Z = registerZElementalCrystals("ghostium_z", ElementalTypes.GHOST);
+    public static final RegistrySupplier<Item> GRASSIUM_Z = registerZElementalCrystals("grassium_z", ElementalTypes.GRASS);
+    public static final RegistrySupplier<Item> GROUNDIUM_Z = registerZElementalCrystals("groundium_z", ElementalTypes.GROUND);
+    public static final RegistrySupplier<Item> ICIUM_Z = registerZElementalCrystals("icium_z", ElementalTypes.ICE);
+    public static final RegistrySupplier<Item> POISONIUM_Z = registerZElementalCrystals("poisonium_z", ElementalTypes.POISON);
+    public static final RegistrySupplier<Item> PSYCHIUM_Z = registerZElementalCrystals("psychium_z", ElementalTypes.PSYCHIC);
+    public static final RegistrySupplier<Item> ROCKIUM_Z = registerZElementalCrystals("rockium_z", ElementalTypes.ROCK);
+    public static final RegistrySupplier<Item> STEELIUM_Z = registerZElementalCrystals("steelium_z", ElementalTypes.STEEL);
+    public static final RegistrySupplier<Item> WATERIUM_Z = registerZElementalCrystals("waterium_z", ElementalTypes.WATER);
 
     // Special Z-Crystals
-    public static final RegistrySupplier<Item> ALORAICHIUM_Z = registerZSpecialCrystals("aloraichium_z", ElementalTypes.INSTANCE.getELECTRIC());
-    public static final RegistrySupplier<Item> DECIDIUM_Z = registerZSpecialCrystals("decidium_z", ElementalTypes.INSTANCE.getGRASS());
-    public static final RegistrySupplier<Item> EEVIUM_Z = registerZSpecialCrystals("eevium_z", ElementalTypes.INSTANCE.getNORMAL());
-    public static final RegistrySupplier<Item> INCINIUM_Z = registerZSpecialCrystals("incinium_z", ElementalTypes.INSTANCE.getFIRE());
-    public static final RegistrySupplier<Item> KOMMONIUM_Z = registerZSpecialCrystals("kommonium_z", ElementalTypes.INSTANCE.getDRAGON());
-    public static final RegistrySupplier<Item> LUNALIUM_Z = registerZSpecialCrystals("lunalium_z", ElementalTypes.INSTANCE.getPSYCHIC());
-    public static final RegistrySupplier<Item> LYCANIUM_Z = registerZSpecialCrystals("lycanium_z", ElementalTypes.INSTANCE.getROCK());
-    public static final RegistrySupplier<Item> MARSHADIUM_Z = registerZSpecialCrystals("marshadium_z", ElementalTypes.INSTANCE.getGHOST());
-    public static final RegistrySupplier<Item> MEWNIUM_Z = registerZSpecialCrystals("mewnium_z", ElementalTypes.INSTANCE.getPSYCHIC());
-    public static final RegistrySupplier<Item> MIMIKIUM_Z = registerZSpecialCrystals("mimikium_z", ElementalTypes.INSTANCE.getGHOST());
-    public static final RegistrySupplier<Item> PIKANIUM_Z = registerZSpecialCrystals("pikanium_z", ElementalTypes.INSTANCE.getELECTRIC());
-    public static final RegistrySupplier<Item> PIKASHUNIUM_Z = registerZSpecialCrystals("pikashunium_z", ElementalTypes.INSTANCE.getELECTRIC());
-    public static final RegistrySupplier<Item> PRIMARIUM_Z = registerZSpecialCrystals("primarium_z", ElementalTypes.INSTANCE.getWATER());
-    public static final RegistrySupplier<Item> SNORLIUM_Z = registerZSpecialCrystals("snorlium_z", ElementalTypes.INSTANCE.getNORMAL());
-    public static final RegistrySupplier<Item> SOLGANIUM_Z = registerZSpecialCrystals("solganium_z", ElementalTypes.INSTANCE.getSTEEL());
-    public static final RegistrySupplier<Item> TAPUNIUM_Z = registerZSpecialCrystals("tapunium_z", ElementalTypes.INSTANCE.getFAIRY());
-    public static final RegistrySupplier<Item> ULTRANECROZIUM_Z = registerZSpecialCrystals("ultranecrozium_z", ElementalTypes.INSTANCE.getPSYCHIC());
+    public static final RegistrySupplier<Item> ALORAICHIUM_Z = registerZSpecialCrystals("aloraichium_z", ElementalTypes.ELECTRIC);
+    public static final RegistrySupplier<Item> DECIDIUM_Z = registerZSpecialCrystals("decidium_z", ElementalTypes.GRASS);
+    public static final RegistrySupplier<Item> EEVIUM_Z = registerZSpecialCrystals("eevium_z", ElementalTypes.NORMAL);
+    public static final RegistrySupplier<Item> INCINIUM_Z = registerZSpecialCrystals("incinium_z", ElementalTypes.FIRE);
+    public static final RegistrySupplier<Item> KOMMONIUM_Z = registerZSpecialCrystals("kommonium_z", ElementalTypes.DRAGON);
+    public static final RegistrySupplier<Item> LUNALIUM_Z = registerZSpecialCrystals("lunalium_z", ElementalTypes.PSYCHIC);
+    public static final RegistrySupplier<Item> LYCANIUM_Z = registerZSpecialCrystals("lycanium_z", ElementalTypes.ROCK);
+    public static final RegistrySupplier<Item> MARSHADIUM_Z = registerZSpecialCrystals("marshadium_z", ElementalTypes.GHOST);
+    public static final RegistrySupplier<Item> MEWNIUM_Z = registerZSpecialCrystals("mewnium_z", ElementalTypes.PSYCHIC);
+    public static final RegistrySupplier<Item> MIMIKIUM_Z = registerZSpecialCrystals("mimikium_z", ElementalTypes.GHOST);
+    public static final RegistrySupplier<Item> PIKANIUM_Z = registerZSpecialCrystals("pikanium_z", ElementalTypes.ELECTRIC);
+    public static final RegistrySupplier<Item> PIKASHUNIUM_Z = registerZSpecialCrystals("pikashunium_z", ElementalTypes.ELECTRIC);
+    public static final RegistrySupplier<Item> PRIMARIUM_Z = registerZSpecialCrystals("primarium_z", ElementalTypes.WATER);
+    public static final RegistrySupplier<Item> SNORLIUM_Z = registerZSpecialCrystals("snorlium_z", ElementalTypes.NORMAL);
+    public static final RegistrySupplier<Item> SOLGANIUM_Z = registerZSpecialCrystals("solganium_z", ElementalTypes.STEEL);
+    public static final RegistrySupplier<Item> TAPUNIUM_Z = registerZSpecialCrystals("tapunium_z", ElementalTypes.FAIRY);
+    public static final RegistrySupplier<Item> ULTRANECROZIUM_Z = registerZSpecialCrystals("ultranecrozium_z", ElementalTypes.PSYCHIC);
 
     public static final RegistrySupplier<Item> DNA_SPLICER = registerDuFusion(
             "dna_splicer",
@@ -858,6 +859,29 @@ public class MegaShowdownItems {
     public static final RegistrySupplier<Item> ADRENALINE_ORB = registerTooltipItem("adrenaline_orb", MegaShowdownTabs.COMPI_TAB);
     public static final RegistrySupplier<Item> SOUL_DEW = registerTooltipItem("soul_dew", MegaShowdownTabs.COMPI_TAB);
 
+    public static final RegistrySupplier<Item> TERA_POUCH_WHITE = registerTeraPouch("tera_pouch_white");
+    public static final RegistrySupplier<Item> TERA_POUCH_ORANGE = registerTeraPouch("tera_pouch_orange");
+    public static final RegistrySupplier<Item> TERA_POUCH_MAGENTA = registerTeraPouch("tera_pouch_magenta");
+    public static final RegistrySupplier<Item> TERA_POUCH_LIGHT_BLUE = registerTeraPouch("tera_pouch_light_blue");
+    public static final RegistrySupplier<Item> TERA_POUCH_YELLOW = registerTeraPouch("tera_pouch_yellow");
+    public static final RegistrySupplier<Item> TERA_POUCH_LIME = registerTeraPouch("tera_pouch_lime");
+    public static final RegistrySupplier<Item> TERA_POUCH_PINK = registerTeraPouch("tera_pouch_pink");
+    public static final RegistrySupplier<Item> TERA_POUCH_GRAY = registerTeraPouch("tera_pouch_gray");
+    public static final RegistrySupplier<Item> TERA_POUCH_LIGHT_GRAY = registerTeraPouch("tera_pouch_light_gray");
+    public static final RegistrySupplier<Item> TERA_POUCH_CYAN = registerTeraPouch("tera_pouch_cyan");
+    public static final RegistrySupplier<Item> TERA_POUCH_PURPLE = registerTeraPouch("tera_pouch_purple");
+    public static final RegistrySupplier<Item> TERA_POUCH_BLUE = registerTeraPouch("tera_pouch_blue");
+    public static final RegistrySupplier<Item> TERA_POUCH_BROWN = registerTeraPouch("tera_pouch_brown");
+    public static final RegistrySupplier<Item> TERA_POUCH_GREEN = registerTeraPouch("tera_pouch_green");
+    public static final RegistrySupplier<Item> TERA_POUCH_RED = registerTeraPouch("tera_pouch_red");
+    public static final RegistrySupplier<Item> TERA_POUCH_BLACK = registerTeraPouch("tera_pouch_black");
+
+    private static RegistrySupplier<Item> registerTeraPouch(String name) {
+        return registerItem(name, () -> new TeraPouch(
+                new Item.Properties().stacksTo(1).arch$tab(MegaShowdownTabs.TERA_TAB)
+        ));
+    }
+
     private static RegistrySupplier<Item> registerFormChangeInteractItem(String name,
                                                                          String form_name,
                                                                          String form_apply,
@@ -1013,10 +1037,7 @@ public class MegaShowdownItems {
                         .component(MegaShowdownDataComponents.RESOURCE_LOCATION_COMPONENT.get(),
                                 ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, name))
                         .arch$tab(MegaShowdownTabs.Z_TAB),
-                null,
-                null,
                 List.of("Arceus"),
-                "",
                 true,
                 type
         ));
