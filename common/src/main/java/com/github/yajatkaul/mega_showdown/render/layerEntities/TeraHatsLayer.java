@@ -3,6 +3,7 @@ package com.github.yajatkaul.mega_showdown.render.layerEntities;
 import com.cobblemon.mod.common.client.entity.PokemonClientDelegate;
 import com.cobblemon.mod.common.client.render.MatrixWrapper;
 import com.cobblemon.mod.common.client.render.models.blockbench.PosableModel;
+import com.cobblemon.mod.common.client.render.models.blockbench.PosableState;
 import com.cobblemon.mod.common.client.render.models.blockbench.repository.RenderContext;
 import com.cobblemon.mod.common.client.render.models.blockbench.repository.VaryingModelRepository;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
@@ -12,6 +13,7 @@ import com.github.yajatkaul.mega_showdown.render.layerEntities.states.DmaxHatSta
 import com.github.yajatkaul.mega_showdown.codec.teraHat.LayerCodec;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.github.yajatkaul.mega_showdown.render.LayerDataLoader;
+import com.github.yajatkaul.mega_showdown.render.layerEntities.states.TeraHatState;
 import com.github.yajatkaul.mega_showdown.render.renderTypes.MSDRenderTypes;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -27,25 +29,17 @@ import java.util.*;
 
 public class TeraHatsLayer extends LayerEntity {
     private final ResourceLocation poserId = ResourceLocation.fromNamespaceAndPath("cobblemon", "tera_hat");
-    public final DmaxHatState state = new DmaxHatState();
     private final Set<String> aspects = new HashSet<>();
+
+    public TeraHatsLayer() {
+        super(new TeraHatState());
+    }
 
     @Override
     public void render(String aspect, RenderContext context, PokemonClientDelegate clientDelegate, PokemonEntity entity, Pokemon pokemon, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
         if (pokemon.getSpecies().getName().equals("Terapagos")) return;
 
-        if (!Minecraft.getInstance().isPaused()) {
-            long now = System.nanoTime();
-
-            if (lastTimeNs != -1L) {
-                double deltaSeconds = (now - lastTimeNs) / 1_000_000_000.0;
-                animSeconds += deltaSeconds;
-            }
-
-            lastTimeNs = now;
-        } else {
-            lastTimeNs = System.nanoTime();
-        }
+        super.render(context, clientDelegate, entity, pokemon, entityYaw, poseStack, buffer, packedLight);
 
         float ticks = (float) (animSeconds * 20f);
 

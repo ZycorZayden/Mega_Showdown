@@ -3,6 +3,7 @@ package com.github.yajatkaul.mega_showdown.render.layerEntities;
 import com.cobblemon.mod.common.client.entity.PokemonClientDelegate;
 import com.cobblemon.mod.common.client.render.MatrixWrapper;
 import com.cobblemon.mod.common.client.render.models.blockbench.PosableModel;
+import com.cobblemon.mod.common.client.render.models.blockbench.PosableState;
 import com.cobblemon.mod.common.client.render.models.blockbench.repository.RenderContext;
 import com.cobblemon.mod.common.client.render.models.blockbench.repository.VaryingModelRepository;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
@@ -25,32 +26,15 @@ import java.util.*;
 
 public class DynamaxCloudsLayer extends LayerEntity {
     private final ResourceLocation poserId = ResourceLocation.fromNamespaceAndPath("cobblemon", "dmax_clouds");
-    public final DmaxHatState state = new DmaxHatState();
     private final Set<String> aspects = new HashSet<>();
+
+    public DynamaxCloudsLayer() {
+        super(new DmaxHatState());
+    }
 
     @Override
     public void render(RenderContext context, PokemonClientDelegate clientDelegate, PokemonEntity entity, Pokemon pokemon, float entityYaw, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
-        if (!Minecraft.getInstance().isPaused()) {
-            long now = System.nanoTime();
-
-            if (lastTimeNs != -1L) {
-                double deltaSeconds = (now - lastTimeNs) / 1_000_000_000.0;
-                animSeconds += deltaSeconds;
-            }
-
-            lastTimeNs = now;
-        } else {
-            lastTimeNs = System.nanoTime();
-        }
-
-        float ticks = (float) (animSeconds * 20f);
-
-        int age = (int) ticks;
-        float pt = ticks - age;
-
-        state.updateAge(age);
-        state.updatePartialTicks(pt);
-
+        super.render(context, clientDelegate, entity, pokemon, entityYaw, poseStack, buffer, packedLight);
         state.setCurrentAspects(aspects);
 
         Map<String, MatrixWrapper> locatorStates = clientDelegate.getLocatorStates();

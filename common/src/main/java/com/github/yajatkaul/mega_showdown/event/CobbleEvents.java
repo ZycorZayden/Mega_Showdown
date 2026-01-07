@@ -58,6 +58,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -296,7 +297,7 @@ public class CobbleEvents {
         PokemonEntity pokemonEntity = event.getPokemon().getEffectedPokemon().getEntity();
         Pokemon pokemon = pokemonEntity.getPokemon();
 
-        Effect.getEffect("mega_showdown:tera_init").applyEffectsBattle(pokemon, List.of(), null, event.getPokemon());
+        Effect.getEffect("mega_showdown:tera_init_" + pokemon.getTeraType().showdownId().toLowerCase(Locale.ROOT)).applyEffectsBattle(pokemon, List.of(), null, event.getPokemon());
 
         AspectPropertyType.INSTANCE.fromString("msd:tera_" + pokemon.getTeraType().showdownId()).apply(pokemon);
         AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "tera/terastallized");
@@ -323,9 +324,9 @@ public class CobbleEvents {
 
         event.getBattle().dispatchWaitingToFront(3.5f, () -> Unit.INSTANCE);
 
-        Effect.getEffect("mega_showdown:terastallization").applyEffectsBattleLoop(pokemon, List.of(), null, event.getPokemon());
+        Effect.getEffect("mega_showdown:tera_" + pokemon.getTeraType().showdownId().toLowerCase(Locale.ROOT)).applyEffectsBattleLoop(pokemon, List.of(), null, event.getPokemon());
         AspectUtils.appendRevertDataPokemon(
-                Effect.getEffect("mega_showdown:terastallization"),
+                Effect.getEffect("mega_showdown:tera_" + pokemon.getTeraType().showdownId().toLowerCase(Locale.ROOT)),
                 List.of(),
                 pokemon,
                 "battle_end_revert"
