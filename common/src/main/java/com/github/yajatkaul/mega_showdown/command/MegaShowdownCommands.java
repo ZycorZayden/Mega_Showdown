@@ -4,7 +4,9 @@ import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.pokemon.feature.SpeciesFeatureAssignments;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
+import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.github.yajatkaul.mega_showdown.datapack.MegaShowdownDatapackRegister;
 import com.github.yajatkaul.mega_showdown.gimmick.MegaGimmick;
 import com.github.yajatkaul.mega_showdown.utils.RegistryLocator;
@@ -26,6 +28,9 @@ public class MegaShowdownCommands {
         dispatcher.register(literal("msd")
                 .then(literal("hard_reset_mega")
                         .executes(MegaShowdownCommands::hard_reset_mega))
+                .then(literal("reload")
+                        .requires(req -> req.hasPermission(4))
+                        .executes(MegaShowdownCommands::reload))
                 .then(literal("apply")
                         .requires(req -> req.hasPermission(4))
                         .then(argument("type", StringArgumentType.string())
@@ -89,6 +94,11 @@ public class MegaShowdownCommands {
                                             return builder.buildFuture();
                                         })))))
         );
+    }
+
+    private static int reload(CommandContext<CommandSourceStack> commandSourceStackCommandContext) {
+        MegaShowdownConfig.load();
+        return 1;
     }
 
     private static int hard_reset_mega(CommandContext<CommandSourceStack> context) {

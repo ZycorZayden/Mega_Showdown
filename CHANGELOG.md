@@ -4,3 +4,4 @@
 - Added dynamax clouds (earlier only gmax's had em)
 - Fixed Tera's being able to dynamax
 - Max mushroom's spawning is more rare now
+- Fixed tera/stellar drop rate to 0 causing soft locks
