@@ -19,7 +19,7 @@
         "q.bedrock('miraidon', 'battle_idle')"
       ],
             "transitions": {
-                "standing": "q.bedrock_primary('miraidon', 'battle_outro', q.curve('symmetrical_wide'))"
+                "standing": "q.bedrock_primary('miraidon', 'battle_outro', q.curve('one'))"
             }
     },
     "standing": {
