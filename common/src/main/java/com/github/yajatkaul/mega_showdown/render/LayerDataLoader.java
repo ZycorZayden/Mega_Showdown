@@ -35,6 +35,7 @@ public class LayerDataLoader implements ResourceManagerReloadListener {
                         JsonOps.INSTANCE,
                         JsonParser.parseReader(new InputStreamReader(stream))
                 ).result().orElseThrow();
+                MegaShowdown.LOGGER.info("AADSADASD: {}", id.toString());
                 REGISTRY.put(id, codec);
             } catch (Exception e) {
                 MegaShowdown.LOGGER.error("Failed loading hat JSON: {}", id, e);

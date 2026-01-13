@@ -157,7 +157,7 @@ public class PokemonRendererMixin {
 
         if (rootLocator == null) return;
 
-        LayerCodec crystalSize = LayerDataLoader.REGISTRY.get(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, pokemon.getSpecies().getName().toLowerCase(Locale.ROOT)));
+        LayerCodec crystalSize = LayerDataLoader.REGISTRY.get(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "msd_sizer/" + pokemon.getSpecies().getName().toLowerCase(Locale.ROOT) + ".json"));
 
         // Get model and texture
         PosableModel model = VaryingModelRepository.INSTANCE.getPoser(mega_showdown$teraCrystalPoserId, mega_showdown$teraCrystalState);

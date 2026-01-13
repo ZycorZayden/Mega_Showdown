@@ -44,7 +44,7 @@ public class TeraHatsLayer extends LayerEntity {
 
         poseStack.pushPose();
 
-        LayerCodec teraHatCodec = LayerDataLoader.REGISTRY.get(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, pokemon.getSpecies().getName().toLowerCase(Locale.ROOT)));
+        LayerCodec teraHatCodec = LayerDataLoader.REGISTRY.get(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "msd_sizer/" + pokemon.getSpecies().getName().toLowerCase(Locale.ROOT) + ".json"));
 
         poseStack.mulPose(headLocator.getMatrix());
         poseStack.mulPose(Axis.XP.rotationDegrees(180));
