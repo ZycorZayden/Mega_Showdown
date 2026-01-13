@@ -160,7 +160,7 @@ public class AspectUtils {
             pokemon.getPersistentData().remove("revert_aspects");
         }
 
-        if (pokemon.getPersistentData().getBoolean("is_tera")) {
+        if (pokemon.getPersistentData().getBoolean("is_tera") || pokemon.getAspects().stream().anyMatch((s) -> s.startsWith("msd:tera_"))) {
             pokemon.getAspects().stream().filter(a -> a.startsWith("msd:tera_")).forEach(name -> {
                 UnaspectPropertyType.INSTANCE.fromString(name).apply(pokemon);
             });
