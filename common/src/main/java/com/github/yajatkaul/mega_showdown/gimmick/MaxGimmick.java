@@ -1,6 +1,7 @@
 package com.github.yajatkaul.mega_showdown.gimmick;
 
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.gimmick.codec.AspectSetCodec;
 import com.github.yajatkaul.mega_showdown.utils.GlowHandler;
 import com.mojang.serialization.Codec;
@@ -55,20 +56,20 @@ public record MaxGimmick(
 
         while (iterator.hasNext()) {
             Map.Entry<Pokemon, ScalingData> entry = iterator.next();
-            Pokemon entity = entry.getKey();
+            Pokemon pokemon = entry.getKey();
             ScalingData data = entry.getValue();
             data.currentTick++;
 
-            if (entity.getEntity() == null) {
+            if (pokemon.getEntity() == null) {
                 iterator.remove();
-                entity.setScaleModifier(entity.getPersistentData().getFloat("orignal_size"));
+                pokemon.setScaleModifier(pokemon.getPersistentData().getFloat("orignal_size"));
                 continue;
             }
 
             float progress = Math.min(1.0f, (float) data.currentTick / data.durationTicks);
             float newScale = data.startScale + (data.targetScale - data.startScale) * progress;
 
-            entity.setScaleModifier(newScale);
+            pokemon.setScaleModifier(newScale);
 
             if (data.currentTick >= data.durationTicks) {
                 iterator.remove();

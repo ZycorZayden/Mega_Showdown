@@ -174,7 +174,6 @@ public class AspectUtils {
         }
 
         if (pokemon.getPersistentData().getBoolean("is_max")) {
-            pokemon.getPersistentData().remove("is_max");
             if (pokemon.getAspects().contains("gmax")) {
                 Effect.getEffect("mega_showdown:dynamax").revertEffects(pokemon, List.of("dynamax_form=none"), null);
             } else {
@@ -183,7 +182,10 @@ public class AspectUtils {
             }
             if (pokemon.getEntity() != null) {
                 MaxGimmick.startGradualScalingDown(pokemon);
+            } else {
+                pokemon.setScaleModifier(pokemon.getPersistentData().getFloat("orignal_size"));
             }
+            pokemon.getPersistentData().remove("is_max");
         }
 
         if (pokemon.getPersistentData().getBoolean("form_changing")) {
