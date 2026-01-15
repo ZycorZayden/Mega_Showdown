@@ -7,10 +7,8 @@ import com.cobblemon.mod.common.client.render.models.blockbench.repository.Rende
 import com.cobblemon.mod.common.client.render.models.blockbench.repository.VaryingModelRepository;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.codec.teraHat.LayerCodec;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
-import com.github.yajatkaul.mega_showdown.render.LayerDataLoader;
 import com.github.yajatkaul.mega_showdown.render.layerEntities.states.TeraHatState;
 import com.github.yajatkaul.mega_showdown.render.renderTypes.MSDRenderTypes;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -22,7 +20,10 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class TeraHatsLayer extends LayerEntity {
     private final ResourceLocation poserId = ResourceLocation.fromNamespaceAndPath("cobblemon", "tera_hat");
