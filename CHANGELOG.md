@@ -4,3 +4,5 @@
 - fixed mega altaria riding issue
 - client deligate is now a client only mixin as it should have been
 - added all the tera hats
+- fixed liko's pendant
+- fixed shader color bug

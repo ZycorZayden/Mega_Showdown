@@ -4,7 +4,9 @@ import com.cobblemon.mod.common.api.types.ElementalType;
 import com.cobblemon.mod.common.api.types.tera.TeraType;
 import com.cobblemon.mod.common.api.types.tera.TeraTypes;
 import com.github.yajatkaul.mega_showdown.item.MegaShowdownItems;
+import com.github.yajatkaul.mega_showdown.render.renderTypes.MSDRenderTypes;
 import dev.architectury.registry.registries.RegistrySupplier;
+import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.world.item.Item;
 
 public class TeraHelper {
@@ -92,4 +94,34 @@ public class TeraHelper {
             default -> "cobblemon:tera_normal";
         };
     }
+
+    public static ShaderInstance getShaderFromTeraAspect(String aspect) {
+        if (aspect == null) {
+            return MSDRenderTypes.teraStellar;
+        }
+
+        return switch (aspect) {
+            case "msd:tera_bug" -> MSDRenderTypes.teraBug;
+            case "msd:tera_dark" -> MSDRenderTypes.teraDark;
+            case "msd:tera_dragon" -> MSDRenderTypes.teraDragon;
+            case "msd:tera_electric" -> MSDRenderTypes.teraElectric;
+            case "msd:tera_fairy" -> MSDRenderTypes.teraFairy;
+            case "msd:tera_fighting" -> MSDRenderTypes.teraFighting;
+            case "msd:tera_fire" -> MSDRenderTypes.teraFire;
+            case "msd:tera_flying" -> MSDRenderTypes.teraFlying;
+            case "msd:tera_ghost" -> MSDRenderTypes.teraGhost;
+            case "msd:tera_grass" -> MSDRenderTypes.teraGrass;
+            case "msd:tera_ground" -> MSDRenderTypes.teraGround;
+            case "msd:tera_ice" -> MSDRenderTypes.teraIce;
+            case "msd:tera_poison" -> MSDRenderTypes.teraPoison;
+            case "msd:tera_psychic" -> MSDRenderTypes.teraPsychic;
+            case "msd:tera_rock" -> MSDRenderTypes.teraRock;
+            case "msd:tera_steel" -> MSDRenderTypes.teraSteel;
+            case "msd:tera_water" -> MSDRenderTypes.teraWater;
+            case "msd:tera_normal" -> MSDRenderTypes.teraNormal;
+
+            default -> MSDRenderTypes.teraStellar;
+        };
+    }
+
 }

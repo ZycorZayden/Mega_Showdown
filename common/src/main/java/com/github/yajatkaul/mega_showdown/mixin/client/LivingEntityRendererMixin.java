@@ -59,7 +59,6 @@ public class LivingEntityRendererMixin<T extends LivingEntity, M extends EntityM
                         delegate
                 );
 
-        MSDRenderTypes.teraShader.safeGetUniform("TeraTint").set(GlowHandler.getTeraColor(aspect.get()));
-        return buffer.getBuffer(MSDRenderTypes.pokemonShader(texture));
+        return buffer.getBuffer(MSDRenderTypes.pokemonShader(texture, aspect.get()));
     }
 }

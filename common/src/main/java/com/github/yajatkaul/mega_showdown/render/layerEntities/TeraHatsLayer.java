@@ -91,7 +91,7 @@ public class TeraHatsLayer extends LayerEntity {
         if (MegaShowdownConfig.legacyTeraEffect) {
             vertexConsumer = buffer.getBuffer(RenderType.entityCutout(texture));
         } else {
-            vertexConsumer = buffer.getBuffer(MSDRenderTypes.pokemonShader(texture));
+            vertexConsumer = buffer.getBuffer(MSDRenderTypes.pokemonShader(texture, aspect));
         }
 
         model.render(context, poseStack, vertexConsumer, packedLight, OverlayTexture.NO_OVERLAY, -0x1);

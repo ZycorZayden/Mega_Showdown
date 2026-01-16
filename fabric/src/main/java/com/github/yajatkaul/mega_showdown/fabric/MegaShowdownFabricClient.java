@@ -61,8 +61,116 @@ public final class MegaShowdownFabricClient implements ClientModInitializer {
         BlockEntityRenderers.register(MegaShowdownBlockEntities.MEGA_STONE_STAND_BLOCK_ENTITY.get(), MegaStoneStandRenderer::new);
 
         RegisterShaderEvent.EVENT.register((event) -> {
-            MSDRenderTypes.teraShader = event.create(
-                    ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "tera_shader"),
+            MSDRenderTypes.teraFire = event.create(
+                    ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "tera_crystal_fire"),
+                    DefaultVertexFormat.NEW_ENTITY,
+                    true
+            );
+
+            MSDRenderTypes.teraWater = event.create(
+                    ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "tera_crystal_water"),
+                    DefaultVertexFormat.NEW_ENTITY,
+                    true
+            );
+
+            MSDRenderTypes.teraGrass = event.create(
+                    ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "tera_crystal_grass"),
+                    DefaultVertexFormat.NEW_ENTITY,
+                    true
+            );
+
+            MSDRenderTypes.teraElectric = event.create(
+                    ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "tera_crystal_electric"),
+                    DefaultVertexFormat.NEW_ENTITY,
+                    true
+            );
+
+            MSDRenderTypes.teraIce = event.create(
+                    ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "tera_crystal_ice"),
+                    DefaultVertexFormat.NEW_ENTITY,
+                    true
+            );
+
+            MSDRenderTypes.teraFighting = event.create(
+                    ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "tera_crystal_fighting"),
+                    DefaultVertexFormat.NEW_ENTITY,
+                    true
+            );
+
+            MSDRenderTypes.teraPoison = event.create(
+                    ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "tera_crystal_poison"),
+                    DefaultVertexFormat.NEW_ENTITY,
+                    true
+            );
+
+            MSDRenderTypes.teraGround = event.create(
+                    ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "tera_crystal_ground"),
+                    DefaultVertexFormat.NEW_ENTITY,
+                    true
+            );
+
+            MSDRenderTypes.teraFlying = event.create(
+                    ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "tera_crystal_flying"),
+                    DefaultVertexFormat.NEW_ENTITY,
+                    true
+            );
+
+            MSDRenderTypes.teraPsychic = event.create(
+                    ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "tera_crystal_psychic"),
+                    DefaultVertexFormat.NEW_ENTITY,
+                    true
+            );
+
+            MSDRenderTypes.teraBug = event.create(
+                    ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "tera_crystal_bug"),
+                    DefaultVertexFormat.NEW_ENTITY,
+                    true
+            );
+
+            MSDRenderTypes.teraRock = event.create(
+                    ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "tera_crystal_rock"),
+                    DefaultVertexFormat.NEW_ENTITY,
+                    true
+            );
+
+            MSDRenderTypes.teraGhost = event.create(
+                    ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "tera_crystal_ghost"),
+                    DefaultVertexFormat.NEW_ENTITY,
+                    true
+            );
+
+            MSDRenderTypes.teraDragon = event.create(
+                    ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "tera_crystal_dragon"),
+                    DefaultVertexFormat.NEW_ENTITY,
+                    true
+            );
+
+            MSDRenderTypes.teraDark = event.create(
+                    ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "tera_crystal_dark"),
+                    DefaultVertexFormat.NEW_ENTITY,
+                    true
+            );
+
+            MSDRenderTypes.teraSteel = event.create(
+                    ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "tera_crystal_steel"),
+                    DefaultVertexFormat.NEW_ENTITY,
+                    true
+            );
+
+            MSDRenderTypes.teraFairy = event.create(
+                    ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "tera_crystal_fairy"),
+                    DefaultVertexFormat.NEW_ENTITY,
+                    true
+            );
+
+            MSDRenderTypes.teraNormal = event.create(
+                    ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "tera_crystal_normal"),
+                    DefaultVertexFormat.NEW_ENTITY,
+                    true
+            );
+
+            MSDRenderTypes.teraStellar = event.create(
+                    ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "tera_crystal_stellar"),
                     DefaultVertexFormat.NEW_ENTITY,
                     true
             );
