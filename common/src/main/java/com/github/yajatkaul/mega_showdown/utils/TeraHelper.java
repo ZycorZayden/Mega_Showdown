@@ -9,6 +9,9 @@ import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.world.item.Item;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class TeraHelper {
     public static Item getTeraShardForType(Iterable<ElementalType> types) {
         RegistrySupplier<Item> shard = MegaShowdownItems.NORMAL_TERA_SHARD;
@@ -42,86 +45,13 @@ public class TeraHelper {
         return shard.get();
     }
 
-    public static TeraType getTeraFromElement(ElementalType type) {
-        if (type == null) return TeraTypes.getNORMAL();
-
-        return switch (type.getName().toLowerCase()) {
-            case "bug" -> TeraTypes.getBUG();
-            case "dark" -> TeraTypes.getDARK();
-            case "dragon" -> TeraTypes.getDRAGON();
-            case "electric" -> TeraTypes.getELECTRIC();
-            case "fairy" -> TeraTypes.getFAIRY();
-            case "fighting" -> TeraTypes.getFIGHTING();
-            case "fire" -> TeraTypes.getFIRE();
-            case "flying" -> TeraTypes.getFLYING();
-            case "ghost" -> TeraTypes.getGHOST();
-            case "grass" -> TeraTypes.getGRASS();
-            case "ground" -> TeraTypes.getGROUND();
-            case "ice" -> TeraTypes.getICE();
-            case "poison" -> TeraTypes.getPOISON();
-            case "psychic" -> TeraTypes.getPSYCHIC();
-            case "rock" -> TeraTypes.getROCK();
-            case "steel" -> TeraTypes.getSTEEL();
-            case "water" -> TeraTypes.getWATER();
-            default -> TeraTypes.getNORMAL();
-        };
-    }
-
     public static String getTeraAnimationFromAspect(String aspect) {
         if (aspect == null) {
             return "cobblemon:tera_normal";
         }
-
-        return switch (aspect) {
-            case "msd:tera_bug" -> "cobblemon:tera_bug";
-            case "msd:tera_dark" -> "cobblemon:tera_dark";
-            case "msd:tera_dragon" -> "cobblemon:tera_dragon";
-            case "msd:tera_electric" -> "cobblemon:tera_electric";
-            case "msd:tera_fairy" -> "cobblemon:tera_fairy";
-            case "msd:tera_fighting" -> "cobblemon:tera_fighting";
-            case "msd:tera_fire" -> "cobblemon:tera_fire";
-            case "msd:tera_flying" -> "cobblemon:tera_flying";
-            case "msd:tera_ghost" -> "cobblemon:tera_ghost";
-            case "msd:tera_grass" -> "cobblemon:tera_grass";
-            case "msd:tera_ground" -> "cobblemon:tera_ground";
-            case "msd:tera_ice" -> "cobblemon:tera_ice";
-            case "msd:tera_poison" -> "cobblemon:tera_poison";
-            case "msd:tera_psychic" -> "cobblemon:tera_psychic";
-            case "msd:tera_rock" -> "cobblemon:tera_rock";
-            case "msd:tera_steel" -> "cobblemon:tera_steel";
-            case "msd:tera_water" -> "cobblemon:tera_water";
-
-            default -> "cobblemon:tera_normal";
-        };
-    }
-
-    public static ShaderInstance getShaderFromTeraAspect(String aspect) {
-        if (aspect == null) {
-            return MSDRenderTypes.teraStellar;
-        }
-
-        return switch (aspect) {
-            case "msd:tera_bug" -> MSDRenderTypes.teraBug;
-            case "msd:tera_dark" -> MSDRenderTypes.teraDark;
-            case "msd:tera_dragon" -> MSDRenderTypes.teraDragon;
-            case "msd:tera_electric" -> MSDRenderTypes.teraElectric;
-            case "msd:tera_fairy" -> MSDRenderTypes.teraFairy;
-            case "msd:tera_fighting" -> MSDRenderTypes.teraFighting;
-            case "msd:tera_fire" -> MSDRenderTypes.teraFire;
-            case "msd:tera_flying" -> MSDRenderTypes.teraFlying;
-            case "msd:tera_ghost" -> MSDRenderTypes.teraGhost;
-            case "msd:tera_grass" -> MSDRenderTypes.teraGrass;
-            case "msd:tera_ground" -> MSDRenderTypes.teraGround;
-            case "msd:tera_ice" -> MSDRenderTypes.teraIce;
-            case "msd:tera_poison" -> MSDRenderTypes.teraPoison;
-            case "msd:tera_psychic" -> MSDRenderTypes.teraPsychic;
-            case "msd:tera_rock" -> MSDRenderTypes.teraRock;
-            case "msd:tera_steel" -> MSDRenderTypes.teraSteel;
-            case "msd:tera_water" -> MSDRenderTypes.teraWater;
-            case "msd:tera_normal" -> MSDRenderTypes.teraNormal;
-
-            default -> MSDRenderTypes.teraStellar;
-        };
+        return aspect.startsWith("msd:")
+                ? aspect.replaceFirst("msd:", "cobblemon:")
+                : "cobblemon:tera_normal";
     }
 
 }

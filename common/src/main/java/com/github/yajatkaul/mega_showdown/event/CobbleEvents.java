@@ -155,7 +155,7 @@ public class CobbleEvents {
             } else if (pokemon.getAspects().contains("cornerstone-mask")) {
                 pokemon.setTeraType(TeraTypes.getROCK());
             } else {
-                pokemon.setTeraType(TeraHelper.getTeraFromElement(pokemon.getPrimaryType()));
+                pokemon.setTeraType(TeraTypes.forElementalType(pokemon.getPrimaryType()));
             }
         } else if (pokemon.getSpecies().getName().equals("Terapagos")) {
             pokemon.setTeraType(TeraTypes.getSTELLAR());

@@ -103,7 +103,20 @@
     {
       "aspects": ["msd:tera_stellar"],
       "model": "cobblemon:stellar_tera_hat.geo",
-      "texture": "cobblemon:textures/tera_hat/stellar_tera_hat.png"
+      "texture": "cobblemon:textures/tera_hat/stellar_tera_hat.png",
+      "layers": [
+        {
+          "name": "glow",
+          "texture": "cobblemon:textures/tera_hat/stellar_tera_hat.png",
+          "emissive": true
+        },
+        {
+          "name": "emissive",
+          "emissive": true,
+          "texture": "cobblemon:textures/tera_hat/stellar_tera_hat.png",
+          "translucent": false
+        }
+      ]
     }
   ]
 }

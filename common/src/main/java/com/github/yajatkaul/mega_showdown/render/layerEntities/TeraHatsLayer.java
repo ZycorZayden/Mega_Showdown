@@ -20,14 +20,12 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 public class TeraHatsLayer extends LayerEntity {
     private final ResourceLocation poserId = ResourceLocation.fromNamespaceAndPath("cobblemon", "tera_hat");
-    private final Set<String> aspects = new HashSet<>();
 
     public TeraHatsLayer() {
         super(new TeraHatState());
@@ -38,10 +36,25 @@ public class TeraHatsLayer extends LayerEntity {
         if (pokemon.getSpecies().getName().equals("Terapagos")) return;
 
         super.render(context, clientDelegate, entity, pokemon, entityYaw, poseStack, buffer, packedLight);
+        state.setCurrentAspects(Set.of(aspect));
 
         Map<String, MatrixWrapper> locatorStates = clientDelegate.getLocatorStates();
         MatrixWrapper headLocator = locatorStates.get("head");
         if (headLocator == null) return;
+
+        // Get model and texture
+        PosableModel model = VaryingModelRepository.INSTANCE.getPoser(poserId, state);
+        ResourceLocation texture = VaryingModelRepository.INSTANCE.getTexture(poserId, state);
+
+        model.context = context;
+        model.setBufferProvider(buffer);
+        state.setCurrentModel(model);
+
+        // Setup context
+        context.put(RenderContext.Companion.getASPECTS(), Set.of(aspect));
+        context.put(RenderContext.Companion.getTEXTURE(), texture);
+        context.put(RenderContext.Companion.getSPECIES(), poserId);
+        context.put(RenderContext.Companion.getPOSABLE_STATE(), state);
 
         poseStack.pushPose();
 
@@ -55,25 +68,6 @@ public class TeraHatsLayer extends LayerEntity {
             List<Float> scale = LayerCodec.getScaleForHat(pokemon, aspect, teraHatCodec);
             poseStack.scale(scale.get(0), scale.get(1), scale.get(2));
         }
-
-        // Update state BEFORE getting model
-        aspects.clear(); // Clear and re-add
-        aspects.add(aspect);
-        state.setCurrentAspects(aspects);
-
-        // Get model and texture
-        PosableModel model = VaryingModelRepository.INSTANCE.getPoser(poserId, state);
-        ResourceLocation texture = VaryingModelRepository.INSTANCE.getTexture(poserId, state);
-
-        model.context = context;
-        model.setBufferProvider(buffer);
-        state.setCurrentModel(model);
-
-        // Setup context
-        context.put(RenderContext.Companion.getASPECTS(), aspects);
-        context.put(RenderContext.Companion.getTEXTURE(), texture);
-        context.put(RenderContext.Companion.getSPECIES(), poserId);
-        context.put(RenderContext.Companion.getPOSABLE_STATE(), state);
 
         // Apply animations
         model.applyAnimations(
@@ -106,7 +100,6 @@ public class TeraHatsLayer extends LayerEntity {
                 }
         );
         model.setDefault();
-
         poseStack.popPose();
     }
 }

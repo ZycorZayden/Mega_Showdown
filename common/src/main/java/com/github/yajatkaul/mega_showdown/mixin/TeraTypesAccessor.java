@@ -11,5 +11,7 @@ import java.util.HashMap;
 @Mixin(value = TeraTypes.class, remap = false)
 public interface TeraTypesAccessor {
     @Accessor("types")
-    HashMap<ResourceLocation, TeraType> getTypes();
+    static HashMap<ResourceLocation, TeraType> getTypes() {
+        throw new AssertionError();
+    }
 }
