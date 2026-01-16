@@ -1907,15 +1907,6 @@ class BattleActions {
     const maxMove = this.dex.moves.get(
       MAX_MOVES[move.category === "Status" ? move.category : move.type]
     );
-    if (move.name == "Absorb") {
-        console.log("====")
-        console.log(move.name);
-        console.log(move.type);
-        console.log(maxMove);
-        console.log(JSON.stringify(MAX_MOVES));
-        console.log("====")
-    }
-
     if (maxMove.exists) return maxMove;
   }
   getActiveMaxMove(move, pokemon) {

@@ -39,7 +39,7 @@ public class CustomTypeRegistry implements JsonDataRegistry<CustomTypeRegistry.C
 
     @Override
     public @NotNull ResourceLocation getId() {
-        return ResourceLocation.fromNamespaceAndPath(Cobblemon.MODID, "mega_showdown/custom_type");
+        return ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "mega_showdown/custom_type");
     }
 
     @Override
@@ -90,14 +90,11 @@ public class CustomTypeRegistry implements JsonDataRegistry<CustomTypeRegistry.C
                         typeData.id
                 ));
 
-                MegaShowdown.LOGGER.info("Added one");
                 customTypes.add(newType);
 
                 // Create and register TeraType
                 TeraType newTeraType = new ElementalTypeTeraType(newType);
-                ((TeraTypesAccessor) (Object) TeraTypes.INSTANCE)
-                        .getTypes()
-                        .put(MiscUtilsKt.cobblemonResource(typeData.id), newTeraType);
+                TeraTypesAccessor.getTypes().put(MiscUtilsKt.cobblemonResource(typeData.id), newTeraType);
 
                 Cobblemon.INSTANCE.getShowdownThread().queue(showdownService -> {
                     if (showdownService instanceof GraalShowdownService service) {
@@ -123,9 +120,6 @@ public class CustomTypeRegistry implements JsonDataRegistry<CustomTypeRegistry.C
         public String text;
         public String zTypeMove;
         public String maxTypeMove;
-
-        // Gson requires a no-arg constructor
-        public CustomTypeData() {}
 
         public CustomTypeData(String name, String id, int hue, String text, String zTypeMove, String maxTypeMove) {
             this.name = name;
