@@ -16,16 +16,12 @@
       ]
     },
     {
-      "aspects": [
-        "shiny"
-      ],
+      "aspects": ["shiny"],
       "texture": "cobblemon:textures/pokemon/0773_silvally/silvally_shiny.png",
       "layers": []
     },
     {
-      "aspects": [
-        "fire-memory"
-      ],
+      "aspects": ["fire-memory"],
       "layers": [
         {
           "name": "emissive",
@@ -35,9 +31,7 @@
       ]
     },
     {
-      "aspects": [
-        "water-memory"
-      ],
+      "aspects": ["water-memory"],
       "layers": [
         {
           "name": "emissive",
@@ -47,9 +41,7 @@
       ]
     },
     {
-      "aspects": [
-        "grass-memory"
-      ],
+      "aspects": ["grass-memory"],
       "layers": [
         {
           "name": "emissive",
@@ -59,9 +51,7 @@
       ]
     },
     {
-      "aspects": [
-        "electric-memory"
-      ],
+      "aspects": ["electric-memory"],
       "layers": [
         {
           "name": "emissive",
@@ -71,9 +61,7 @@
       ]
     },
     {
-      "aspects": [
-        "ice-memory"
-      ],
+      "aspects": ["ice-memory"],
       "layers": [
         {
           "name": "emissive",
@@ -83,9 +71,7 @@
       ]
     },
     {
-      "aspects": [
-        "fighting-memory"
-      ],
+      "aspects": ["fighting-memory"],
       "layers": [
         {
           "name": "emissive",
@@ -95,9 +81,7 @@
       ]
     },
     {
-      "aspects": [
-        "poison-memory"
-      ],
+      "aspects": ["poison-memory"],
       "layers": [
         {
           "name": "emissive",
@@ -107,9 +91,7 @@
       ]
     },
     {
-      "aspects": [
-        "ground-memory"
-      ],
+      "aspects": ["ground-memory"],
       "layers": [
         {
           "name": "emissive",
@@ -119,9 +101,7 @@
       ]
     },
     {
-      "aspects": [
-        "flying-memory"
-      ],
+      "aspects": ["flying-memory"],
       "layers": [
         {
           "name": "emissive",
@@ -131,9 +111,7 @@
       ]
     },
     {
-      "aspects": [
-        "psychic-memory"
-      ],
+      "aspects": ["psychic-memory"],
       "layers": [
         {
           "name": "emissive",
@@ -143,9 +121,7 @@
       ]
     },
     {
-      "aspects": [
-        "bug-memory"
-      ],
+      "aspects": ["bug-memory"],
       "layers": [
         {
           "name": "emissive",
@@ -155,9 +131,7 @@
       ]
     },
     {
-      "aspects": [
-        "rock-memory"
-      ],
+      "aspects": ["rock-memory"],
       "layers": [
         {
           "name": "emissive",
@@ -167,9 +141,7 @@
       ]
     },
     {
-      "aspects": [
-        "ghost-memory"
-      ],
+      "aspects": ["ghost-memory"],
       "layers": [
         {
           "name": "emissive",
@@ -179,9 +151,7 @@
       ]
     },
     {
-      "aspects": [
-        "dragon-memory"
-      ],
+      "aspects": ["dragon-memory"],
       "layers": [
         {
           "name": "emissive",
@@ -191,9 +161,7 @@
       ]
     },
     {
-      "aspects": [
-        "dark-memory"
-      ],
+      "aspects": ["dark-memory"],
       "layers": [
         {
           "name": "emissive",
@@ -203,9 +171,7 @@
       ]
     },
     {
-      "aspects": [
-        "steel-memory"
-      ],
+      "aspects": ["steel-memory"],
       "layers": [
         {
           "name": "emissive",
@@ -215,9 +181,7 @@
       ]
     },
     {
-      "aspects": [
-        "fairy-memory"
-      ],
+      "aspects": ["fairy-memory"],
       "layers": [
         {
           "name": "emissive",

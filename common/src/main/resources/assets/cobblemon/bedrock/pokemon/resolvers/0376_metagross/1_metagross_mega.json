@@ -3,18 +3,13 @@
   "order": 1,
   "variations": [
     {
-      "aspects": [
-        "mega"
-      ],
+      "aspects": ["mega"],
       "poser": "cobblemon:metagross_mega",
       "model": "cobblemon:metagross_mega.geo",
       "texture": "cobblemon:textures/pokemon/0376_metagross/metagross_mega.png"
     },
     {
-      "aspects": [
-        "mega",
-        "shiny"
-      ],
+      "aspects": ["mega", "shiny"],
       "texture": "cobblemon:textures/pokemon/0376_metagross/metagross_mega_shiny.png"
     }
   ]

@@ -3,10 +3,7 @@
   "order": 2,
   "variations": [
     {
-      "aspects": [
-        "galarian",
-        "zen-mode"
-      ],
+      "aspects": ["galarian", "zen-mode"],
       "poser": "cobblemon:darmanitan_galar_zen",
       "model": "cobblemon:darmanitan_galar_zen.geo",
       "texture": "cobblemon:textures/pokemon/0555_darmanitan/darmanitan_galar_zen.png",
@@ -19,11 +16,7 @@
       ]
     },
     {
-      "aspects": [
-        "galarian",
-        "shiny",
-        "zen-mode"
-      ],
+      "aspects": ["galarian", "shiny", "zen-mode"],
       "texture": "cobblemon:textures/pokemon/0555_darmanitan/darmanitan_galar_zenshiny.png",
       "layers": [
         {

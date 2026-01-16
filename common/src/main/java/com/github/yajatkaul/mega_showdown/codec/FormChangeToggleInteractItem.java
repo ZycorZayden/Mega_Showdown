@@ -62,19 +62,21 @@ public record FormChangeToggleInteractItem(
             }
 
             if (currentIndex + 1 > form_apply_order.size() - 1) {
+                ResourceLocation effect = effects.getFirst();
                 aspect_conditions.ifPresentOrElse((aspect_conditions -> {
                     if (aspect_conditions.getFirst().validate_apply(pokemon)) {
-                        Effect.getEffect(effects.getFirst()).applyEffects(pokemon, form_aspect_apply_order.getFirst(), null);
+                        Effect.getEffect(effect).applyEffects(pokemon, form_aspect_apply_order.getFirst(), null);
                     }
-                }), () -> Effect.getEffect(effects.getFirst()).applyEffects(pokemon, form_aspect_apply_order.getFirst(), null));
+                }), () -> Effect.getEffect(effect).applyEffects(pokemon, form_aspect_apply_order.getFirst(), null));
             } else {
                 int finalCurrentIndex = currentIndex;
+                ResourceLocation effect = effects.get(finalCurrentIndex + 1);
                 aspect_conditions.ifPresentOrElse((aspect_conditions) -> {
                     if (aspect_conditions.get(finalCurrentIndex + 1).validate_apply(pokemon)) {
-                        Effect.getEffect(effects.get(finalCurrentIndex + 1)).applyEffects(pokemon, form_aspect_apply_order.get(finalCurrentIndex + 1), null);
+                        Effect.getEffect(effect).applyEffects(pokemon, form_aspect_apply_order.get(finalCurrentIndex + 1), null);
                     }
                 }, () -> {
-                    Effect.getEffect(effects.get(finalCurrentIndex + 1)).applyEffects(pokemon, form_aspect_apply_order.get(finalCurrentIndex + 1), null);
+                    Effect.getEffect(effect).applyEffects(pokemon, form_aspect_apply_order.get(finalCurrentIndex + 1), null);
                 });
             }
             stack.consume(consume, livingEntity);

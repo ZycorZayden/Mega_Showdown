@@ -9,24 +9,17 @@
       "texture": "cobblemon:textures/pokemon/0531_audino/audino.png"
     },
     {
-      "aspects": [
-        "shiny"
-      ],
+      "aspects": ["shiny"],
       "texture": "cobblemon:textures/pokemon/0531_audino/audino_shiny.png"
     },
     {
-      "aspects": [
-        "mega"
-      ],
+      "aspects": ["mega"],
       "model": "cobblemon:audino_mega.geo",
       "texture": "cobblemon:textures/pokemon/0531_audino/megaaudino.png",
       "layers": []
     },
     {
-      "aspects": [
-        "mega",
-        "shiny"
-      ],
+      "aspects": ["mega", "shiny"],
       "model": "cobblemon:audino_mega.geo",
       "texture": "cobblemon:textures/pokemon/0531_audino/megaaudino_shiny.png"
     }

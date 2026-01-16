@@ -10,9 +10,7 @@
       "layers": []
     },
     {
-      "aspects": [
-        "shiny"
-      ],
+      "aspects": ["shiny"],
       "texture": "cobblemon:textures/pokemon/0648_meloetta/meloetta_shiny.png"
     }
   ]

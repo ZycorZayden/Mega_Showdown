@@ -5,6 +5,7 @@
   "minVersion": "0.8",
   "client": [
     "MoveSlotWidgetMixin",
+    "PokemonClientDelegateMixin",
     "battle.BattleMoveSelectionMixin",
     "client.ItemRendererMixin",
     "client.LivingEntityRendererMixin",
@@ -17,11 +18,11 @@
   ],
   "mixins": [
     "GraalShowdownUnbundlerMixin",
+    "MovesAccessor",
     "PlayerPartyStoreMixin",
-    "PokemonAccessor",
-    "PokemonClientDelegateMixin",
     "PokemonEntityMixin",
     "PokemonSpeciesMixin",
+    "TeraTypesAccessor",
     "battle.BattleGimmickButtonCompanionMixin",
     "battle.BattleGimmickButtonMixin",
     "battle.BattleRegistryMixin",

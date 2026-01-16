@@ -3,18 +3,13 @@
   "order": 2,
   "variations": [
     {
-      "aspects": [
-        "mega"
-      ],
+      "aspects": ["mega"],
       "model": "cobblemon:gyarados_mega.geo",
       "texture": "cobblemon:textures/pokemon/0130_gyarados/gyarados_mega.png",
       "layers": []
     },
     {
-      "aspects": [
-        "mega",
-        "shiny"
-      ],
+      "aspects": ["mega", "shiny"],
       "model": "cobblemon:gyarados_mega.geo",
       "texture": "cobblemon:textures/pokemon/0130_gyarados/gyarados_mega_shiny.png"
     }

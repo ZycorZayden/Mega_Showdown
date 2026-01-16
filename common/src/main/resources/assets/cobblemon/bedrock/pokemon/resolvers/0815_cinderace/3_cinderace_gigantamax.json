@@ -3,9 +3,7 @@
   "order": 3,
   "variations": [
     {
-      "aspects": [
-        "gmax"
-      ],
+      "aspects": ["gmax"],
       "poser": "cobblemon:cinderacegmax",
       "model": "cobblemon:cinderace_gigantamax.geo",
       "texture": "cobblemon:textures/pokemon/0815_cinderace/cinderace_gigantamax.png",
@@ -18,10 +16,7 @@
       ]
     },
     {
-      "aspects": [
-        "gmax",
-        "shiny"
-      ],
+      "aspects": ["gmax", "shiny"],
       "poser": "cobblemon:cinderacegmax",
       "model": "cobblemon:cinderace_gigantamax.geo",
       "texture": "cobblemon:textures/pokemon/0815_cinderace/cinderace_gigantamax_shiny.png",

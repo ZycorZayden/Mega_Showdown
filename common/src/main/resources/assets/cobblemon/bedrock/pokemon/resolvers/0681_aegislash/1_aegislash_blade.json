@@ -3,19 +3,14 @@
   "order": 2,
   "variations": [
     {
-      "aspects": [
-        "blade-forme"
-      ],
+      "aspects": ["blade-forme"],
       "poser": "cobblemon:aegislash_blade2",
       "model": "cobblemon:aegislash.geo",
       "texture": "cobblemon:textures/pokemon/0681_aegislash/aegislash.png",
       "layers": []
     },
     {
-      "aspects": [
-        "blade-forme",
-        "shiny"
-      ],
+      "aspects": ["blade-forme", "shiny"],
       "texture": "cobblemon:textures/pokemon/0681_aegislash/aegislash_shiny.png"
     }
   ]

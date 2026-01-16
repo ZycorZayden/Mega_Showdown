@@ -9,6 +9,8 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 
+import java.util.Set;
+
 public class LayerEntity {
     protected double animSeconds = 0.0;
     protected long lastTimeNs = -1L;

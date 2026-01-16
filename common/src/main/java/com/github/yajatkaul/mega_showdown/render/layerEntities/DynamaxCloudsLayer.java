@@ -3,26 +3,25 @@ package com.github.yajatkaul.mega_showdown.render.layerEntities;
 import com.cobblemon.mod.common.client.entity.PokemonClientDelegate;
 import com.cobblemon.mod.common.client.render.MatrixWrapper;
 import com.cobblemon.mod.common.client.render.models.blockbench.PosableModel;
-import com.cobblemon.mod.common.client.render.models.blockbench.PosableState;
 import com.cobblemon.mod.common.client.render.models.blockbench.repository.RenderContext;
 import com.cobblemon.mod.common.client.render.models.blockbench.repository.VaryingModelRepository;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.github.yajatkaul.mega_showdown.MegaShowdown;
+import com.github.yajatkaul.mega_showdown.codec.sizer.LayerCodec;
 import com.github.yajatkaul.mega_showdown.render.layerEntities.states.DmaxHatState;
-import com.github.yajatkaul.mega_showdown.codec.teraHat.LayerCodec;
-import com.github.yajatkaul.mega_showdown.render.LayerDataLoader;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import kotlin.Unit;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class DynamaxCloudsLayer extends LayerEntity {
     private final ResourceLocation poserId = ResourceLocation.fromNamespaceAndPath("cobblemon", "dmax_clouds");
@@ -42,7 +41,7 @@ public class DynamaxCloudsLayer extends LayerEntity {
 
         if (headLocator == null) return;
 
-        LayerCodec dynamaxCloudCodec = LayerDataLoader.REGISTRY.get(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, pokemon.getSpecies().getName().toLowerCase(Locale.ROOT)));
+        LayerCodec dynamaxCloudCodec = LayerCodec.getLayerCodec(pokemon.getSpecies().getName());
 
         // Get model and texture
         PosableModel model = VaryingModelRepository.INSTANCE.getPoser(poserId, state);

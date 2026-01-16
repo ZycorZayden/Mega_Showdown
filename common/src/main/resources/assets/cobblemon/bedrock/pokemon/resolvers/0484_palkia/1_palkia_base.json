@@ -17,9 +17,7 @@
       ]
     },
     {
-      "aspects": [
-        "shiny"
-      ],
+      "aspects": ["shiny"],
       "texture": "cobblemon:textures/pokemon/0484_palkia/palkia_shiny.png",
       "layers": [
         {
@@ -31,9 +29,7 @@
       ]
     },
     {
-      "aspects": [
-        "origin-forme"
-      ],
+      "aspects": ["origin-forme"],
       "poser": "cobblemon:palkia_origin",
       "model": "cobblemon:palkia_origin.geo",
       "texture": "cobblemon:textures/pokemon/0484_palkia/palkia_origin.png",
@@ -47,10 +43,7 @@
       ]
     },
     {
-      "aspects": [
-        "shiny",
-        "origin-forme"
-      ],
+      "aspects": ["shiny", "origin-forme"],
       "texture": "cobblemon:textures/pokemon/0484_palkia/palkia_origin_shiny.png",
       "layers": [
         {

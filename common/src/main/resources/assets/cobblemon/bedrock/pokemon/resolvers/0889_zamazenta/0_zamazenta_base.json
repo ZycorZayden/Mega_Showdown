@@ -7,13 +7,10 @@
       "poser": "cobblemon:zamazenta",
       "model": "cobblemon:zamazenta.geo",
       "texture": "cobblemon:textures/pokemon/0889_zamazenta/zamazenta.png",
-      "layers": [
-      ]
+      "layers": []
     },
     {
-      "aspects": [
-        "shiny"
-      ],
+      "aspects": ["shiny"],
       "texture": "cobblemon:textures/pokemon/0889_zamazenta/zamazenta_shiny.png"
     }
   ]

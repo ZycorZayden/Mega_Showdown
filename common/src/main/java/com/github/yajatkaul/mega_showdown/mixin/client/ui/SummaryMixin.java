@@ -4,7 +4,7 @@ import com.cobblemon.mod.common.client.gui.pokedex.PokedexGUIConstants;
 import com.cobblemon.mod.common.client.gui.summary.Summary;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.MegaShowdown;
-import com.github.yajatkaul.mega_showdown.utils.ScreenGimmicks;
+import com.github.yajatkaul.mega_showdown.utils.KotlinHelper;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;
@@ -30,7 +30,7 @@ public abstract class SummaryMixin {
 
         Pokemon pokemon = summary.getSelectedPokemon$common();
 
-        ScreenGimmicks.INSTANCE.gimmikInfo(
+        KotlinHelper.INSTANCE.gimmikInfo(
                 matrices,
                 ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "textures/gui/summary/tera_types/" + pokemon.getTeraType().showdownId() + ".png"),
                 (x + 58) / SCALE,
@@ -41,7 +41,7 @@ public abstract class SummaryMixin {
         );
 
         if (pokemon.getGmaxFactor()) {
-            ScreenGimmicks.INSTANCE.gimmikInfo(
+            KotlinHelper.INSTANCE.gimmikInfo(
                     matrices,
                     ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "textures/gui/summary/gmax.png"),
                     (x + 6) / SCALE,

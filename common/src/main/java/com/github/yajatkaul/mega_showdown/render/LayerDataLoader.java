@@ -1,7 +1,7 @@
 package com.github.yajatkaul.mega_showdown.render;
 
 import com.github.yajatkaul.mega_showdown.MegaShowdown;
-import com.github.yajatkaul.mega_showdown.codec.teraHat.LayerCodec;
+import com.github.yajatkaul.mega_showdown.codec.sizer.LayerCodec;
 import com.google.gson.JsonParser;
 import com.mojang.serialization.JsonOps;
 import net.minecraft.client.Minecraft;
@@ -18,7 +18,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 
 public class LayerDataLoader implements ResourceManagerReloadListener {
-    public static final HashMap<ResourceLocation , LayerCodec> REGISTRY = new HashMap<>();
+    public static final HashMap<ResourceLocation, LayerCodec> REGISTRY = new HashMap<>();
     private static final String DIRECTORY = "msd_sizer";
 
     public static void load() {

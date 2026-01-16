@@ -3,19 +3,14 @@
   "order": 1,
   "variations": [
     {
-      "aspects": [
-        "galarian"
-      ],
+      "aspects": ["galarian"],
       "model": "cobblemon:darumaka_galar.geo",
       "poser": "cobblemon:darumaka",
       "texture": "cobblemon:textures/pokemon/0554_darumaka/darumaka_galar.png",
       "layers": []
     },
     {
-      "aspects": [
-        "shiny",
-        "galarian"
-      ],
+      "aspects": ["shiny", "galarian"],
       "texture": "cobblemon:textures/pokemon/0554_darumaka/darumaka_galar_shiny.png"
     }
   ]

@@ -3,9 +3,7 @@
   "order": 1,
   "variations": [
     {
-      "aspects": [
-        "mega"
-      ],
+      "aspects": ["mega"],
       "poser": "cobblemon:pinsir_mega",
       "model": "cobblemon:pinsir_mega.geo",
       "texture": "cobblemon:textures/pokemon/0127_pinsir/pinsir_mega.png",
@@ -23,10 +21,7 @@
       ]
     },
     {
-      "aspects": [
-        "mega",
-        "shiny"
-      ],
+      "aspects": ["mega", "shiny"],
       "poser": "cobblemon:pinsir_mega",
       "model": "cobblemon:pinsir_mega.geo",
       "texture": "cobblemon:textures/pokemon/0127_pinsir/pinsir_mega_shiny.png"

@@ -4,9 +4,11 @@
   "compatibilityLevel": "JAVA_21",
   "minVersion": "0.8",
   "client": [
+    "TypeIconMixin"
   ],
   "mixins": [
-    "CobblemonDataProviderMixin"
+    "CobblemonDataProviderMixin",
+    "PokemonClientDelegateMixin"
   ],
   "injectors": {
     "defaultRequire": 1

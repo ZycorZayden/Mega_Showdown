@@ -43,7 +43,7 @@ public class GlowHandler {
         }
     }
 
-    public static void applyTeraGlow(PokemonEntity pokemon) {
+    public static void applyTeraGlow(PokemonEntity pokemon, String aspect) {
         if (pokemon.level() instanceof ServerLevel serverLevel) {
             pokemon.addEffect(new MobEffectInstance(MobEffects.GLOWING, Integer.MAX_VALUE, 0, false, false));
             ServerScoreboard scoreboard = serverLevel.getScoreboard();
@@ -51,7 +51,7 @@ public class GlowHandler {
 
             PlayerTeam team = scoreboard.getPlayerTeam(teamName);
 
-            ChatFormatting color = getGlowForTera(pokemon.getPokemon().getTeraType());
+            ChatFormatting color = getFormattingForColor(aspect);
             if (team == null) {
                 team = scoreboard.addPlayerTeam(teamName);
                 team.setColor(color);
@@ -79,33 +79,23 @@ public class GlowHandler {
         }
     }
 
-    private static ChatFormatting getGlowForTera(TeraType teraType) {
-        if (teraType instanceof ElementalTypeTeraType elementalTera) {
-            return getGlowForElemental(elementalTera.getType());
-        }
-        return ChatFormatting.WHITE;
-    }
-
-    private static ChatFormatting getGlowForElemental(ElementalType type) {
-        if (type.equals(ElementalTypes.BUG)) return ChatFormatting.DARK_GREEN;
-        if (type.equals(ElementalTypes.DARK)) return ChatFormatting.BLACK;
-        if (type.equals(ElementalTypes.DRAGON)) return ChatFormatting.DARK_BLUE;
-        if (type.equals(ElementalTypes.ELECTRIC)) return ChatFormatting.YELLOW;
-        if (type.equals(ElementalTypes.FAIRY)) return ChatFormatting.LIGHT_PURPLE;
-        if (type.equals(ElementalTypes.FIGHTING)) return ChatFormatting.DARK_RED;
-        if (type.equals(ElementalTypes.FIRE)) return ChatFormatting.RED;
-        if (type.equals(ElementalTypes.FLYING)) return ChatFormatting.GRAY;
-        if (type.equals(ElementalTypes.GHOST)) return ChatFormatting.DARK_PURPLE;
-        if (type.equals(ElementalTypes.GRASS)) return ChatFormatting.GREEN;
-        if (type.equals(ElementalTypes.GROUND)) return ChatFormatting.DARK_RED;
-        if (type.equals(ElementalTypes.ICE)) return ChatFormatting.AQUA;
-        if (type.equals(ElementalTypes.NORMAL)) return ChatFormatting.WHITE;
-        if (type.equals(ElementalTypes.POISON)) return ChatFormatting.DARK_PURPLE;
-        if (type.equals(ElementalTypes.PSYCHIC)) return ChatFormatting.LIGHT_PURPLE;
-        if (type.equals(ElementalTypes.ROCK)) return ChatFormatting.DARK_GRAY;
-        if (type.equals(ElementalTypes.STEEL)) return ChatFormatting.GRAY;
-        if (type.equals(ElementalTypes.WATER)) return ChatFormatting.BLUE;
-        return ChatFormatting.WHITE;
+    private static ChatFormatting getFormattingForColor(String color) {
+        return switch (color) {
+            case "red" -> ChatFormatting.RED;
+            case "blue" -> ChatFormatting.BLUE;
+            case "green" -> ChatFormatting.GREEN;
+            case "yellow" -> ChatFormatting.YELLOW;
+            case "brown", "orange" -> ChatFormatting.DARK_RED;
+            case "light_blue", "light_grey" -> ChatFormatting.AQUA;
+            case "purple" -> ChatFormatting.DARK_BLUE;
+            case "pink", "magenta" -> ChatFormatting.LIGHT_PURPLE;
+            case "black" -> ChatFormatting.BLACK;
+            case "gray" -> ChatFormatting.GRAY;
+            case "lime" -> ChatFormatting.DARK_GREEN;
+            case "teal", "indigo" -> ChatFormatting.DARK_PURPLE;
+            case "tan" -> ChatFormatting.DARK_GRAY;
+            default -> ChatFormatting.WHITE;
+        };
     }
 
     private static ChatFormatting getGlowForColor(String color) {
@@ -137,45 +127,45 @@ public class GlowHandler {
         }
 
         return switch (teraId) {
-            case "msd:tera_fire"      -> FIRE;
-            case "msd:tera_water"     -> WATER;
-            case "msd:tera_grass"     -> GRASS;
-            case "msd:tera_electric"  -> ELECTRIC;
-            case "msd:tera_ice"       -> ICE;
-            case "msd:tera_fighting"  -> FIGHTING;
-            case "msd:tera_poison"    -> POISON;
-            case "msd:tera_ground"    -> GROUND;
-            case "msd:tera_flying"    -> FLYING;
-            case "msd:tera_psychic"   -> PSYCHIC;
-            case "msd:tera_bug"       -> BUG;
-            case "msd:tera_rock"      -> ROCK;
-            case "msd:tera_ghost"     -> GHOST;
-            case "msd:tera_dragon"    -> DRAGON;
-            case "msd:tera_dark"      -> DARK;
-            case "msd:tera_steel"     -> STEEL;
-            case "msd:tera_fairy"     -> FAIRY;
-            case "msd:tera_normal"    -> NORMAL;
-            default                   -> WHITE;
+            case "msd:tera_fire" -> FIRE;
+            case "msd:tera_water" -> WATER;
+            case "msd:tera_grass" -> GRASS;
+            case "msd:tera_electric" -> ELECTRIC;
+            case "msd:tera_ice" -> ICE;
+            case "msd:tera_fighting" -> FIGHTING;
+            case "msd:tera_poison" -> POISON;
+            case "msd:tera_ground" -> GROUND;
+            case "msd:tera_flying" -> FLYING;
+            case "msd:tera_psychic" -> PSYCHIC;
+            case "msd:tera_bug" -> BUG;
+            case "msd:tera_rock" -> ROCK;
+            case "msd:tera_ghost" -> GHOST;
+            case "msd:tera_dragon" -> DRAGON;
+            case "msd:tera_dark" -> DARK;
+            case "msd:tera_steel" -> STEEL;
+            case "msd:tera_fairy" -> FAIRY;
+            case "msd:tera_normal" -> NORMAL;
+            default -> WHITE;
         };
     }
 
-    private static final float[] WHITE     = {1.0f, 1.0f, 1.0f, 1.0f};
-    private static final float[] FIRE      = {1.0f, 0.30f, 0.20f, 1.0f};
-    private static final float[] WATER     = {0.30f, 0.60f, 1.00f, 1.0f};
-    private static final float[] GRASS     = {0.30f, 1.00f, 0.40f, 1.0f};
-    private static final float[] ELECTRIC  = {1.00f, 1.00f, 0.30f, 1.0f};
-    private static final float[] ICE       = {0.60f, 0.90f, 1.00f, 1.0f};
-    private static final float[] FIGHTING  = {0.80f, 0.30f, 0.20f, 1.0f};
-    private static final float[] POISON    = {0.70f, 0.30f, 0.80f, 1.0f};
-    private static final float[] GROUND    = {0.80f, 0.65f, 0.40f, 1.0f};
-    private static final float[] FLYING    = {0.70f, 0.70f, 1.00f, 1.0f};
-    private static final float[] PSYCHIC   = {1.00f, 0.40f, 0.70f, 1.0f};
-    private static final float[] BUG       = {0.60f, 0.80f, 0.20f, 1.0f};
-    private static final float[] ROCK      = {0.70f, 0.60f, 0.40f, 1.0f};
-    private static final float[] GHOST     = {0.60f, 0.50f, 0.90f, 1.0f};
-    private static final float[] DRAGON    = {0.50f, 0.40f, 1.00f, 1.0f};
-    private static final float[] DARK      = {0.30f, 0.30f, 0.30f, 1.0f};
-    private static final float[] STEEL     = {0.70f, 0.75f, 0.80f, 1.0f};
-    private static final float[] FAIRY     = {1.00f, 0.60f, 0.90f, 1.0f};
-    private static final float[] NORMAL    = {0.90f, 0.90f, 0.90f, 1.0f};
+    private static final float[] WHITE = {1.0f, 1.0f, 1.0f, 1.0f};
+    private static final float[] FIRE = {1.0f, 0.30f, 0.20f, 1.0f};
+    private static final float[] WATER = {0.30f, 0.60f, 1.00f, 1.0f};
+    private static final float[] GRASS = {0.30f, 1.00f, 0.40f, 1.0f};
+    private static final float[] ELECTRIC = {1.00f, 1.00f, 0.30f, 1.0f};
+    private static final float[] ICE = {0.60f, 0.90f, 1.00f, 1.0f};
+    private static final float[] FIGHTING = {0.80f, 0.30f, 0.20f, 1.0f};
+    private static final float[] POISON = {0.70f, 0.30f, 0.80f, 1.0f};
+    private static final float[] GROUND = {0.80f, 0.65f, 0.40f, 1.0f};
+    private static final float[] FLYING = {0.70f, 0.70f, 1.00f, 1.0f};
+    private static final float[] PSYCHIC = {1.00f, 0.40f, 0.70f, 1.0f};
+    private static final float[] BUG = {0.60f, 0.80f, 0.20f, 1.0f};
+    private static final float[] ROCK = {0.70f, 0.60f, 0.40f, 1.0f};
+    private static final float[] GHOST = {0.60f, 0.50f, 0.90f, 1.0f};
+    private static final float[] DRAGON = {0.50f, 0.40f, 1.00f, 1.0f};
+    private static final float[] DARK = {0.30f, 0.30f, 0.30f, 1.0f};
+    private static final float[] STEEL = {0.70f, 0.75f, 0.80f, 1.0f};
+    private static final float[] FAIRY = {1.00f, 0.60f, 0.90f, 1.0f};
+    private static final float[] NORMAL = {0.90f, 0.90f, 0.90f, 1.0f};
 }

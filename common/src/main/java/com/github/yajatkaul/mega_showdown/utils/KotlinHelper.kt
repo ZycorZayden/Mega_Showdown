@@ -4,7 +4,7 @@ import com.cobblemon.mod.common.api.gui.blitk
 import com.mojang.blaze3d.vertex.PoseStack
 import net.minecraft.resources.ResourceLocation
 
-object ScreenGimmicks {
+object KotlinHelper {
     fun gimmikInfo(
         matrices: PoseStack,
         texture: ResourceLocation,

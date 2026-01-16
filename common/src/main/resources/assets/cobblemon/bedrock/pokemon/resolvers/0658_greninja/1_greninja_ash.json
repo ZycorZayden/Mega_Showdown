@@ -3,9 +3,7 @@
   "order": 1,
   "variations": [
     {
-      "aspects": [
-        "ash"
-      ],
+      "aspects": ["ash"],
       "poser": "cobblemon:ashgreninja",
       "model": "cobblemon:ashgreninja.geo",
       "texture": "cobblemon:textures/pokemon/0658_greninja/ash_greninja.png",
@@ -28,10 +26,7 @@
       ]
     },
     {
-      "aspects": [
-        "ash",
-        "shiny"
-      ],
+      "aspects": ["ash", "shiny"],
       "texture": "cobblemon:textures/pokemon/0658_greninja/ash_greninja_shiny.png"
     }
   ]

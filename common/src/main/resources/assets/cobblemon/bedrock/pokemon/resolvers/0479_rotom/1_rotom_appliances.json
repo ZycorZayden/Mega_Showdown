@@ -3,9 +3,7 @@
   "order": 1,
   "variations": [
     {
-      "aspects": [
-        "heat-appliance"
-      ],
+      "aspects": ["heat-appliance"],
       "poser": "cobblemon:rotom_heat",
       "model": "cobblemon:rotom_heat.geo",
       "texture": "cobblemon:textures/pokemon/0479_rotom/heat/rotom_heat.png",
@@ -18,9 +16,7 @@
       ]
     },
     {
-      "aspects": [
-        "fan-appliance"
-      ],
+      "aspects": ["fan-appliance"],
       "poser": "cobblemon:rotom_fan",
       "model": "cobblemon:rotom_fan.geo",
       "texture": "cobblemon:textures/pokemon/0479_rotom/fan/rotom_fan.png",
@@ -33,9 +29,7 @@
       ]
     },
     {
-      "aspects": [
-        "frost-appliance"
-      ],
+      "aspects": ["frost-appliance"],
       "poser": "cobblemon:rotom_frost",
       "model": "cobblemon:rotom_frost.geo",
       "texture": "cobblemon:textures/pokemon/0479_rotom/frost/rotom_frost.png",
@@ -48,9 +42,7 @@
       ]
     },
     {
-      "aspects": [
-        "wash-appliance"
-      ],
+      "aspects": ["wash-appliance"],
       "poser": "cobblemon:rotom_wash",
       "model": "cobblemon:rotom_wash.geo",
       "texture": "cobblemon:textures/pokemon/0479_rotom/wash/rotom_wash.png",
@@ -63,9 +55,7 @@
       ]
     },
     {
-      "aspects": [
-        "mow-appliance"
-      ],
+      "aspects": ["mow-appliance"],
       "poser": "cobblemon:rotom_mow",
       "model": "cobblemon:rotom_mow.geo",
       "texture": "cobblemon:textures/pokemon/0479_rotom/mow/rotom_mow.png",
@@ -78,10 +68,7 @@
       ]
     },
     {
-      "aspects": [
-        "heat-appliance",
-        "shiny"
-      ],
+      "aspects": ["heat-appliance", "shiny"],
       "poser": "cobblemon:rotom_heat",
       "model": "cobblemon:rotom_heat.geo",
       "texture": "cobblemon:textures/pokemon/0479_rotom/heat/rotom_heat_shiny.png",
@@ -94,10 +81,7 @@
       ]
     },
     {
-      "aspects": [
-        "fan-appliance",
-        "shiny"
-      ],
+      "aspects": ["fan-appliance", "shiny"],
       "poser": "cobblemon:rotom_fan",
       "model": "cobblemon:rotom_fan.geo",
       "texture": "cobblemon:textures/pokemon/0479_rotom/fan/rotom_fan_shiny.png",
@@ -110,10 +94,7 @@
       ]
     },
     {
-      "aspects": [
-        "frost-appliance",
-        "shiny"
-      ],
+      "aspects": ["frost-appliance", "shiny"],
       "poser": "cobblemon:rotom_frost",
       "model": "cobblemon:rotom_frost.geo",
       "texture": "cobblemon:textures/pokemon/0479_rotom/frost/rotom_frost_shiny.png",
@@ -126,10 +107,7 @@
       ]
     },
     {
-      "aspects": [
-        "wash-appliance",
-        "shiny"
-      ],
+      "aspects": ["wash-appliance", "shiny"],
       "poser": "cobblemon:rotom_wash",
       "model": "cobblemon:rotom_wash.geo",
       "texture": "cobblemon:textures/pokemon/0479_rotom/wash/rotom_wash_shiny.png",
@@ -142,10 +120,7 @@
       ]
     },
     {
-      "aspects": [
-        "mow-appliance",
-        "shiny"
-      ],
+      "aspects": ["mow-appliance", "shiny"],
       "poser": "cobblemon:rotom_mow",
       "model": "cobblemon:rotom_mow.geo",
       "texture": "cobblemon:textures/pokemon/0479_rotom/mow/rotom_mow_shiny.png",

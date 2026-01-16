@@ -23,10 +23,7 @@
       ]
     },
     {
-      "aspects": [
-        "core-form",
-        "orange-core"
-      ],
+      "aspects": ["core-form", "orange-core"],
       "poser": "cobblemon:minior",
       "model": "cobblemon:minior.geo",
       "texture": "cobblemon:textures/pokemon/0774_minior/minior_orange.png",
@@ -46,10 +43,7 @@
       ]
     },
     {
-      "aspects": [
-        "core-form",
-        "yellow-core"
-      ],
+      "aspects": ["core-form", "yellow-core"],
       "poser": "cobblemon:minior",
       "model": "cobblemon:minior.geo",
       "texture": "cobblemon:textures/pokemon/0774_minior/minior_yellow.png",
@@ -69,10 +63,7 @@
       ]
     },
     {
-      "aspects": [
-        "core-form",
-        "green-core"
-      ],
+      "aspects": ["core-form", "green-core"],
       "poser": "cobblemon:minior",
       "model": "cobblemon:minior.geo",
       "texture": "cobblemon:textures/pokemon/0774_minior/minior_green.png",
@@ -92,10 +83,7 @@
       ]
     },
     {
-      "aspects": [
-        "core-form",
-        "blue-core"
-      ],
+      "aspects": ["core-form", "blue-core"],
       "poser": "cobblemon:minior",
       "model": "cobblemon:minior.geo",
       "texture": "cobblemon:textures/pokemon/0774_minior/minior_blue.png",
@@ -115,10 +103,7 @@
       ]
     },
     {
-      "aspects": [
-        "core-form",
-        "indigo-core"
-      ],
+      "aspects": ["core-form", "indigo-core"],
       "poser": "cobblemon:minior",
       "model": "cobblemon:minior.geo",
       "texture": "cobblemon:textures/pokemon/0774_minior/minior_indigo.png",
@@ -138,10 +123,7 @@
       ]
     },
     {
-      "aspects": [
-        "core-form",
-        "violet-core"
-      ],
+      "aspects": ["core-form", "violet-core"],
       "poser": "cobblemon:minior",
       "model": "cobblemon:minior.geo",
       "texture": "cobblemon:textures/pokemon/0774_minior/minior_violet.png",
@@ -161,9 +143,7 @@
       ]
     },
     {
-      "aspects": [
-        "shiny"
-      ],
+      "aspects": ["shiny"],
       "poser": "cobblemon:minior",
       "model": "cobblemon:minior.geo",
       "texture": "cobblemon:textures/pokemon/0774_minior/minior_shiny.png",

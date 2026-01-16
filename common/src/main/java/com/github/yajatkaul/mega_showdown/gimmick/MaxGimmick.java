@@ -30,6 +30,7 @@ public record MaxGimmick(
 
         GlowHandler.applyDynamaxGlow(entity.getEntity());
 
+        entity.getPersistentData().putFloat("orignal_size", entity.getScaleModifier());
         float startScale = entity.getScaleModifier();
         ScalingData scalingData = new ScalingData(startScale, targetScale, DEFAULT_SCALING_DURATION);
 
@@ -42,7 +43,7 @@ public record MaxGimmick(
         pokemon.getEntity().removeEffect(MobEffects.GLOWING);
 
         float startScale = pokemon.getScaleModifier();
-        ScalingData scalingData = new ScalingData(startScale, pokemon.getForm().getBaseScale(), DEFAULT_SCALING_DURATION);
+        ScalingData scalingData = new ScalingData(startScale, pokemon.getPersistentData().getFloat("orignal_size"), DEFAULT_SCALING_DURATION);
 
         ACTIVE_SCALING_ANIMATIONS.put(pokemon, scalingData);
     }
@@ -54,20 +55,20 @@ public record MaxGimmick(
 
         while (iterator.hasNext()) {
             Map.Entry<Pokemon, ScalingData> entry = iterator.next();
-            Pokemon entity = entry.getKey();
+            Pokemon pokemon = entry.getKey();
             ScalingData data = entry.getValue();
             data.currentTick++;
 
-            if (entity.getEntity() == null) {
+            if (pokemon.getEntity() == null) {
                 iterator.remove();
-                entity.setScaleModifier(entity.getForm().getBaseScale());
+                pokemon.setScaleModifier(pokemon.getPersistentData().getFloat("orignal_size"));
                 continue;
             }
 
             float progress = Math.min(1.0f, (float) data.currentTick / data.durationTicks);
             float newScale = data.startScale + (data.targetScale - data.startScale) * progress;
 
-            entity.setScaleModifier(newScale);
+            pokemon.setScaleModifier(newScale);
 
             if (data.currentTick >= data.durationTicks) {
                 iterator.remove();

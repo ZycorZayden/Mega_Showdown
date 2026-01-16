@@ -23,13 +23,10 @@ import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.api.types.tera.TeraTypes;
 import com.cobblemon.mod.common.battles.dispatch.UntilDispatch;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
-import com.cobblemon.mod.common.client.render.models.blockbench.bedrock.animation.BedrockActiveAnimation;
-import com.cobblemon.mod.common.client.render.models.blockbench.bedrock.animation.BedrockAnimationRepository;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.properties.AspectPropertyType;
 import com.cobblemon.mod.common.pokemon.properties.UnaspectPropertyType;
-import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.github.yajatkaul.mega_showdown.api.event.DynamaxEndCallback;
 import com.github.yajatkaul.mega_showdown.api.event.DynamaxStartCallback;
@@ -60,7 +57,6 @@ import net.minecraft.world.item.ItemStack;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
-import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class CobbleEvents {
@@ -133,8 +129,9 @@ public class CobbleEvents {
 
             Random random = new Random();
 
-            boolean otherSuccess = random.nextDouble() < (MegaShowdownConfig.teraShardDropRate / 100.0);
-            boolean stellarSuccess = random.nextDouble() < (MegaShowdownConfig.stellarShardDropRate / 100.0);
+            boolean otherSuccess = MegaShowdownConfig.teraShardDropRate > 0 && random.nextDouble() < (MegaShowdownConfig.teraShardDropRate / 100.0);
+            boolean stellarSuccess = MegaShowdownConfig.stellarShardDropRate > 0 && random.nextDouble() < (MegaShowdownConfig.stellarShardDropRate / 100.0);
+            ;
 
             if (otherSuccess) {
                 event.getDrops().add(teraShardDropEntry);
@@ -158,7 +155,7 @@ public class CobbleEvents {
             } else if (pokemon.getAspects().contains("cornerstone-mask")) {
                 pokemon.setTeraType(TeraTypes.getROCK());
             } else {
-                pokemon.setTeraType(TeraHelper.getTeraFromElement(pokemon.getPrimaryType()));
+                pokemon.setTeraType(TeraTypes.forElementalType(pokemon.getPrimaryType()));
             }
         } else if (pokemon.getSpecies().getName().equals("Terapagos")) {
             pokemon.setTeraType(TeraTypes.getSTELLAR());
@@ -175,7 +172,7 @@ public class CobbleEvents {
         PokemonEntity pokemon = event.getPokemonEntity();
 
         if (pokemon.getPokemon().getPersistentData().getBoolean("is_tera") && MegaShowdownConfig.legacyTeraEffect) {
-            GlowHandler.applyTeraGlow(pokemon);
+            GlowHandler.applyTeraGlow(pokemon, "msd:tera_" + pokemon.getPokemon().getTeraType().showdownId());
         }
     }
 
@@ -299,7 +296,10 @@ public class CobbleEvents {
 
         Effect.getEffect("mega_showdown:tera_init_" + pokemon.getTeraType().showdownId().toLowerCase(Locale.ROOT)).applyEffectsBattle(pokemon, List.of(), null, event.getPokemon());
 
-        AspectPropertyType.INSTANCE.fromString("msd:tera_" + pokemon.getTeraType().showdownId()).apply(pokemon);
+        pokemonEntity.after(1.5f, () -> {
+            AspectPropertyType.INSTANCE.fromString("msd:tera_" + pokemon.getTeraType().showdownId()).apply(pokemon);
+            return Unit.INSTANCE;
+        });
         AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "tera/terastallized");
 
         AspectPropertyType.INSTANCE.fromString("play_tera").apply(pokemon);
@@ -311,7 +311,7 @@ public class CobbleEvents {
 
         pokemon.getPersistentData().putBoolean("is_tera", true);
         if (MegaShowdownConfig.legacyTeraEffect) {
-            GlowHandler.applyTeraGlow(pokemonEntity);
+            GlowHandler.applyTeraGlow(pokemonEntity, "msd:tera_" + pokemon.getTeraType().showdownId());
         }
 
         ServerPlayer player = pokemon.getOwnerPlayer();
@@ -323,14 +323,6 @@ public class CobbleEvents {
         }
 
         event.getBattle().dispatchWaitingToFront(3.5f, () -> Unit.INSTANCE);
-
-        Effect.getEffect("mega_showdown:tera_" + pokemon.getTeraType().showdownId().toLowerCase(Locale.ROOT)).applyEffectsBattleLoop(pokemon, List.of(), null, event.getPokemon());
-        AspectUtils.appendRevertDataPokemon(
-                Effect.getEffect("mega_showdown:tera_" + pokemon.getTeraType().showdownId().toLowerCase(Locale.ROOT)),
-                List.of(),
-                pokemon,
-                "battle_end_revert"
-        );
     }
 
     private static void hookBattlePre(BattleStartedEvent.Pre event) {

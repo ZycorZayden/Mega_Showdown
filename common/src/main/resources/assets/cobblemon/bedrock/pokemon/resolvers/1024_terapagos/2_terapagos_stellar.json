@@ -3,9 +3,7 @@
   "order": 2,
   "variations": [
     {
-      "aspects": [
-        "stellar-form"
-      ],
+      "aspects": ["stellar-form"],
       "poser": "cobblemon:terapagos_stellar",
       "model": "cobblemon:terapagos_stellar.geo",
       "texture": "cobblemon:textures/pokemon/1024_terapagos/terapagos_stellar.png",
@@ -24,10 +22,7 @@
       ]
     },
     {
-      "aspects": [
-        "stellar-form",
-        "shiny"
-      ],
+      "aspects": ["stellar-form", "shiny"],
       "texture": "cobblemon:textures/pokemon/1024_terapagos/terapagos_stellar_shiny.png",
       "layers": [
         {

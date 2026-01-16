@@ -3,9 +3,7 @@
   "order": 3,
   "variations": [
     {
-      "aspects": [
-        "gmax"
-      ],
+      "aspects": ["gmax"],
       "poser": "cobblemon:meowth_gigantamax",
       "model": "cobblemon:meowth_gmax.geo",
       "texture": "cobblemon:textures/pokemon/0052_meowth/meowth_gmax.png",
@@ -18,10 +16,7 @@
       ]
     },
     {
-      "aspects": [
-        "gmax",
-        "shiny"
-      ],
+      "aspects": ["gmax", "shiny"],
       "texture": "cobblemon:textures/pokemon/0052_meowth/meowth_gmax_shiny.png",
       "layers": [
         {

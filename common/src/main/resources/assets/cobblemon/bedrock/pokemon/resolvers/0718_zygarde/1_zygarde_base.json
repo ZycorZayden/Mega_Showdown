@@ -9,9 +9,7 @@
       "texture": "cobblemon:textures/pokemon/0718_zygarde/zygarde.png"
     },
     {
-      "aspects": [
-        "shiny"
-      ],
+      "aspects": ["shiny"],
       "texture": "cobblemon:textures/pokemon/0718_zygarde/zygarde_shiny.png"
     }
   ]

@@ -1,7 +1,8 @@
 # TODO
 - Dynamax first get in pokeball then throw
-- Battle outro for miradon and koriadon
-- Fix tera and dmax at the same time
+- fix shader names
+- work on dynamic battle gui
+- make rayquaza type shii datapackable
 
 # Future
 - Make custom weather datapackable

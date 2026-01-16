@@ -3,12 +3,6 @@
   "portraitTranslation": [-1.15,2.04, 0],
   "profileScale": 0.34,
   "profileTranslation": [0.02, 1.15, -20],
-  "firstPersonCameraOffset": {
-    "seat_1": [0, 0.45, 0]
-  },
-  "thirdPersonCameraOffset": {
-    "seat_1": [0, 1.7, 1]
-  },
   "animations": {
    
 
@@ -21,11 +15,11 @@
        "condition": "q.has_entity ? !q.in_air : 1.0",
       "isBattle": true,
       "animations": [
-        "q.look('head_ai')",
+        "q.look('head')",
         "q.bedrock('koraidon', 'battle_idle')"
       ],
             "transitions": {
-                "standing": "q.bedrock_primary('koraidon', 'ground_idle', q.curve('one'))"
+                "standing": "q.bedrock_primary('koraidon', 'battle_outro', q.curve('one'))"
             }
     },
     "standing": {
@@ -34,9 +28,11 @@
       "isBattle": false,
       "condition": "!q.is_ridden",
       "animations": [
-        "q.look('head_ai')",
+        "q.look('head')",
         "q.bedrock('koraidon', 'ground_idle')"
       ],
+      "quirks": [
+       "q.bedrock_quirk('koraidon', 'blink')"],
             "transitions": {
                 "battle-standing": "q.bedrock_primary('koraidon', 'battle_intro', q.curve('one'))"
             }
@@ -44,7 +40,9 @@
     "walking": {
       "poseTypes": ["WALK", "SWIM"],
 	  "isBattle": false,
-      "animations": ["q.look('head_ai')", "q.bedrock('koraidon', 'ground_walk')"],
+      "animations": ["q.look('head')", "q.bedrock('koraidon', 'ground_walk')"],
+      "quirks": [
+       "q.bedrock_quirk('koraidon', 'blink')"],
        "transitions": {
                 "battle-standing": "q.bedrock_primary('koraidon', 'battle_intro', q.curve('one'))"
             },
@@ -70,6 +68,8 @@
         "q.look('head')",
         "q.bedrock('koraidon', 'ride_ground_idle')"
       ],
+      "quirks": [
+       "q.bedrock_quirk('koraidon', 'blink')"],
       "condition": "q.is_ridden && !q.in_air"
     },
     "mount_walk": {
@@ -81,6 +81,8 @@
         "q.look('head')",
         "q.bedrock('koraidon', 'ride_car_walk')"
       ],
+      "quirks": [
+       "q.bedrock_quirk('koraidon', 'blink')"],
       "transformTicks": 5,
       "transformToTicks": 5
     },
@@ -92,16 +94,20 @@
       "animations": [
         "q.look('head')",
         "q.bedrock('koraidon', 'ride_car_run')"
-      ]
+      ],
+      "quirks": [
+       "q.bedrock_quirk('koraidon', 'blink')"]
     },
 	"surfacewater-float": {
       "poseTypes": ["STAND", "FLOAT"],
       "isTouchingWater": true,
 	  "condition": "q.is_ridden",
       "animations": [
-        "q.look('head_ai')",
+        "q.look('head')",
         "q.bedrock('koraidon', 'ride_water_idle')"
-      ]
+      ],
+      "quirks": [
+       "q.bedrock_quirk('koraidon', 'blink')"]
     },
 	"surfacewater-swim": {
       "poseTypes": ["WALK", "SWIM"],
@@ -110,7 +116,9 @@
       "animations": [
         "q.look('head')",
         "q.bedrock('koraidon', 'ride_water_swim')"
-      ]
+      ],
+      "quirks": [
+       "q.bedrock_quirk('koraidon', 'blink')"]
     },
 	"surfacewater-swimrun": {
       "poseTypes": ["WALK", "SWIM"],
@@ -119,14 +127,18 @@
       "animations": [
         "q.look('head')",
         "q.bedrock('koraidon', 'ride_water_swim_run')"
-      ]
+      ],
+      "quirks": [
+       "q.bedrock_quirk('koraidon', 'blink')"]
     },
 	"hover": {
       "poseTypes": ["HOVER"],
       "isBattle": false,
       "animations": [
         "q.bedrock('koraidon', 'ride_air_fly')"
-      ]
+      ],
+      "quirks": [
+       "q.bedrock_quirk('koraidon', 'blink')"]
     },
 	"fly": {
       "poseTypes": ["FLY"],
@@ -134,6 +146,8 @@
       "animations": [
         "q.bedrock('koraidon', 'ride_air_fly')"
       ],
+      "quirks": [
+       "q.bedrock_quirk('koraidon', 'blink')"],
       "transitions": {
                 "battle-standing": "q.bedrock_primary('koraidon', 'battle_idle', q.curve('one'))"
             }

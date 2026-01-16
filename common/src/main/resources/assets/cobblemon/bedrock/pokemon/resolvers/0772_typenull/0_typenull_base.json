@@ -10,9 +10,7 @@
       "layers": []
     },
     {
-      "aspects": [
-        "shiny"
-      ],
+      "aspects": ["shiny"],
       "texture": "cobblemon:textures/pokemon/0772_typenull/typenull_shiny.png",
       "layers": []
     }

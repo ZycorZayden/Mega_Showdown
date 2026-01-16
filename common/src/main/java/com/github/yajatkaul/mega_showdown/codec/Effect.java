@@ -124,25 +124,4 @@ public record Effect(
             AspectUtils.updatePackets(battlePokemon);
         }
     }
-
-    public void applyEffectsBattleLoop(Pokemon context, List<String> aspects, @Nullable PokemonEntity other, BattlePokemon battlePokemon) {
-        if (context.getEntity() == null) {
-            AspectUtils.applyAspects(context, aspects);
-            AspectUtils.updatePackets(battlePokemon);
-            return;
-        }
-        if (this.snowStorm().isPresent() && this.minecraft().isPresent()) {
-            this.minecraft.get().apply(context.getEntity());
-            this.snowStorm.get().applyBattle(context.getEntity(), aspects, other, battlePokemon, battle_pause.orElse(1f), true);
-        } else if (this.minecraft().isPresent()) {
-            this.minecraft.get().apply(context.getEntity());
-            AspectUtils.applyAspects(context, aspects);
-            AspectUtils.updatePackets(battlePokemon);
-        } else if (this.snowStorm().isPresent()) {
-            this.snowStorm.get().applyBattle(context.getEntity(), aspects, other, battlePokemon, battle_pause.orElse(1f), true);
-        } else {
-            AspectUtils.applyAspects(context, aspects);
-            AspectUtils.updatePackets(battlePokemon);
-        }
-    }
 }

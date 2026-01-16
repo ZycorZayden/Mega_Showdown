@@ -10,9 +10,7 @@
       "layers": []
     },
     {
-      "aspects": [
-        "shiny"
-      ],
+      "aspects": ["shiny"],
       "poser": "cobblemon:urshifu",
       "model": "cobblemon:urshifu.geo",
       "texture": "cobblemon:textures/pokemon/0892_urshifu/urshifu_shiny.png"

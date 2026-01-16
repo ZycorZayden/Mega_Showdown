@@ -3,9 +3,7 @@
   "order": 3,
   "variations": [
     {
-      "aspects": [
-        "gmax"
-      ],
+      "aspects": ["gmax"],
       "poser": "cobblemon:machamp_gigantamax",
       "model": "cobblemon:machamp_gmax.geo",
       "texture": "cobblemon:textures/pokemon/0068_machamp/machamp_gmax.png",
@@ -18,10 +16,7 @@
       ]
     },
     {
-      "aspects": [
-        "gmax",
-        "shiny"
-      ],
+      "aspects": ["gmax", "shiny"],
       "texture": "cobblemon:textures/pokemon/0068_machamp/machamp_gmax_shiny.png",
       "layers": [
         {

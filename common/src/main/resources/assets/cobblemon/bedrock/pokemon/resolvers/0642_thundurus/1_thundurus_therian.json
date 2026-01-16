@@ -3,13 +3,13 @@
   "order": 1,
   "variations": [
     {
-      "aspects": [ "therian-forme" ],
+      "aspects": ["therian-forme"],
       "poser": "cobblemon:thundurus_therian",
       "model": "cobblemon:thundurus_therian.geo",
       "texture": "cobblemon:textures/pokemon/0642_thundurus/thundurus_therian.png"
     },
     {
-      "aspects": [ "therian-forme","shiny" ],
+      "aspects": ["therian-forme", "shiny"],
       "poser": "cobblemon:thundurus_therian",
       "model": "cobblemon:thundurus_therian.geo",
       "texture": "cobblemon:textures/pokemon/0642_thundurus/thundurus_therian_shiny.png"

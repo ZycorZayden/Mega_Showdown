@@ -3,9 +3,7 @@
   "order": 3,
   "variations": [
     {
-      "aspects": [
-        "gmax"
-      ],
+      "aspects": ["gmax"],
       "poser": "cobblemon:toxtricitygmax",
       "model": "cobblemon:toxtricity_gigantamax.geo",
       "texture": "cobblemon:textures/pokemon/0849_toxtricity/toxtricity_gigantamax.png",
@@ -31,10 +29,7 @@
       ]
     },
     {
-      "aspects": [
-        "gmax",
-        "shiny"
-      ],
+      "aspects": ["gmax", "shiny"],
       "texture": "cobblemon:textures/pokemon/0849_toxtricity/toxtricity_gigantamax_shiny.png",
       "layers": [
         {

@@ -3,9 +3,7 @@
   "order": 2,
   "variations": [
     {
-      "aspects": [
-        "cornerstone-mask"
-      ],
+      "aspects": ["cornerstone-mask"],
       "poser": "cobblemon:ogerpon_rock",
       "model": "cobblemon:ogerpon_rock.geo",
       "texture": "cobblemon:textures/pokemon/1017_ogerpon/ogerpon_rock.png",
@@ -18,17 +16,11 @@
       ]
     },
     {
-      "aspects": [
-        "cornerstone-mask",
-        "shiny"
-      ],
+      "aspects": ["cornerstone-mask", "shiny"],
       "texture": "cobblemon:textures/pokemon/1017_ogerpon/ogerpon_rock_shiny.png"
     },
     {
-      "aspects": [
-        "cornerstone-mask",
-        "embody-aspect"
-      ],
+      "aspects": ["cornerstone-mask", "embody-aspect"],
       "poser": "cobblemon:ogerpon_rocktera",
       "model": "cobblemon:ogerpon_rocktera.geo",
       "texture": "cobblemon:textures/pokemon/1017_ogerpon/ogerpon_rocktera.png",
@@ -41,11 +33,7 @@
       ]
     },
     {
-      "aspects": [
-        "cornerstone-mask",
-        "embody-aspect",
-        "shiny"
-      ],
+      "aspects": ["cornerstone-mask", "embody-aspect", "shiny"],
       "texture": "cobblemon:textures/pokemon/1017_ogerpon/ogerpon_rocktera_shiny.png"
     }
   ]

@@ -3,19 +3,14 @@
   "order": 1,
   "variations": [
     {
-      "aspects": [
-        "ice-rider"
-      ],
+      "aspects": ["ice-rider"],
       "poser": "cobblemon:calyrex_ice_rider",
       "model": "cobblemon:calyrex_ice_rider.geo",
       "texture": "cobblemon:textures/pokemon/0898_calyrex/calyrex_ice_rider.png",
       "layers": []
     },
     {
-      "aspects": [
-        "ice-rider",
-        "shiny"
-      ],
+      "aspects": ["ice-rider", "shiny"],
       "texture": "cobblemon:textures/pokemon/0898_calyrex/calyrex_ice_rider_shiny.png"
     }
   ]

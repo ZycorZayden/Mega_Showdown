@@ -16,15 +16,11 @@
       ]
     },
     {
-      "aspects": [
-        "shiny"
-      ],
+      "aspects": ["shiny"],
       "texture": "cobblemon:textures/pokemon/1017_ogerpon/ogerpon_shiny.png"
     },
     {
-      "aspects": [
-        "embody-aspect"
-      ],
+      "aspects": ["embody-aspect"],
       "poser": "cobblemon:ogerpon_tealtera",
       "model": "cobblemon:ogerpon_tealtera.geo",
       "texture": "cobblemon:textures/pokemon/1017_ogerpon/ogerpon_tealtera.png",
@@ -37,10 +33,7 @@
       ]
     },
     {
-      "aspects": [
-        "embody-aspect",
-        "shiny"
-      ],
+      "aspects": ["embody-aspect", "shiny"],
       "texture": "cobblemon:textures/pokemon/1017_ogerpon/ogerpon_tealtera_shiny.png"
     }
   ]

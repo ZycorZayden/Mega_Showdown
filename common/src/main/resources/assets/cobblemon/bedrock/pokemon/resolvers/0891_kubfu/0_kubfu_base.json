@@ -7,13 +7,10 @@
       "poser": "cobblemon:kubfu",
       "model": "cobblemon:kubfu.geo",
       "texture": "cobblemon:textures/pokemon/0891_kubfu/kubfu.png",
-      "layers": [
-      ]
+      "layers": []
     },
     {
-      "aspects": [
-        "shiny"
-      ],
+      "aspects": ["shiny"],
       "texture": "cobblemon:textures/pokemon/0891_kubfu/kubfu_shiny.png"
     }
   ]

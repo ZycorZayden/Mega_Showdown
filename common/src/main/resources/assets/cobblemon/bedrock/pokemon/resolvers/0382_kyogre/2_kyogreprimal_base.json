@@ -3,9 +3,7 @@
   "order": 2,
   "variations": [
     {
-      "aspects": [
-        "primal"
-      ],
+      "aspects": ["primal"],
       "poser": "cobblemon:kyogreprimal",
       "model": "cobblemon:kyogreprimal.geo",
       "texture": "cobblemon:textures/pokemon/0382_kyogre/kyogreprimal.png",
@@ -25,10 +23,7 @@
       ]
     },
     {
-      "aspects": [
-        "shiny",
-        "primal"
-      ],
+      "aspects": ["shiny", "primal"],
       "texture": "cobblemon:textures/pokemon/0382_kyogre/kyogreprimal_shiny.png",
       "layers": [
         {

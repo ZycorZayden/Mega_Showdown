@@ -7,17 +7,12 @@
       "poser": "cobblemon:snover",
       "model": "cobblemon:snover.geo",
       "texture": "cobblemon:textures/pokemon/0459_snover/snover.png",
-      "layers": [
-      ]
+      "layers": []
     },
     {
-      "aspects": [
-        "shiny"
-      ],
+      "aspects": ["shiny"],
       "texture": "cobblemon:textures/pokemon/0459_snover/snover_shiny.png",
-      "layers": [
-      ]
+      "layers": []
     }
   ]
 }
-  

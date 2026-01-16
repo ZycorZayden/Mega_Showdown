@@ -3,9 +3,7 @@
   "order": 3,
   "variations": [
     {
-      "aspects": [
-        "gmax"
-      ],
+      "aspects": ["gmax"],
       "poser": "cobblemon:rillaboomgmax",
       "model": "cobblemon:rillaboom_gigantamax.geo",
       "texture": "cobblemon:textures/pokemon/0812_rillaboom/rillaboom_gigantamax.png",
@@ -18,13 +16,9 @@
       ]
     },
     {
-      "aspects": [
-        "shiny",
-        "gmax"
-      ],
+      "aspects": ["shiny", "gmax"],
       "texture": "cobblemon:textures/pokemon/0812_rillaboom/rillaboom_gigantamax_shiny.png",
-      "layers": [
-      ]
+      "layers": []
     }
   ]
 }

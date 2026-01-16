@@ -3,9 +3,7 @@
   "order": 0,
   "variations": [
     {
-      "aspects": [
-        "white-fusion"
-      ],
+      "aspects": ["white-fusion"],
       "poser": "cobblemon:kyuremwhite",
       "model": "cobblemon:kyuremwhite.geo",
       "texture": "cobblemon:textures/pokemon/0646_kyurem/kyuremwhite.png",
@@ -19,10 +17,7 @@
       ]
     },
     {
-      "aspects": [
-        "white-fusion",
-        "shiny"
-      ],
+      "aspects": ["white-fusion", "shiny"],
       "texture": "cobblemon:textures/pokemon/0646_kyurem/kyuremwhite_shiny.png",
       "layers": [
         {

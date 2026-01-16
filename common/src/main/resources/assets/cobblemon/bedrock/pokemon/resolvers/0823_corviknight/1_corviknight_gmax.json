@@ -16,10 +16,7 @@
       ]
     },
     {
-      "aspects": [
-        "shiny",
-        "gmax"
-      ],
+      "aspects": ["shiny", "gmax"],
       "texture": "cobblemon:textures/pokemon/0823_corviknight/corviknight_gmax_shiny.png",
       "layers": [
         {

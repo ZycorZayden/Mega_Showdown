@@ -17,9 +17,7 @@
       ]
     },
     {
-      "aspects": [
-        "shiny"
-      ],
+      "aspects": ["shiny"],
       "texture": "cobblemon:textures/pokemon/0483_dialga/dialga_shiny.png",
       "layers": [
         {
@@ -31,9 +29,7 @@
       ]
     },
     {
-      "aspects": [
-        "origin-forme"
-      ],
+      "aspects": ["origin-forme"],
       "poser": "cobblemon:dialga_origin",
       "model": "cobblemon:dialga_origin.geo",
       "texture": "cobblemon:textures/pokemon/0483_dialga/dialga_origin.png",
@@ -47,10 +43,7 @@
       ]
     },
     {
-      "aspects": [
-        "shiny",
-        "origin-forme"
-      ],
+      "aspects": ["shiny", "origin-forme"],
       "texture": "cobblemon:textures/pokemon/0483_dialga/dialga_origin_shiny.png",
       "layers": [
         {

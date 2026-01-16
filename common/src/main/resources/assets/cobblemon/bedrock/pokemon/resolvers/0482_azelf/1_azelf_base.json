@@ -13,16 +13,12 @@
       "poser": "cobblemon:azelf",
       "model": "cobblemon:azelf.geo",
       "texture": "cobblemon:textures/pokemon/0482_azelf/azelf.png",
-      "layers": [
-      ]
+      "layers": []
     },
     {
-      "aspects": [
-        "shiny"
-      ],
+      "aspects": ["shiny"],
       "texture": "cobblemon:textures/pokemon/0482_azelf/azelf_shiny.png",
-      "layers": [
-      ]
+      "layers": []
     }
   ]
 }
