@@ -6,3 +6,4 @@
 - added all the tera hats
 - fixed liko's pendant
 - fixed shader color bug
+- fixed some advancements not triggering

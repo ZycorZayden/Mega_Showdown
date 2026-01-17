@@ -92,8 +92,16 @@ public class CobbleEvents {
                 || formeChangeEvent.getFormeName().equals("mega")) {
             return;
         }
-        BattlePokemon battlePokemon = formeChangeEvent.getPokemon();
+
         Pokemon pokemon = formeChangeEvent.getPokemon().getEffectedPokemon();
+
+        if (pokemon.getSpecies().getName().equals("Greninja") && formeChangeEvent.getFormeName().equals("ash")) {
+            AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "bond/ash_greninja");
+        } else if (pokemon.getSpecies().getName().equals("Greninja") && pokemon.getAspects().contains("bond")) {
+            AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "bond/ash_battle_bond");
+        }
+
+        BattlePokemon battlePokemon = formeChangeEvent.getPokemon();
 
         for (BattleFormChange battleFormChange : MegaShowdownDatapackRegister.BATTLE_FORM_CHANGE_REGISTRY) {
             if (formeChangeEvent.getFormeName().equals(battleFormChange.showdownFormChangeId())
@@ -231,8 +239,10 @@ public class CobbleEvents {
 
     private static void dynamaxStarted(PokemonBattle battle, BattlePokemon battlePokemon, Boolean gmax) {
         Pokemon pokemon = battlePokemon.getEffectedPokemon();
+        AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "dynamax/dynamax");
 
         if (gmax) {
+            AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "dynamax/gigantamax");
             Effect.getEffect("mega_showdown:dynamax").applyEffectsBattle(pokemon, List.of("dynamax_form=gmax"), null, battlePokemon);
             AspectUtils.appendRevertDataPokemon(
                     Effect.empty(),
@@ -351,6 +361,7 @@ public class CobbleEvents {
     }
 
     private static void megaEvolution(MegaEvolutionEvent event) {
+        AdvancementHelper.grantAdvancement(event.getPokemon().getOriginalPokemon().getOwnerPlayer(), "mega/mega_evolve");
         Pokemon pokemon = event.getPokemon().getEntity().getPokemon();
         MegaGimmick.megaEvolveInBattle(
                 pokemon,
