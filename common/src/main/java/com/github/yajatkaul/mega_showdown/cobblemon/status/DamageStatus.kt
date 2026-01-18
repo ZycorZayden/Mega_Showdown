@@ -28,7 +28,10 @@ class DamageStatus(
     override fun onSecondPassed(player: ServerPlayer, pokemon: Pokemon, random: Random) {
         // 1 in x chance to damage y% of their HP with a minimum of 1
         if (!pokemon.isFainted() && random.nextInt(chance) == 0) {
-            pokemon.currentHealth -= max(1, round(pokemon.maxHealth * damagePercent).toInt()) * (if (pokemon.ability.template.name == healingAbility) -1 else 1)
+            pokemon.currentHealth -= max(
+                1,
+                round(pokemon.maxHealth * damagePercent).toInt()
+            ) * (if (pokemon.ability.template.name == healingAbility) -1 else 1)
             // Only way that's happened is if the Pokémon has z heal
             if (pokemon.currentHealth == pokemon.maxHealth) {
                 pokemon.status = null

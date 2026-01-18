@@ -70,8 +70,8 @@ public class PokemonRendererMixin {
                 .filter(a -> a.startsWith("msd:tera_")).findFirst();
 
 
-        boolean mega_showdown$teraCrystalPlayed = ((PokemonEntityDuck) (Object) entity).mega_showdown$isTeraCrystalPlayed();
-        boolean mega_showdown$teraCrystalPass = ((PokemonEntityDuck) (Object) entity).mega_showdown$isTeraCrystalPass();
+        boolean mega_showdown$teraCrystalPlayed = ((PokemonEntityDuck) entity).mega_showdown$isTeraCrystalPlayed();
+        boolean mega_showdown$teraCrystalPass = ((PokemonEntityDuck) entity).mega_showdown$isTeraCrystalPass();
         if (tera_play && (!mega_showdown$teraCrystalPlayed || mega_showdown$teraCrystalPass)) {
             mega_showdown$renderTeraCrystals(
                     entity,
@@ -101,7 +101,7 @@ public class PokemonRendererMixin {
 
     @Unique
     private void mega_showdown$renderTeraCrystals(PokemonEntity entity, Pokemon pokemon, PokemonClientDelegate clientDelegate, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
-        PokemonEntityDuck duck = ((PokemonEntityDuck) (Object) entity);
+        PokemonEntityDuck duck = ((PokemonEntityDuck) entity);
         long mega_showdown$lastCrystalTimeNs = duck.mega_showdown$getLastCrystalTimeNs();
         double mega_showdown$animCrystalSeconds = duck.mega_showdown$getAnimCrystalSeconds();
 
@@ -122,7 +122,7 @@ public class PokemonRendererMixin {
                 BedrockAnimationRepository.INSTANCE.getAnimation("terastal_transformation", "animation.terastal_transformation.transform")
         ).getDuration();
 
-        TeraCrystalState mega_showdown$teraCrystalState = ((PokemonEntityDuck) (Object) entity).mega_showdown$getTeraCrystalState();
+        TeraCrystalState mega_showdown$teraCrystalState = ((PokemonEntityDuck) entity).mega_showdown$getTeraCrystalState();
 
         if (mega_showdown$teraCrystalState.getAnimationSeconds() >= mega_showdown$teraCrystalDuration) {
             duck.mega_showdown$setTeraCrystalPlayed(true);

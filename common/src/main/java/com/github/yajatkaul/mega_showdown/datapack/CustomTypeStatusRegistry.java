@@ -24,7 +24,8 @@ public class CustomTypeStatusRegistry implements JsonDataRegistry<CustomTypeStat
 
     private final SimpleObservable<CustomTypeStatusRegistry> observable = new SimpleObservable<>();
 
-    private CustomTypeStatusRegistry() {}
+    private CustomTypeStatusRegistry() {
+    }
 
     @Override
     public @NotNull ResourceLocation getId() {
@@ -105,6 +106,9 @@ public class CustomTypeStatusRegistry implements JsonDataRegistry<CustomTypeStat
     }
 
     public record CustomStatusData(String name, String showdownId, String applyMsg, String removeMsg, int minDur,
-                                   int maxDur, DamageStatusData damageStatusData) {}
-    public record DamageStatusData(int chance, double damagePercent, String healingAbility) {}
+                                   int maxDur, DamageStatusData damageStatusData) {
+    }
+
+    public record DamageStatusData(int chance, double damagePercent, String healingAbility) {
+    }
 }

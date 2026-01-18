@@ -24,7 +24,8 @@ public class TeraGimmick implements JsonDataRegistry<TeraGimmick.TeraData> {
     public final HashMap<String, ShaderInstance> teraShaderMap = new HashMap<>();
     private final SimpleObservable<TeraGimmick> observable = new SimpleObservable<>();
 
-    private TeraGimmick() {}
+    private TeraGimmick() {
+    }
 
     @Override
     public @NotNull ResourceLocation getId() {

@@ -142,7 +142,7 @@ public class CobbleEvents {
             Random random = new Random();
 
             boolean otherSuccess = MegaShowdownConfig.teraShardDropRate > 0 && random.nextDouble() < (MegaShowdownConfig.teraShardDropRate / 100.0);
-            boolean stellarSuccess = MegaShowdownConfig.stellarShardDropRate > 0 && random.nextDouble() < (MegaShowdownConfig.stellarShardDropRate / 100.0);;
+            boolean stellarSuccess = MegaShowdownConfig.stellarShardDropRate > 0 && random.nextDouble() < (MegaShowdownConfig.stellarShardDropRate / 100.0);
 
             if (otherSuccess) {
                 ItemStack stack = new ItemStack(correspondingTeraShard);
@@ -150,8 +150,8 @@ public class CobbleEvents {
                     stack.set(MegaShowdownDataComponents.TERA_TYPE.get(), pokemon.getTeraType());
                 }
                 ItemEntity itemEntity = new ItemEntity(
-                  pokemonEntity.level(),
-                  pokemonEntity.getX(),pokemonEntity.getY(),pokemonEntity.getZ(),
+                        pokemonEntity.level(),
+                        pokemonEntity.getX(), pokemonEntity.getY(), pokemonEntity.getZ(),
                         stack
                 );
 

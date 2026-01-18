@@ -17,18 +17,41 @@ public class TypeIconMixin {
     @Unique
     private final float SCALE = 0.5F;
 
-    @Shadow @Final private static ResourceLocation typesResource;
-    @Shadow @Final private static ResourceLocation smallTypesResource;
+    @Shadow
+    @Final
+    private static ResourceLocation typesResource;
+    @Shadow
+    @Final
+    private static ResourceLocation smallTypesResource;
 
-    @Shadow @Final private Number x;
-    @Shadow @Final private Number y;
-    @Shadow @Final private ElementalType type;
-    @Shadow @Final @Nullable private ElementalType secondaryType;
-    @Shadow @Final private boolean centeredX;
-    @Shadow @Final private boolean small;
-    @Shadow @Final private float secondaryOffset;
-    @Shadow @Final private float doubleCenteredOffset;
-    @Shadow @Final private float opacity;
+    @Shadow
+    @Final
+    private Number x;
+    @Shadow
+    @Final
+    private Number y;
+    @Shadow
+    @Final
+    private ElementalType type;
+    @Shadow
+    @Final
+    @Nullable
+    private ElementalType secondaryType;
+    @Shadow
+    @Final
+    private boolean centeredX;
+    @Shadow
+    @Final
+    private boolean small;
+    @Shadow
+    @Final
+    private float secondaryOffset;
+    @Shadow
+    @Final
+    private float doubleCenteredOffset;
+    @Shadow
+    @Final
+    private float opacity;
 
     /**
      * @author YajatKaul

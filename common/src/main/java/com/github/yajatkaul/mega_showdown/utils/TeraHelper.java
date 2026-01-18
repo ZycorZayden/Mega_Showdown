@@ -1,18 +1,11 @@
 package com.github.yajatkaul.mega_showdown.utils;
 
 import com.cobblemon.mod.common.api.types.ElementalType;
-import com.cobblemon.mod.common.api.types.tera.TeraType;
-import com.cobblemon.mod.common.api.types.tera.TeraTypes;
 import com.github.yajatkaul.mega_showdown.item.MegaShowdownItems;
-import com.github.yajatkaul.mega_showdown.item.custom.tera.CustomTeraShard;
-import com.github.yajatkaul.mega_showdown.render.renderTypes.MSDRenderTypes;
 import dev.architectury.registry.registries.RegistrySupplier;
-import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.world.item.Item;
 
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 
 public class TeraHelper {
     public static Item getTeraShardForType(ElementalType type) {

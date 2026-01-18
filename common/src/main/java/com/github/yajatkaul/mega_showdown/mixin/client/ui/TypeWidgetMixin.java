@@ -12,7 +12,8 @@ import org.spongepowered.asm.mixin.*;
 @Mixin(value = TypeWidget.class, remap = false)
 public class TypeWidgetMixin {
 
-    @Shadow @Final
+    @Shadow
+    @Final
     private static ResourceLocation typeResource;
 
     @Unique

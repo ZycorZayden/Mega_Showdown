@@ -1,8 +1,6 @@
 package com.github.yajatkaul.mega_showdown.render.renderTypes;
 
-import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.gimmick.TeraGimmick;
-import com.github.yajatkaul.mega_showdown.utils.TeraHelper;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.client.renderer.RenderStateShard;

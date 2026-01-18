@@ -1,12 +1,10 @@
 package com.github.yajatkaul.mega_showdown.block.custom;
 
-import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.api.callback.PartySelectCallbacks;
 import com.cobblemon.mod.common.battles.BattleRegistry;
 import com.cobblemon.mod.common.util.PlayerExtensionsKt;
 import com.github.yajatkaul.mega_showdown.item.custom.PokemonSelectingBlockItem;
-import com.github.yajatkaul.mega_showdown.item.custom.PokemonSelectingItem;
 import kotlin.Unit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -26,6 +24,7 @@ import java.util.Objects;
 public class PokemonSelectingBlock extends Block {
     private final ResourceLocation id;
     private final boolean canUseInBattle;
+
     public PokemonSelectingBlock(Properties properties, ResourceLocation id, boolean canUseInBattle) {
         super(properties);
         this.id = id;
