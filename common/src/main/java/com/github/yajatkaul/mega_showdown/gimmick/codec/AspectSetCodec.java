@@ -50,4 +50,19 @@ public record AspectSetCodec(
             return false;
         return required_aspects_revert.isEmpty() || required_aspects_revert.stream().anyMatch(group -> pokemon.getAspects().containsAll(group));
     }
+
+    public static AspectSetCodec DEFAULT() {
+        return new AspectSetCodec(
+                List.of(),
+                List.of(),
+                List.of(),
+                List.of(),
+                List.of(),
+                List.of(),
+                List.of(),
+                List.of(),
+                List.of(),
+                List.of()
+        );
+    }
 }

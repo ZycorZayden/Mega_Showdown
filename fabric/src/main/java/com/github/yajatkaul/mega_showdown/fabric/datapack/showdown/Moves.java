@@ -28,7 +28,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Moves implements DataRegistry {
-    private static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "showdown/moves");
+    private static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "mega_showdown/showdown/moves");
     private static final SimpleObservable<Moves> OBSERVABLE = new SimpleObservable<>();
     public static final Moves INSTANCE = new Moves();
     private final Map<String, String> moveScripts = new HashMap<>();
@@ -79,7 +79,7 @@ public class Moves implements DataRegistry {
     @Override
     public void reload(@NotNull ResourceManager resourceManager) {
         moveScripts.clear();
-        resourceManager.listResources("showdown/moves", path -> path.getPath().endsWith(".js")).forEach((id, resource) -> {
+        resourceManager.listResources("mega_showdown/showdown/moves", path -> path.getPath().endsWith(".js")).forEach((id, resource) -> {
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(resource.open(), StandardCharsets.UTF_8))) {
                 String js = reader.lines().collect(Collectors.joining("\n"));
                 String moveId = new File(id.getPath()).getName().replace(".js", "");

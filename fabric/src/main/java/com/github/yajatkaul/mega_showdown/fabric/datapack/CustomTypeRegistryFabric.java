@@ -23,8 +23,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.packs.PackType;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class CustomTypeRegistryFabric implements JsonDataRegistry<CustomTypeRegistryFabric.CustomTypeData> {
@@ -80,7 +78,7 @@ public class CustomTypeRegistryFabric implements JsonDataRegistry<CustomTypeRegi
             try {
                 ElementalType newType = ElementalTypes.register(new ElementalType(
                         typeData.name,
-                        Component.translatable(typeData.text),
+                        Component.translatable(typeData.lang),
                         typeData.hue,
                         0,
                         ResourceLocation.fromNamespaceAndPath(Cobblemon.MODID, "ui/types.png"),
@@ -114,7 +112,7 @@ public class CustomTypeRegistryFabric implements JsonDataRegistry<CustomTypeRegi
         public String name;
         public String id;
         public int hue;
-        public String text;
+        public String lang;
         public String zTypeMove;
         public String maxTypeMove;
 
@@ -122,7 +120,7 @@ public class CustomTypeRegistryFabric implements JsonDataRegistry<CustomTypeRegi
             this.name = name;
             this.id = id;
             this.hue = hue;
-            this.text = text;
+            this.lang = text;
             this.zTypeMove = zTypeMove;
             this.maxTypeMove = maxTypeMove;
         }

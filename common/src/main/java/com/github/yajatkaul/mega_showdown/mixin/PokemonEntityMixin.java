@@ -47,7 +47,7 @@ public abstract class PokemonEntityMixin implements PokemonEntityDuck {
         Pokemon pokemon = self.getPokemon();
 
         if (pokemon.getOwnerPlayer() == player) {
-            boolean shouldPokemonMega = SpeciesFeatureAssignments.getFeatures(pokemon.getSpecies()).contains("mega_evolution");
+            boolean shouldPokemonMega = SpeciesFeatureAssignments.getFeatures(pokemon.getSpecies()).contains("mega_evolution") || pokemon.getSpecies().getFeatures().contains("mega_evolution");
             boolean shouldPokemonUltra = pokemon.getSpecies().getName().equals("Necrozma");
 
             boolean canPokemonMega = MegaGimmick.isMega(pokemon) || MegaGimmick.canMega(pokemon);

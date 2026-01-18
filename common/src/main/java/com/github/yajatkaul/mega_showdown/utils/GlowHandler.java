@@ -81,14 +81,14 @@ public class GlowHandler {
             case "blue" -> ChatFormatting.BLUE;
             case "green" -> ChatFormatting.GREEN;
             case "yellow" -> ChatFormatting.YELLOW;
-            case "brown", "orange" -> ChatFormatting.DARK_RED;
-            case "light_blue", "light_grey" -> ChatFormatting.AQUA;
+            case "brown" -> ChatFormatting.DARK_RED;
+            case "light_blue" -> ChatFormatting.AQUA;
             case "purple" -> ChatFormatting.DARK_BLUE;
-            case "pink", "magenta" -> ChatFormatting.LIGHT_PURPLE;
+            case "magenta" -> ChatFormatting.LIGHT_PURPLE;
             case "black" -> ChatFormatting.BLACK;
             case "gray" -> ChatFormatting.GRAY;
             case "lime" -> ChatFormatting.DARK_GREEN;
-            case "teal", "indigo" -> ChatFormatting.DARK_PURPLE;
+            case "indigo" -> ChatFormatting.DARK_PURPLE;
             case "tan" -> ChatFormatting.DARK_GRAY;
             default -> ChatFormatting.WHITE;
         };

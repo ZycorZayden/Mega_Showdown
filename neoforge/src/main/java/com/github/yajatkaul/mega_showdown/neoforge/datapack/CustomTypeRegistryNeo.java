@@ -78,7 +78,7 @@ public class CustomTypeRegistryNeo implements JsonDataRegistry<CustomTypeRegistr
             try {
                 ElementalType newType = ElementalTypes.register(new ElementalType(
                         typeData.name,
-                        Component.translatable(typeData.text),
+                        Component.translatable(typeData.lang),
                         typeData.hue,
                         0,
                         ResourceLocation.fromNamespaceAndPath(Cobblemon.MODID, "ui/types.png"),
@@ -112,7 +112,7 @@ public class CustomTypeRegistryNeo implements JsonDataRegistry<CustomTypeRegistr
         public String name;
         public String id;
         public int hue;
-        public String text;
+        public String lang;
         public String zTypeMove;
         public String maxTypeMove;
 
@@ -120,7 +120,7 @@ public class CustomTypeRegistryNeo implements JsonDataRegistry<CustomTypeRegistr
             this.name = name;
             this.id = id;
             this.hue = hue;
-            this.text = text;
+            this.lang = text;
             this.zTypeMove = zTypeMove;
             this.maxTypeMove = maxTypeMove;
         }

@@ -99,8 +99,7 @@ const MAX_MOVES = {
     Fairy: "Max Starfall",
     Steel: "Max Steelspike",
     Normal: "Max Strike",
-    Dragon: "Max Wyrmwind",
-    Newt: "Twinkle Tackle"
+    Dragon: "Max Wyrmwind"
 };
 const Z_MOVES = {
     Poison: "Acid Downpour",
@@ -120,8 +119,7 @@ const Z_MOVES = {
     Ice: "Subzero Slammer",
     Flying: "Supersonic Skystrike",
     Ground: "Tectonic Rage",
-    Fairy: "Twinkle Tackle",
-    Newt: "Twinkle Tackle"
+    Fairy: "Twinkle Tackle"
 };
 class BattleActions {
   constructor(battle) {

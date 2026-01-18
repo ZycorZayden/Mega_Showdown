@@ -20,7 +20,7 @@ public record MaxGimmick(
     public static final Codec<MaxGimmick> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             Codec.STRING.fieldOf("pokemon_showdown_id").forGetter(MaxGimmick::pokemonShowdownId),
             Codec.STRING.fieldOf("gmax_move").forGetter(MaxGimmick::gmaxMove),
-            AspectSetCodec.CODEC.fieldOf("aspect_conditions").forGetter(MaxGimmick::aspectSetCodec)
+            AspectSetCodec.CODEC.optionalFieldOf("aspect_conditions", AspectSetCodec.DEFAULT()).forGetter(MaxGimmick::aspectSetCodec)
     ).apply(instance, MaxGimmick::new));
     private static final Map<Pokemon, ScalingData> ACTIVE_SCALING_ANIMATIONS = new HashMap<>();
     private static final int DEFAULT_SCALING_DURATION = 60;

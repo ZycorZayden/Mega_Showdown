@@ -8,3 +8,5 @@
 - fixed shader color bug
 - fixed some advancements not triggering
 - you can right clicked deoxys meteor to change its form
+- shifted `showdown` to `mega_showdown/showdown`
+- now u can use `feature: "mega_evolution"` in species additions directly no need to use species feature assignment 

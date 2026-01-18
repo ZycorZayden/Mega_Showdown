@@ -73,7 +73,7 @@ public class CustomTypeStatusRegistry implements JsonDataRegistry<CustomTypeStat
                 if (typeData.damageStatusData() != null) {
                     DamageStatus damageStatus = new DamageStatus(
                             MiscUtilsKt.cobblemonResource(typeData.name()),
-                            typeData.showdownId(),
+                            typeData.id(),
                             typeData.applyMsg(),
                             typeData.removeMsg(),
                             new IntRange(typeData.minDur(), typeData.maxDur()),
@@ -86,7 +86,7 @@ public class CustomTypeStatusRegistry implements JsonDataRegistry<CustomTypeStat
                 } else {
                     PersistentStatus status = new PersistentStatus(
                             MiscUtilsKt.cobblemonResource(typeData.name()),
-                            typeData.showdownId(),
+                            typeData.id(),
                             typeData.applyMsg(),
                             typeData.removeMsg(),
                             new IntRange(typeData.minDur(), typeData.maxDur())
@@ -105,10 +105,15 @@ public class CustomTypeStatusRegistry implements JsonDataRegistry<CustomTypeStat
         observable.emit(this);
     }
 
-    public record CustomStatusData(String name, String showdownId, String applyMsg, String removeMsg, int minDur,
-                                   int maxDur, DamageStatusData damageStatusData) {
-    }
+    public record CustomStatusData(
+            String name,
+            String id,
+            String applyMsg,
+            String removeMsg,
+            int minDur,
+            int maxDur,
+            DamageStatusData damageStatusData
+    ) { }
 
-    public record DamageStatusData(int chance, double damagePercent, String healingAbility) {
-    }
+    public record DamageStatusData(int chance, double damagePercent, String healingAbility) { }
 }
