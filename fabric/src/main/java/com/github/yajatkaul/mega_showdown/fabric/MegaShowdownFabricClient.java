@@ -9,6 +9,7 @@ import com.github.yajatkaul.mega_showdown.block.block_entity.renderer.PedestalBl
 import com.github.yajatkaul.mega_showdown.render.LayerDataLoader;
 import com.github.yajatkaul.mega_showdown.render.ItemRenderingLoader;
 import com.github.yajatkaul.mega_showdown.render.RegisterShaderEvent;
+import com.github.yajatkaul.mega_showdown.render.TeraMapLoader;
 import com.github.yajatkaul.mega_showdown.render.renderTypes.MSDRenderTypes;
 import com.github.yajatkaul.mega_showdown.screen.MegaShowdownMenuTypes;
 import com.github.yajatkaul.mega_showdown.screen.custom.screen.TeraPouchScreen;
@@ -32,6 +33,7 @@ public final class MegaShowdownFabricClient implements ClientModInitializer {
     public void onInitializeClient() {
         ReloadListenerRegistry.register(PackType.CLIENT_RESOURCES, new ItemRenderingLoader());
         ReloadListenerRegistry.register(PackType.CLIENT_RESOURCES, new LayerDataLoader());
+        ReloadListenerRegistry.register(PackType.CLIENT_RESOURCES, new TeraMapLoader());
 
         MenuScreens.register(MegaShowdownMenuTypes.ZYGARDE_CUBE_MENU.get(), ZygardeCubeScreen::new);
         MenuScreens.register(MegaShowdownMenuTypes.TERA_POUCH_MENU.get(), TeraPouchScreen::new);

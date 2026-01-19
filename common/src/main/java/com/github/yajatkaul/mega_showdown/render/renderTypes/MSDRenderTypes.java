@@ -1,6 +1,6 @@
 package com.github.yajatkaul.mega_showdown.render.renderTypes;
 
-import com.github.yajatkaul.mega_showdown.gimmick.TeraGimmick;
+import com.github.yajatkaul.mega_showdown.render.TeraMapLoader;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.client.renderer.RenderStateShard;
@@ -39,7 +39,7 @@ public class MSDRenderTypes {
                 false,
                 RenderType.CompositeState.builder()
                         .setShaderState(new RenderStateShard.ShaderStateShard(
-                                () -> TeraGimmick.INSTANCE.teraShaderMap.get(tera_aspect))
+                                () -> TeraMapLoader.REGISTRY.get(tera_aspect))
                         )
                         .setTextureState(new RenderStateShard.TextureStateShard(texture, false, false))
                         .setTransparencyState(RenderType.TRANSLUCENT_TRANSPARENCY)

@@ -7,6 +7,7 @@ import com.github.yajatkaul.mega_showdown.block.block_entity.renderer.PedestalBl
 import com.github.yajatkaul.mega_showdown.render.LayerDataLoader;
 import com.github.yajatkaul.mega_showdown.render.ItemRenderingLoader;
 import com.github.yajatkaul.mega_showdown.render.RegisterShaderEvent;
+import com.github.yajatkaul.mega_showdown.render.TeraMapLoader;
 import com.github.yajatkaul.mega_showdown.render.renderTypes.IrisIgnoreShader;
 import com.github.yajatkaul.mega_showdown.render.renderTypes.MSDRenderTypes;
 import com.github.yajatkaul.mega_showdown.screen.MegaShowdownMenuTypes;
@@ -168,6 +169,7 @@ public class MegaShowdownNeoForgeClient {
     public static void onAddPackFinders(AddPackFindersEvent event) {
         ReloadListenerRegistry.register(PackType.CLIENT_RESOURCES, new ItemRenderingLoader());
         ReloadListenerRegistry.register(PackType.CLIENT_RESOURCES, new LayerDataLoader());
+        ReloadListenerRegistry.register(PackType.CLIENT_RESOURCES, new TeraMapLoader());
 
         if (event.getPackType() != PackType.CLIENT_RESOURCES)
             return;

@@ -1,13 +1,4 @@
-# 1.5.1+1.7.1-release
-- fixed tera ghost curse
-- added head locator to msd pokemons
-- fixed mega altaria riding issue
-- client deligate is now a client only mixin as it should have been
-- added all the tera hats
-- fixed liko's pendant
-- fixed shader color bug
-- fixed some advancements not triggering
-- you can right click deoxys meteor to change its form
-- shifted `showdown` to `mega_showdown/showdown`
-- now u can use `feature: "mega_evolution"` in species additions directly no need to use species feature assignment
-- Added Tera Particles 
+# 1.5.1+1.7.1-release-hotfix
+- Optimized item rendering a lot
+- Fixed server class not found exception 
+Its not an update without a hotfix

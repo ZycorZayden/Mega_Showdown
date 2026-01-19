@@ -4,7 +4,6 @@ import com.cobblemon.mod.common.data.CobblemonDataProvider;
 import com.github.yajatkaul.mega_showdown.datapack.CustomTypeStatusRegistry;
 import com.github.yajatkaul.mega_showdown.fabric.datapack.CustomTypeRegistryFabric;
 import com.github.yajatkaul.mega_showdown.fabric.datapack.showdown.*;
-import com.github.yajatkaul.mega_showdown.gimmick.TeraGimmick;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -25,6 +24,5 @@ public class CobblemonDataProviderMixin {
         self.register(HeldItems.INSTANCE, true);
         self.register(TypeCharts.INSTANCE, true);
         self.register(Scripts.INSTANCE, true);
-        self.register(TeraGimmick.INSTANCE, true);
     }
 }

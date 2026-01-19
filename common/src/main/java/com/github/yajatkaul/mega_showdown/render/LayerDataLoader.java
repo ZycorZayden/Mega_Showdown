@@ -41,7 +41,7 @@ public class LayerDataLoader implements ResourceManagerReloadListener {
             }
         }
 
-        MegaShowdown.LOGGER.info("Loaded {} custom rendering entries", REGISTRY.size());
+        MegaShowdown.LOGGER.info("Loaded {} custom layer data", REGISTRY.size());
     }
 
     @Override

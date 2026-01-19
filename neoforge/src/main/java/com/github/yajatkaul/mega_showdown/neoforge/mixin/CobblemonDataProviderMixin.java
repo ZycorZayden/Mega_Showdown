@@ -2,7 +2,6 @@ package com.github.yajatkaul.mega_showdown.neoforge.mixin;
 
 import com.cobblemon.mod.common.data.CobblemonDataProvider;
 import com.github.yajatkaul.mega_showdown.datapack.CustomTypeStatusRegistry;
-import com.github.yajatkaul.mega_showdown.gimmick.TeraGimmick;
 import com.github.yajatkaul.mega_showdown.neoforge.datapack.CustomTypeRegistryNeo;
 import com.github.yajatkaul.mega_showdown.neoforge.datapack.showdown.*;
 import org.spongepowered.asm.mixin.Mixin;
@@ -25,6 +24,5 @@ public class CobblemonDataProviderMixin {
         self.register(HeldItems.INSTANCE, true);
         self.register(TypeCharts.INSTANCE, true);
         self.register(Scripts.INSTANCE, true);
-        self.register(TeraGimmick.INSTANCE, true);
     }
 }
