@@ -3,8 +3,10 @@
   "showdown_form_change_id": "complete",
   "aspect_conditions": {
     "apply": {
-      "aspects": ["percent_cells=complete"],
-      "required_aspects": [["50-percent"]]
+      "aspect": {
+        "required_aspects": [["50-percent"]]
+      },
+      "aspects": ["percent_cells=complete"]
     },
     "revert": {
       "aspects": ["percent_cells=50"]

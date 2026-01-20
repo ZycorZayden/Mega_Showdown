@@ -9,7 +9,7 @@
     "source_apply": ["root"],
     "particle_apply": "cobblemon:tera_event_grass",
     "apply_after": 3.1,
-	"sound_apply": {
+    "sound_apply": {
       "sound_id": "mega_showdown:terastallization",
       "vol": 0.4,
       "pitch": 0.95
@@ -19,5 +19,5 @@
       "animations_apply": ["cry"]
     }
   },
-  "battle_pause": 4
+  "battle_pause_apply": 4
 }

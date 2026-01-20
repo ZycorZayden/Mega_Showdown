@@ -3,8 +3,10 @@
   "pokemons": ["Slowbro"],
   "aspect_conditions": {
     "apply": {
-      "aspects": ["mega_evolution=mega"],
-      "blacklist_forms": ["Galar"]
+      "aspect": {
+        "blacklist_forms": ["Galar"]
+      },
+      "aspects": ["mega_evolution=mega"]
     },
     "revert": {
       "aspects": ["mega_evolution=none"]
