@@ -15,7 +15,7 @@
   "pokemon.bisharp.cry": {
     "sounds": [
       {
-        "name": "cobblemon:pokemon//bisharp/bisharp_cry",
+        "name": "cobblemon:pokemon/bisharp/bisharp_cry",
         "volume": 0.8
       }
     ]
@@ -23,7 +23,7 @@
   "pokemon.dialga.cry": {
     "sounds": [
       {
-        "name": "cobblemon:pokemon//dialga/dialga_cry",
+        "name": "cobblemon:pokemon/dialga/dialga_cry",
         "volume": 0.8
       }
     ]

@@ -2,6 +2,7 @@ package com.github.yajatkaul.mega_showdown.gimmick.codec;
 
 import com.cobblemon.mod.common.api.moves.Move;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
@@ -57,8 +58,9 @@ public record Conditions(
         ).apply(instance, Abilities::new));
 
         public boolean validate(Pokemon pokemon) {
-            if (blacklist_abilities.contains(pokemon.getAbility().getName())) return false;
-            return required_abilities.contains(pokemon.getAbility().getName());
+            if (!blacklist_abilities.isEmpty() &&
+                    blacklist_abilities.contains(pokemon.getAbility().getName())) return false;
+            return required_abilities.isEmpty() || required_abilities.contains(pokemon.getAbility().getName());
         }
 
         public static Abilities DEFAULT() {
@@ -109,17 +111,12 @@ public record Conditions(
                     .map(Move::getName)
                     .collect(Collectors.toSet());
 
-            if (!blacklist_moves.isEmpty()) {
-                boolean hasBlacklistedCombo = blacklist_moves.stream()
-                        .anyMatch(moveNames::containsAll);
-                if (hasBlacklistedCombo) return false;
-            }
+            if (!blacklist_moves.isEmpty()
+                    && blacklist_moves.stream().anyMatch(moveNames::containsAll))
+                return false;
 
-            if (!required_moves.isEmpty()) {
-                boolean hasRequiredCombo = required_moves.stream()
-                        .anyMatch(moveNames::containsAll);
-                if (hasRequiredCombo) return true;
-            }
+            if (!required_moves.isEmpty())
+                return required_moves.stream().anyMatch(moveNames::containsAll);
 
             return true;
         }
