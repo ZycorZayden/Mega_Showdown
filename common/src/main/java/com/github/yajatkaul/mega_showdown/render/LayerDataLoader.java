@@ -33,7 +33,7 @@ public class LayerDataLoader implements ResourceManagerReloadListener {
         }
 
         public LayerCodec.Settings getSettings(String formName, String aspect) {
-            return settingsHashMap.get(formName).get(aspect);
+            return settingsHashMap.getOrDefault(formName, new HashMap<>()).get(aspect);
         }
     }
 
@@ -41,7 +41,10 @@ public class LayerDataLoader implements ResourceManagerReloadListener {
         String name = pokemon.getSpecies().resourceIdentifier.getPath();
         String formName = pokemon.getForm().getName();
 
-        return LAYER_REGISTRY.get(name).getSettings(formName, aspect);
+        SizerRegStruct reg = LAYER_REGISTRY.get(name);
+        if (reg == null) return null;
+
+        return reg.getSettings(formName, aspect);
     }
 
     public static void load() {
