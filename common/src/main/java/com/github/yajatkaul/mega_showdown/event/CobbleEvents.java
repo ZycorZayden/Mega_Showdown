@@ -27,6 +27,7 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.properties.AspectPropertyType;
 import com.cobblemon.mod.common.pokemon.properties.UnaspectPropertyType;
+import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.github.yajatkaul.mega_showdown.api.event.DynamaxEndCallback;
 import com.github.yajatkaul.mega_showdown.api.event.DynamaxStartCallback;
@@ -91,11 +92,6 @@ public class CobbleEvents {
     }
 
     private static void formChanged(FormeChangeEvent formeChangeEvent) {
-        if (formeChangeEvent.getFormeName().equals("x") || formeChangeEvent.getFormeName().equals("y")
-                || formeChangeEvent.getFormeName().equals("mega")) {
-            return;
-        }
-
         Pokemon pokemon = formeChangeEvent.getPokemon().getEffectedPokemon();
 
         if (pokemon.getSpecies().getName().equals("Greninja") && formeChangeEvent.getFormeName().equals("ash")) {
@@ -105,6 +101,11 @@ public class CobbleEvents {
         }
 
         BattlePokemon battlePokemon = formeChangeEvent.getPokemon();
+        String formId = formeChangeEvent.getFormeName();
+
+        if (MegaShowdownConfig.debugMode) {
+            MegaShowdown.LOGGER.info(formId);
+        }
 
         for (BattleFormChange battleFormChange : MegaShowdownDatapackRegister.BATTLE_FORM_CHANGE_REGISTRY) {
             if (formeChangeEvent.getFormeName().equals(battleFormChange.showdownFormChangeId())

@@ -40,6 +40,8 @@ public class MegaShowdownConfig {
 
     public static int minBondingRequired = 200;
 
+    public static boolean debugMode = false;
+
     private static void save() {
         JsonObject json = getJsonObject();
 
@@ -74,6 +76,7 @@ public class MegaShowdownConfig {
         json.addProperty("outSideUltraBurst", outSideUltraBurst);
         json.addProperty("teraHats", teraHats);
         json.addProperty("legacyTeraEffect", legacyTeraEffect);
+        json.addProperty("debugMode", debugMode);
         return json;
     }
 
@@ -142,6 +145,9 @@ public class MegaShowdownConfig {
             }
             if (json.has("legacyTeraEffect")) {
                 legacyTeraEffect = json.get("legacyTeraEffect").getAsBoolean();
+            }
+            if (json.has("debugMode")) {
+                debugMode = json.get("debugMode").getAsBoolean();
             }
         } catch (Exception e) {
             MegaShowdown.LOGGER.error("Failed to load MegaShowdown config:", e);
