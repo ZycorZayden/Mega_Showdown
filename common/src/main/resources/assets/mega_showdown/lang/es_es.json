@@ -754,5 +754,24 @@
   "advancement.mega_showdown.get_all_z_move.description": "Colecciona todos los diferentes Cristales Z",
 
   "advancement.mega_showdown.get_blank_move.title": "¡Confusión Cristalina!",
-  "advancement.mega_showdown.get_blank_move.description": "Obtén un Cristal Z en Blanco"
+  "advancement.mega_showdown.get_blank_move.description": "Obtén un Cristal Z en Blanco",
+
+  "menu.tera_pouch": "Tera Bolsa",
+  "item.mega_showdown.tera_pouch_white": "Tera Bolsa Blanca",
+  "item.mega_showdown.tera_pouch_orange": "Tera Bolsa Naranja",
+  "item.mega_showdown.tera_pouch_magenta": "Tera Bolsa Magenta",
+  "item.mega_showdown.tera_pouch_light_blue": "Tera Bolsa Azul Claro",
+  "item.mega_showdown.tera_pouch_yellow": "Tera Bolsa Amarilla",
+  "item.mega_showdown.tera_pouch_lime": "Tera Bolsa Verde Lima",
+  "item.mega_showdown.tera_pouch_pink": "Tera Bolsa Rosa",
+  "item.mega_showdown.tera_pouch_gray": "Tera Bolsa Gris",
+  "item.mega_showdown.tera_pouch_light_gray": "Tera Bolsa Gris Claro",
+  "item.mega_showdown.tera_pouch_cyan": "Tera Bolsa Cian",
+  "item.mega_showdown.tera_pouch_purple": "Tera Bolsa Morada",
+  "item.mega_showdown.tera_pouch_blue": "Tera Bolsa Azul",
+  "item.mega_showdown.tera_pouch_brown": "Tera Bolsa",
+  "item.mega_showdown.tera_pouch_green": "Tera Bolsa Verde",
+  "item.mega_showdown.tera_pouch_red": "Tera Bolsa Roja",
+  "item.mega_showdown.tera_pouch_black": "Tera Bolsa Negra",
+  "tooltip.mega_showdown.tera_pouch.tooltip": "§7Una bolsa usada para almacenar teralitos."
 }
