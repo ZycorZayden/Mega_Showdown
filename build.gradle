@@ -72,10 +72,28 @@ subprojects {
     }
 }
 
+Properties dotenv = new Properties()
+File envFile = file(".env")
+
+if (envFile.exists()) {
+    envFile.withInputStream { stream ->
+        dotenv.load(stream)
+    }
+}
+
+def resolveEnv = { String key ->
+    String value = dotenv.getProperty(key)
+    return value != null ? value : System.getenv(key)
+}
+
 publishMods {
     changelog = file("CHANGELOG.md").text
     type = STABLE
-    dryRun = env.MODRINTH_TOKEN.value == null || env.CURSEFORGE_TOKEN.value == null
+
+    String modrinthToken = resolveEnv("MODRINTH_TOKEN")
+    String curseforgeToken = resolveEnv("CURSEFORGE_TOKEN")
+
+    dryRun = modrinthToken == null || curseforgeToken == null
 
     def cfOptions = curseforgeOptions {
         accessToken = env.CURSEFORGE_TOKEN.value
