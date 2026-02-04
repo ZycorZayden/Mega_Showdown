@@ -51,5 +51,7 @@
   "cobblemon.ui.pokedex.info.form.mega-x": "Mega X",
   "cobblemon.ui.pokedex.info.form.mega-y": "Mega Y",
   "cobblemon.ui.stash.meltan": "Meltans",
-  "cobblemon.ui.stats.dynamax_level": "Nivel Dinamax"
+  "cobblemon.ui.stats.dynamax_level": "Nivel Dinamax",
+
+  "cobblemon.battle.sidestart.opponent.gmaxwildfire": "¡Tus adversarioos se ven rodeados por llamas!"
 }
