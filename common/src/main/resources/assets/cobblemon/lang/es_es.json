@@ -53,5 +53,6 @@
   "cobblemon.ui.stash.meltan": "Meltans",
   "cobblemon.ui.stats.dynamax_level": "Nivel Dinamax",
 
-  "cobblemon.battle.sidestart.opponent.gmaxwildfire": "¡Tus adversarioos se ven rodeados por llamas!"
+  "cobblemon.battle.sidestart.opponent.gmaxwildfire": "¡Tus adversarioos se ven rodeados por llamas!",
+  "cobblemon.battle.sidestart.gmaxwildfire": "¡Tus adversarios se ven rodeados por llamas!"
 }

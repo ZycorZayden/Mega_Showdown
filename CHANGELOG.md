@@ -1,2 +1,3 @@
-# 1.6.7+1.7.3-release
-- Fixed tera and spread moves not working sometimes
+# 1.6.8+1.7.3-release
+- New lang's added
+- Datapackable Battle Effects
