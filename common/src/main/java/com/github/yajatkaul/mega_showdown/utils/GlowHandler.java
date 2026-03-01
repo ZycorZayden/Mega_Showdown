@@ -13,6 +13,26 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Locale;
 
 public class GlowHandler {
+    private static final float[] WHITE = {1.0f, 1.0f, 1.0f, 1.0f};
+    private static final float[] FIRE = {1.0f, 0.30f, 0.20f, 1.0f};
+    private static final float[] WATER = {0.30f, 0.60f, 1.00f, 1.0f};
+    private static final float[] GRASS = {0.30f, 1.00f, 0.40f, 1.0f};
+    private static final float[] ELECTRIC = {1.00f, 1.00f, 0.30f, 1.0f};
+    private static final float[] ICE = {0.60f, 0.90f, 1.00f, 1.0f};
+    private static final float[] FIGHTING = {0.80f, 0.30f, 0.20f, 1.0f};
+    private static final float[] POISON = {0.70f, 0.30f, 0.80f, 1.0f};
+    private static final float[] GROUND = {0.80f, 0.65f, 0.40f, 1.0f};
+    private static final float[] FLYING = {0.70f, 0.70f, 1.00f, 1.0f};
+    private static final float[] PSYCHIC = {1.00f, 0.40f, 0.70f, 1.0f};
+    private static final float[] BUG = {0.60f, 0.80f, 0.20f, 1.0f};
+    private static final float[] ROCK = {0.70f, 0.60f, 0.40f, 1.0f};
+    private static final float[] GHOST = {0.60f, 0.50f, 0.90f, 1.0f};
+    private static final float[] DRAGON = {0.50f, 0.40f, 1.00f, 1.0f};
+    private static final float[] DARK = {0.30f, 0.30f, 0.30f, 1.0f};
+    private static final float[] STEEL = {0.70f, 0.75f, 0.80f, 1.0f};
+    private static final float[] FAIRY = {1.00f, 0.60f, 0.90f, 1.0f};
+    private static final float[] NORMAL = {0.90f, 0.90f, 0.90f, 1.0f};
+
     public static void applyDynamaxGlow(@Nullable PokemonEntity pokemonEntity) {
         if (pokemonEntity == null) return;
 
@@ -144,24 +164,4 @@ public class GlowHandler {
             default -> WHITE;
         };
     }
-
-    private static final float[] WHITE = {1.0f, 1.0f, 1.0f, 1.0f};
-    private static final float[] FIRE = {1.0f, 0.30f, 0.20f, 1.0f};
-    private static final float[] WATER = {0.30f, 0.60f, 1.00f, 1.0f};
-    private static final float[] GRASS = {0.30f, 1.00f, 0.40f, 1.0f};
-    private static final float[] ELECTRIC = {1.00f, 1.00f, 0.30f, 1.0f};
-    private static final float[] ICE = {0.60f, 0.90f, 1.00f, 1.0f};
-    private static final float[] FIGHTING = {0.80f, 0.30f, 0.20f, 1.0f};
-    private static final float[] POISON = {0.70f, 0.30f, 0.80f, 1.0f};
-    private static final float[] GROUND = {0.80f, 0.65f, 0.40f, 1.0f};
-    private static final float[] FLYING = {0.70f, 0.70f, 1.00f, 1.0f};
-    private static final float[] PSYCHIC = {1.00f, 0.40f, 0.70f, 1.0f};
-    private static final float[] BUG = {0.60f, 0.80f, 0.20f, 1.0f};
-    private static final float[] ROCK = {0.70f, 0.60f, 0.40f, 1.0f};
-    private static final float[] GHOST = {0.60f, 0.50f, 0.90f, 1.0f};
-    private static final float[] DRAGON = {0.50f, 0.40f, 1.00f, 1.0f};
-    private static final float[] DARK = {0.30f, 0.30f, 0.30f, 1.0f};
-    private static final float[] STEEL = {0.70f, 0.75f, 0.80f, 1.0f};
-    private static final float[] FAIRY = {1.00f, 0.60f, 0.90f, 1.0f};
-    private static final float[] NORMAL = {0.90f, 0.90f, 0.90f, 1.0f};
 }

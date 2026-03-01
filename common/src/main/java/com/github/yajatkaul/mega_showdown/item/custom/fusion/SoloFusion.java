@@ -25,6 +25,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 
 import java.util.List;
+import java.util.Optional;
 
 public class SoloFusion extends ToolTipItem {
     private final List<String> fusions;
@@ -92,7 +93,7 @@ public class SoloFusion extends ToolTipItem {
                     return InteractionResultHolder.pass(stack);
                 }
 
-                Effect.getEffect(effectId).revertEffects(pokemon, revertAspect, null);
+                Effect.getEffect(effectId).revertEffects(pokemon, revertAspect, Optional.empty(), null);
 
                 pokemon.setTradeable(true);
 
@@ -107,7 +108,7 @@ public class SoloFusion extends ToolTipItem {
                 stack.remove(MegaShowdownDataComponents.POKEMON_STORAGE.get());
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown." + namespace + ".inactive"));
             } else if (pokemonStored != null && isMain) {
-                Effect.getEffect(effectId).revertEffects(pokemon, applyAspect, null);
+                Effect.getEffect(effectId).revertEffects(pokemon, applyAspect, Optional.empty(), null);
                 pokemon.setTradeable(false);
 
                 CompoundTag otherPokemonNbt = pokemonStored.saveToNBT(level.registryAccess(), new CompoundTag());

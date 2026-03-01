@@ -10,6 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Optional;
 
 public class FormChangeInteractItem extends PokemonSelectingItem {
     private final String form_aspect_name;
@@ -48,13 +49,13 @@ public class FormChangeInteractItem extends PokemonSelectingItem {
         if (pokemon.getAspects().contains(form_aspect_name) && !revertable) {
             return InteractionResultHolder.pass(itemStack);
         } else if (pokemon.getAspects().contains(form_aspect_name)) {
-            Effect.getEffect(effectId).revertEffects(pokemon, List.of(form_aspect_revert), null);
+            Effect.getEffect(effectId).revertEffects(pokemon, List.of(form_aspect_revert), Optional.empty(), null);
             itemStack.consume(consume, serverPlayer);
 
             return InteractionResultHolder.success(itemStack);
         }
 
-        Effect.getEffect(effectId).applyEffects(pokemon, List.of(form_aspect_apply), null);
+        Effect.getEffect(effectId).applyEffects(pokemon, List.of(form_aspect_apply), Optional.empty(), null);
         itemStack.consume(consume, serverPlayer);
 
         return InteractionResultHolder.success(itemStack);

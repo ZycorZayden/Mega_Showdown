@@ -43,11 +43,11 @@ public record FormChangeInteractItem(
             }
 
             if (aspect_conditions.validate_apply(pokemon)) {
-                Effect.getEffect(effect.get()).applyEffects(pokemon, aspect_conditions.aspectApply().aspects(), null);
+                Effect.getEffect(effect.get()).applyEffects(pokemon, aspect_conditions.aspectApply().aspects(), aspect_conditions.aspectApply().pokemonProperties(), null);
                 stack.consume(consume, livingEntity);
                 return InteractionResult.SUCCESS;
             } else if (aspect_conditions.validate_revert(pokemon)) {
-                Effect.getEffect(effect.get()).revertEffects(pokemon, aspect_conditions.aspectRevert().aspects(), null);
+                Effect.getEffect(effect.get()).revertEffects(pokemon, aspect_conditions.aspectRevert().aspects(), aspect_conditions.aspectRevert().pokemonProperties(), null);
                 stack.consume(consume, livingEntity);
                 return InteractionResult.SUCCESS;
             }

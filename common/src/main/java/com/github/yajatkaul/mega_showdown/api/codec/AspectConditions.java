@@ -13,18 +13,18 @@ public record AspectConditions(
             Conditions.CODEC.optionalFieldOf("revert", Conditions.DEFAULT()).forGetter(AspectConditions::aspectRevert)
     ).apply(instance, AspectConditions::new));
 
+    public static AspectConditions DEFAULT() {
+        return new AspectConditions(
+                Conditions.DEFAULT(),
+                Conditions.DEFAULT()
+        );
+    }
+
     public boolean validate_apply(Pokemon pokemon) {
         return aspectApply.validate(pokemon);
     }
 
     public boolean validate_revert(Pokemon pokemon) {
         return aspectRevert.validate(pokemon);
-    }
-
-    public static AspectConditions DEFAULT() {
-        return new AspectConditions(
-                Conditions.DEFAULT(),
-                Conditions.DEFAULT()
-        );
     }
 }

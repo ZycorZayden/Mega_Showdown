@@ -20,22 +20,8 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 
 public class LayerDataLoader implements ResourceManagerReloadListener {
-    private static final String DIRECTORY = "msd_sizer";
     public static final HashMap<String, SizerRegStruct> LAYER_REGISTRY = new HashMap<>();
-
-    public static class SizerRegStruct {
-        private final HashMap<String, HashMap<String, LayerCodec.Settings>> settingsHashMap = new HashMap<>();
-
-        public void addForm(String formName, String aspect, LayerCodec.Settings settings) {
-            HashMap<String, LayerCodec.Settings> map = settingsHashMap.getOrDefault(formName, new HashMap<>());
-            map.put(aspect, settings);
-            settingsHashMap.putIfAbsent(formName, map);
-        }
-
-        public LayerCodec.Settings getSettings(String formName, String aspect) {
-            return settingsHashMap.getOrDefault(formName, new HashMap<>()).get(aspect);
-        }
-    }
+    private static final String DIRECTORY = "msd_sizer";
 
     public static LayerCodec.Settings getSettings(Pokemon pokemon, String aspect) {
         String name = pokemon.getSpecies().resourceIdentifier.getPath();
@@ -92,5 +78,19 @@ public class LayerDataLoader implements ResourceManagerReloadListener {
     @Override
     public @NotNull String getName() {
         return "mega_showdown";
+    }
+
+    public static class SizerRegStruct {
+        private final HashMap<String, HashMap<String, LayerCodec.Settings>> settingsHashMap = new HashMap<>();
+
+        public void addForm(String formName, String aspect, LayerCodec.Settings settings) {
+            HashMap<String, LayerCodec.Settings> map = settingsHashMap.getOrDefault(formName, new HashMap<>());
+            map.put(aspect, settings);
+            settingsHashMap.putIfAbsent(formName, map);
+        }
+
+        public LayerCodec.Settings getSettings(String formName, String aspect) {
+            return settingsHashMap.getOrDefault(formName, new HashMap<>()).get(aspect);
+        }
     }
 }

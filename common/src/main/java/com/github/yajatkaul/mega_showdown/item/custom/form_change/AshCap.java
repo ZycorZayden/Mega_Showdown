@@ -14,6 +14,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Optional;
 
 public class AshCap extends PokemonSelectingItem {
     public AshCap(Properties arg) {
@@ -36,7 +37,7 @@ public class AshCap extends PokemonSelectingItem {
                     .withStyle(ChatFormatting.RED), true);
             return InteractionResultHolder.pass(itemStack);
         }
-        Effect.getEffect("mega_showdown:heart_effect").applyEffects(pokemon, List.of("battle_bond=bond"), null);
+        Effect.getEffect("mega_showdown:heart_effect").applyEffects(pokemon, List.of("battle_bond=bond"), Optional.empty(), null);
         AdvancementHelper.grantAdvancement(serverPlayer, "bond/ash_cap_bond");
         itemStack.consume(1, serverPlayer);
         return InteractionResultHolder.success(itemStack);

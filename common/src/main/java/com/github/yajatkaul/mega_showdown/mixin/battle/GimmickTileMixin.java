@@ -20,9 +20,13 @@ import java.util.List;
 
 @Mixin(value = BattleGimmickButton.GimmickTile.class, remap = false)
 public class GimmickTileMixin {
-    @Unique protected BattleMoveSelection mega_showdown$moveSelection;
-    @Unique protected InBattleMove mega_showdown$move;
-    @Final @Shadow private ShowdownMoveset.Gimmick gimmick;
+    @Unique
+    protected BattleMoveSelection mega_showdown$moveSelection;
+    @Unique
+    protected InBattleMove mega_showdown$move;
+    @Final
+    @Shadow
+    private ShowdownMoveset.Gimmick gimmick;
 
     @Inject(method = "<init>", at = @At("TAIL"), remap = false)
     private void init(ShowdownMoveset.Gimmick gimmick, BattleMoveSelection moveSelection, InBattleMove move, float x, float y, CallbackInfo ci) {

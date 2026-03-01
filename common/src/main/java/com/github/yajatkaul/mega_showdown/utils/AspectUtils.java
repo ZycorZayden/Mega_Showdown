@@ -3,6 +3,7 @@ package com.github.yajatkaul.mega_showdown.utils;
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.api.battles.model.actor.ActorType;
+import com.cobblemon.mod.common.api.pokemon.PokemonProperties;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
@@ -30,6 +31,8 @@ import net.minecraft.world.level.biome.Biome;
 import java.util.*;
 
 public class AspectUtils {
+    public static final Set<UUID> battleDisconnecter = new HashSet<>();
+
     public static void applyAspects(Pokemon pokemon, List<String> aspects) {
         for (String aspect : aspects) {
             String[] aspect_split = aspect.split("=");
@@ -41,8 +44,16 @@ public class AspectUtils {
         }
     }
 
-    public static void appendRevertDataPokemon(Effect effect, List<String> string, Pokemon pokemon, String tagName) {
-        EffectPair effectPair = new EffectPair(effect, string);
+    public static void applyProperties(Pokemon pokemon, Optional<String> propertyString) {
+        propertyString.ifPresent((property) -> {
+                    PokemonProperties properties = PokemonProperties.Companion.parse(property);
+                    properties.apply(pokemon);
+                }
+        );
+    }
+
+    public static void appendRevertDataPokemon(Effect effect, List<String> aspects, Optional<String> properties, Pokemon pokemon, String tagName) {
+        EffectPair effectPair = new EffectPair(effect, aspects, properties);
 
         List<EffectPair> existing = getRevertDataPokemon(pokemon, tagName);
 
@@ -68,8 +79,6 @@ public class AspectUtils {
                 .map(ArrayList::new)
                 .orElseGet(ArrayList::new);
     }
-
-    public static final Set<UUID> battleDisconnecter = new HashSet<>();
 
     public static void revertPokemonsIfRequiredBattleEnd(ServerPlayer player) {
         if (player == null || battleDisconnecter.contains(player.getUUID())) {
@@ -128,7 +137,7 @@ public class AspectUtils {
             );
 
             for (EffectPair effectPair : aspects) {
-                effectPair.effect.revertEffects(pokemon, effectPair.aspects, null);
+                effectPair.effect.revertEffects(pokemon, effectPair.aspects, effectPair.pokemonProperties, null);
             }
 
             pokemon.getPersistentData().remove("battle_end_revert");
@@ -141,7 +150,7 @@ public class AspectUtils {
             );
 
             for (EffectPair effectPair : aspects) {
-                effectPair.effect.revertEffects(pokemon, effectPair.aspects, null);
+                effectPair.effect.revertEffects(pokemon, effectPair.aspects, effectPair.pokemonProperties, null);
             }
 
             pokemon.getPersistentData().remove("aspects");
@@ -154,7 +163,7 @@ public class AspectUtils {
             );
 
             for (EffectPair effectPair : aspects) {
-                effectPair.effect.revertEffects(pokemon, effectPair.aspects, null);
+                effectPair.effect.revertEffects(pokemon, effectPair.aspects, effectPair.pokemonProperties, null);
             }
 
             pokemon.getPersistentData().remove("revert_aspects");
@@ -175,10 +184,10 @@ public class AspectUtils {
 
         if (pokemon.getPersistentData().getBoolean("is_max")) {
             if (pokemon.getAspects().contains("gmax")) {
-                Effect.getEffect("mega_showdown:dynamax").revertEffects(pokemon, List.of("dynamax_form=none"), null);
+                Effect.getEffect("mega_showdown:dynamax").revertEffects(pokemon, List.of("dynamax_form=none"), Optional.empty(), null);
             } else {
                 UnaspectPropertyType.INSTANCE.fromString("msd:dmax").apply(pokemon);
-                Effect.getEffect("mega_showdown:dynamax").revertEffects(pokemon, List.of(), null);
+                Effect.getEffect("mega_showdown:dynamax").revertEffects(pokemon, List.of(), Optional.empty(), null);
             }
             if (pokemon.getEntity() != null) {
                 MaxGimmick.startGradualScalingDown(pokemon);
@@ -221,11 +230,13 @@ public class AspectUtils {
 
     public record EffectPair(
             Effect effect,
-            List<String> aspects
+            List<String> aspects,
+            Optional<String> pokemonProperties
     ) {
         public static final Codec<EffectPair> CODEC = RecordCodecBuilder.create(instance -> instance.group(
                 Effect.CODEC.fieldOf("effect").forGetter(EffectPair::effect),
-                Codec.STRING.listOf().fieldOf("aspects").forGetter(EffectPair::aspects)
+                Codec.STRING.listOf().fieldOf("aspects").forGetter(EffectPair::aspects),
+                Codec.STRING.optionalFieldOf("pokemon_properties").forGetter(EffectPair::pokemonProperties)
         ).apply(instance, EffectPair::new));
     }
 }

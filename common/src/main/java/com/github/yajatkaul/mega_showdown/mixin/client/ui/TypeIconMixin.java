@@ -12,18 +12,16 @@ import org.spongepowered.asm.mixin.*;
 
 @Mixin(value = TypeIcon.class, remap = false)
 public class TypeIconMixin {
-    @Unique
-    private final int TYPE_ICON_DIAMETER = 36;
-    @Unique
-    private final float SCALE = 0.5F;
-
     @Shadow
     @Final
     private static ResourceLocation typesResource;
     @Shadow
     @Final
     private static ResourceLocation smallTypesResource;
-
+    @Unique
+    private final int TYPE_ICON_DIAMETER = 36;
+    @Unique
+    private final float SCALE = 0.5F;
     @Shadow
     @Final
     private Number x;

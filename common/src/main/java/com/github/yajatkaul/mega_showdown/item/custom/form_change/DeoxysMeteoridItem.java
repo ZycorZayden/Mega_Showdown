@@ -11,6 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Optional;
 
 public class DeoxysMeteoridItem extends PokemonSelectingBlockItem {
     private final List<String> form_apply_order = List.of("normal-forme", "attack-forme", "speed-forme", "defense-forme");
@@ -51,9 +52,9 @@ public class DeoxysMeteoridItem extends PokemonSelectingBlockItem {
         }
 
         if (currentIndex + 1 > form_apply_order.size() - 1) {
-            Effect.getEffect("mega_showdown:deoxys_effect").applyEffects(pokemon, form_aspect_apply_order.getFirst(), null);
+            Effect.getEffect("mega_showdown:deoxys_effect").applyEffects(pokemon, form_aspect_apply_order.getFirst(), Optional.empty(), null);
         } else {
-            Effect.getEffect("mega_showdown:deoxys_effect").applyEffects(pokemon, form_aspect_apply_order.get(currentIndex + 1), null);
+            Effect.getEffect("mega_showdown:deoxys_effect").applyEffects(pokemon, form_aspect_apply_order.get(currentIndex + 1), Optional.empty(), null);
         }
 
         return InteractionResultHolder.success(itemStack);

@@ -60,13 +60,13 @@ public record FormChangeToggleInteractItem(
             if (currentIndex + 1 > form_apply_order.size() - 1) {
                 ResourceLocation effect = effects.getFirst();
                 if (aspect_conditions.getFirst().validate_apply(pokemon)) {
-                    Effect.getEffect(effect).applyEffects(pokemon, aspect_conditions.getFirst().aspectApply().aspects(), null);
+                    Effect.getEffect(effect).applyEffects(pokemon, aspect_conditions.getFirst().aspectApply().aspects(), aspect_conditions.getFirst().aspectApply().pokemonProperties(), null);
                 }
             } else {
                 int nextIndex = currentIndex + 1;
                 ResourceLocation effect = effects.get(nextIndex);
                 if (aspect_conditions.get(nextIndex).validate_apply(pokemon)) {
-                    Effect.getEffect(effect).applyEffects(pokemon, aspect_conditions.get(nextIndex).aspectApply().aspects(), null);
+                    Effect.getEffect(effect).applyEffects(pokemon, aspect_conditions.get(nextIndex).aspectApply().aspects(), aspect_conditions.get(nextIndex).aspectApply().pokemonProperties(), null);
                 }
             }
             stack.consume(consume, livingEntity);

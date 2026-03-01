@@ -86,7 +86,7 @@ public record SoloFusion(
                 }
 
                 if (aspect_conditions.validate_revert(pokemon)) {
-                    Effect.getEffect(effect.get()).revertEffects(pokemon, aspect_conditions.aspectRevert().aspects(), null);
+                    Effect.getEffect(effect.get()).revertEffects(pokemon, aspect_conditions.aspectRevert().aspects(), aspect_conditions.aspectRevert().pokemonProperties(), null);
                 } else {
                     return InteractionResultHolder.pass(stack);
                 }
@@ -105,7 +105,7 @@ public record SoloFusion(
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown." + namespace + ".inactive"));
             } else if (pokemonStored != null && isMain) {
                 if (aspect_conditions.validate_apply(pokemon)) {
-                    Effect.getEffect(effect.get()).revertEffects(pokemon, aspect_conditions.aspectApply().aspects(), null);
+                    Effect.getEffect(effect.get()).revertEffects(pokemon, aspect_conditions.aspectApply().aspects(), aspect_conditions.aspectApply().pokemonProperties(), null);
                 } else {
                     return InteractionResultHolder.pass(stack);
                 }

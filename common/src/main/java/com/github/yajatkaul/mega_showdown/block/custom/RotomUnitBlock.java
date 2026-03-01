@@ -18,6 +18,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.Optional;
 
 public class RotomUnitBlock extends Block {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
@@ -56,7 +57,7 @@ public class RotomUnitBlock extends Block {
         }
 
         if (entity instanceof PokemonEntity pokemonEntity && pokemonEntity.getPokemon().getSpecies().getName().equals("Rotom") && pokemonEntity.getAspects().stream().noneMatch(rotomAspects::contains)) {
-            Effect.getEffect("mega_showdown:rotom_" + form + "_effect").applyEffects(pokemonEntity.getPokemon(), List.of(String.format("appliance=%s", form)), null);
+            Effect.getEffect("mega_showdown:rotom_" + form + "_effect").applyEffects(pokemonEntity.getPokemon(), List.of(String.format("appliance=%s", form)), Optional.empty(), null);
             level.destroyBlock(pos, false);
             level.levelEvent(2001, pos, Block.getId(state));
         }

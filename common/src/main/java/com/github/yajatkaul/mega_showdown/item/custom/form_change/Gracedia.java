@@ -11,6 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Optional;
 
 public class Gracedia extends PokemonSelectingBlockItem {
     public Gracedia(Block block, Properties properties) {
@@ -28,9 +29,9 @@ public class Gracedia extends PokemonSelectingBlockItem {
         boolean isSkyFormActive = pokemon.getAspects().contains("sky-forme");
 
         if (isDaytime && !isSkyFormActive) {
-            Effect.getEffect("mega_showdown:shaymin_effect").applyEffects(pokemon, List.of("gracidea_forme=sky"), null);
+            Effect.getEffect("mega_showdown:shaymin_effect").applyEffects(pokemon, List.of("gracidea_forme=sky"), Optional.empty(), null);
         } else if (!isDaytime && isSkyFormActive) {
-            Effect.getEffect("mega_showdown:shaymin_effect").applyEffects(pokemon, List.of("gracidea_forme=land"), null);
+            Effect.getEffect("mega_showdown:shaymin_effect").applyEffects(pokemon, List.of("gracidea_forme=land"), Optional.empty(), null);
         }
 
         return InteractionResultHolder.success(itemStack);

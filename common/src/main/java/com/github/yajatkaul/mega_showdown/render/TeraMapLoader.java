@@ -25,12 +25,6 @@ public class TeraMapLoader implements ResourceManagerReloadListener {
     public static final HashMap<String, String> REGISTRY = new HashMap<>();
     private static final String DIRECTORY = "mega_showdown/tera_map";
 
-    public record TeraMap(Map<String, String> colorMap) {
-        public static Codec<TeraMap> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-                Codec.unboundedMap(Codec.STRING, Codec.STRING).fieldOf("aspectShaderMap").forGetter(TeraMap::colorMap)
-        ).apply(instance, TeraMap::new));
-    }
-
     public static void load() {
         ResourceManager rm = Minecraft.getInstance().getResourceManager();
 
@@ -53,22 +47,6 @@ public class TeraMapLoader implements ResourceManagerReloadListener {
         }
 
         MegaShowdown.LOGGER.info("Loaded {} custom tera map", REGISTRY.size());
-    }
-
-    @Override
-    public @NotNull CompletableFuture<Void> reload(PreparationBarrier preparationBarrier, ResourceManager resourceManager, ProfilerFiller profilerFiller, ProfilerFiller profilerFiller2, Executor executor, Executor executor2) {
-        load();
-        return ResourceManagerReloadListener.super.reload(preparationBarrier, resourceManager, profilerFiller, profilerFiller2, executor, executor2);
-    }
-
-    @Override
-    public void onResourceManagerReload(ResourceManager resourceManager) {
-
-    }
-
-    @Override
-    public @NotNull String getName() {
-        return "mega_showdown";
     }
 
     public static ShaderInstance getColorShaderMap(String color) {
@@ -97,5 +75,27 @@ public class TeraMapLoader implements ResourceManagerReloadListener {
                 yield MSDRenderTypes.teraStellar;
             }
         };
+    }
+
+    @Override
+    public @NotNull CompletableFuture<Void> reload(PreparationBarrier preparationBarrier, ResourceManager resourceManager, ProfilerFiller profilerFiller, ProfilerFiller profilerFiller2, Executor executor, Executor executor2) {
+        load();
+        return ResourceManagerReloadListener.super.reload(preparationBarrier, resourceManager, profilerFiller, profilerFiller2, executor, executor2);
+    }
+
+    @Override
+    public void onResourceManagerReload(ResourceManager resourceManager) {
+
+    }
+
+    @Override
+    public @NotNull String getName() {
+        return "mega_showdown";
+    }
+
+    public record TeraMap(Map<String, String> colorMap) {
+        public static Codec<TeraMap> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+                Codec.unboundedMap(Codec.STRING, Codec.STRING).fieldOf("aspectShaderMap").forGetter(TeraMap::colorMap)
+        ).apply(instance, TeraMap::new));
     }
 }

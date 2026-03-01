@@ -42,25 +42,25 @@ public record SnowStormParticle(
             AnimationData.CODEC.optionalFieldOf("animations").forGetter(SnowStormParticle::animations)
     ).apply(instance, SnowStormParticle::new));
 
-    public void apply(PokemonEntity context, List<String> aspects, PokemonEntity other) {
-        processTransformation(context, aspects, other, null, true);
+    public void apply(PokemonEntity context, List<String> aspects, Optional<String> properties, PokemonEntity other) {
+        processTransformation(context, aspects, properties, other, null, true);
     }
 
-    public void revert(PokemonEntity context, List<String> aspects, PokemonEntity other) {
-        processTransformation(context, aspects, other, null, false);
+    public void revert(PokemonEntity context, List<String> aspects, Optional<String> properties, PokemonEntity other) {
+        processTransformation(context, aspects, properties, other, null, false);
     }
 
-    public void applyBattle(PokemonEntity context, List<String> aspects, PokemonEntity other, BattlePokemon battlePokemon, float battle_pause, boolean loop) {
+    public void applyBattle(PokemonEntity context, List<String> aspects, Optional<String> properties, PokemonEntity other, BattlePokemon battlePokemon, float battle_pause, boolean loop) {
         battlePokemon.actor.getBattle().dispatchWaitingToFront(battle_pause, () -> Unit.INSTANCE);
-        processTransformation(context, aspects, other, battlePokemon, true);
+        processTransformation(context, aspects, properties, other, battlePokemon, true);
     }
 
-    public void revertBattle(PokemonEntity context, List<String> aspects, PokemonEntity other, BattlePokemon battlePokemon, float battle_pause) {
+    public void revertBattle(PokemonEntity context, List<String> aspects, Optional<String> properties, PokemonEntity other, BattlePokemon battlePokemon, float battle_pause) {
         battlePokemon.actor.getBattle().dispatchWaitingToFront(battle_pause, () -> Unit.INSTANCE);
-        processTransformation(context, aspects, other, battlePokemon, false);
+        processTransformation(context, aspects, properties, other, battlePokemon, false);
     }
 
-    private void processTransformation(PokemonEntity context, List<String> aspects, PokemonEntity other,
+    private void processTransformation(PokemonEntity context, List<String> aspects, Optional<String> properties, PokemonEntity other,
                                        BattlePokemon battlePokemon, boolean isApply) {
         context.setNoAi(true);
 
@@ -70,6 +70,7 @@ public record SnowStormParticle(
         AspectUtils.appendRevertDataPokemon(
                 Effect.empty(),
                 aspects,
+                properties,
                 context.getPokemon(),
                 "aspects"
         );
@@ -79,11 +80,7 @@ public record SnowStormParticle(
         Optional<List<String>> targetParticles = isApply ? target_apply : target_revert;
         Optional<Float> delay = isApply ? apply_after : revert_after;
 
-        if (particle.isEmpty()) {
-            applyAspectsAndCleanup(context, aspects, pokemonPersistentData, battlePokemon);
-            return;
-        }
-
+        playSound(context, isApply);
         animations.ifPresent(animation -> {
             if (isApply) {
                 animation.applyAnimations(context);
@@ -92,31 +89,33 @@ public record SnowStormParticle(
             }
         });
 
-        ResourceLocation particleId = ResourceLocation.tryParse(particle.get());
-        if (particleId == null) {
-            MegaShowdown.LOGGER.error("Invalid snowstorm {} particle{}",
-                    isApply ? "apply" : "revert",
-                    battlePokemon != null ? " during battle" : "");
-            return;
-        }
+        particle.ifPresentOrElse((particles) -> {
+            ResourceLocation particleId = ResourceLocation.tryParse(particles);
+            if (particleId == null) {
+                MegaShowdown.LOGGER.error("Invalid snowstorm {} particle{}",
+                        isApply ? "apply" : "revert",
+                        battlePokemon != null ? " during battle" : "");
+                return;
+            }
 
-        PokemonBehaviourHelper.Companion.snowStormPartileSpawner(
-                context, particleId, sourceParticles.orElse(null), other, targetParticles.orElse(null)
-        );
-        playSound(context, isApply);
+            PokemonBehaviourHelper.Companion.snowStormPartileSpawner(
+                    context, particleId, sourceParticles.orElse(null), other, targetParticles.orElse(null)
+            );
+        }, () -> applyAspectsAndCleanup(context, aspects, properties, pokemonPersistentData, battlePokemon));
 
         delay.ifPresentOrElse(
                 delayValue -> context.after(delayValue, () -> {
-                    applyAspectsAndCleanup(context, aspects, pokemonPersistentData, battlePokemon);
+                    applyAspectsAndCleanup(context, aspects, properties, pokemonPersistentData, battlePokemon);
                     return Unit.INSTANCE;
                 }),
-                () -> applyAspectsAndCleanup(context, aspects, pokemonPersistentData, battlePokemon)
+                () -> applyAspectsAndCleanup(context, aspects, properties, pokemonPersistentData, battlePokemon)
         );
     }
 
-    private void applyAspectsAndCleanup(PokemonEntity context, List<String> aspects,
+    private void applyAspectsAndCleanup(PokemonEntity context, List<String> aspects, Optional<String> properties,
                                         CompoundTag pokemonPersistentData, BattlePokemon battlePokemon) {
         AspectUtils.applyAspects(context.getPokemon(), aspects);
+        AspectUtils.applyProperties(context.getPokemon(), properties);
 
         if (battlePokemon != null) {
             AspectUtils.updatePackets(battlePokemon);

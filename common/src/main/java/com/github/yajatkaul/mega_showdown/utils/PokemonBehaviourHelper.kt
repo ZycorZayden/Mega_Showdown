@@ -1,6 +1,5 @@
 package com.github.yajatkaul.mega_showdown.utils
 
-import com.cobblemon.mod.common.CobblemonNetwork
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.cobblemon.mod.common.net.messages.client.animation.PlayPosableAnimationPacket
 import com.cobblemon.mod.common.net.messages.client.effect.SpawnSnowstormEntityParticlePacket
@@ -35,9 +34,13 @@ class PokemonBehaviourHelper {
                 targetLocators = target
             )
 
-            CobblemonNetwork.sendToAllPlayers(
-                packet
-            )
+            packet.sendToPlayersAround(
+                entity.x,
+                entity.y,
+                entity.z,
+                64.0,
+                entity.level().dimension()
+            ) { false }
         }
     }
 }

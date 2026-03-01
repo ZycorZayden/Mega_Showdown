@@ -7,6 +7,7 @@ import com.github.yajatkaul.mega_showdown.item.custom.form_change.FormChangeHeld
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 public class ElementalZCrystal extends FormChangeHeldItem {
     private final ElementalType element;
@@ -28,7 +29,7 @@ public class ElementalZCrystal extends FormChangeHeldItem {
     public void apply(Pokemon pokemon) {
         if (pokemons.contains(pokemon.getSpecies().getName())) {
             String element = this.element.getName().toLowerCase(Locale.ROOT);
-            Effect.getEffect("mega_showdown:arceus_" + element).applyEffects(pokemon, List.of(String.format("multitype=%s", element)), null);
+            Effect.getEffect("mega_showdown:arceus_" + element).applyEffects(pokemon, List.of(String.format("multitype=%s", element)), Optional.empty(), null);
             if (!tradable) {
                 pokemon.setTradeable(false);
             }
@@ -39,7 +40,7 @@ public class ElementalZCrystal extends FormChangeHeldItem {
     public void revert(Pokemon pokemon) {
         if (pokemons.contains(pokemon.getSpecies().getName())) {
             String element = this.element.getName().toLowerCase(Locale.ROOT);
-            Effect.getEffect("mega_showdown:arceus_" + element).revertEffects(pokemon, List.of("multitype=normal"), null);
+            Effect.getEffect("mega_showdown:arceus_" + element).revertEffects(pokemon, List.of("multitype=normal"), Optional.empty(), null);
             if (!tradable) {
                 pokemon.setTradeable(true);
             }

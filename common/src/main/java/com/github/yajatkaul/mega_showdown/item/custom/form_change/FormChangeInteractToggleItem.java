@@ -10,6 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Optional;
 
 public class FormChangeInteractToggleItem extends PokemonSelectingItem {
     private final List<String> form_apply_order;
@@ -54,9 +55,9 @@ public class FormChangeInteractToggleItem extends PokemonSelectingItem {
         }
 
         if (currentIndex + 1 > form_apply_order.size() - 1) {
-            Effect.getEffect(effectIds.getFirst()).applyEffects(pokemon, List.of(form_aspect_apply_order.getFirst()), null);
+            Effect.getEffect(effectIds.getFirst()).applyEffects(pokemon, List.of(form_aspect_apply_order.getFirst()), Optional.empty(), null);
         } else {
-            Effect.getEffect(effectIds.get(currentIndex + 1)).applyEffects(pokemon, List.of(form_aspect_apply_order.get(currentIndex + 1)), null);
+            Effect.getEffect(effectIds.get(currentIndex + 1)).applyEffects(pokemon, List.of(form_aspect_apply_order.get(currentIndex + 1)), Optional.empty(), null);
         }
         itemStack.consume(consume, serverPlayer);
 

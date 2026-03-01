@@ -23,7 +23,7 @@ public record HeldItemFormChange(
 
     public void apply(Pokemon pokemon) {
         if (pokemons.contains(pokemon.getSpecies().getName()) && aspect_conditions().validate_apply(pokemon)) {
-            Effect.getEffect(effect.get()).applyEffects(pokemon, aspect_conditions.aspectApply().aspects(), null);
+            Effect.getEffect(effect.get()).applyEffects(pokemon, aspect_conditions.aspectApply().aspects(), aspect_conditions.aspectApply().pokemonProperties(), null);
             if (!tradable) {
                 pokemon.setTradeable(false);
             }
@@ -32,7 +32,7 @@ public record HeldItemFormChange(
 
     public void revert(Pokemon pokemon) {
         if (pokemons.contains(pokemon.getSpecies().getName()) && aspect_conditions().validate_revert(pokemon)) {
-            Effect.getEffect(effect.get()).revertEffects(pokemon, aspect_conditions.aspectRevert().aspects(), null);
+            Effect.getEffect(effect.get()).revertEffects(pokemon, aspect_conditions.aspectRevert().aspects(), aspect_conditions.aspectRevert().pokemonProperties(), null);
             if (!tradable) {
                 pokemon.setTradeable(true);
             }

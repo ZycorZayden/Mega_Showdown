@@ -12,6 +12,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.List;
+import java.util.Optional;
 
 public class UltraGimmick {
     public static void ultraBurstToggle(Pokemon pokemon) {
@@ -30,6 +31,7 @@ public class UltraGimmick {
             AspectUtils.appendRevertDataPokemon(
                     Effect.getEffect("mega_showdown:ultra_burst"),
                     List.of("prism_fusion=dawn"),
+                    Optional.empty(),
                     pokemon,
                     "revert_aspects"
             );
@@ -38,12 +40,13 @@ public class UltraGimmick {
             AspectUtils.appendRevertDataPokemon(
                     Effect.getEffect("mega_showdown:ultra_burst"),
                     List.of("prism_fusion=dusk"),
+                    Optional.empty(),
                     pokemon,
                     "revert_aspects"
             );
         }
 
-        Effect.getEffect("mega_showdown:ultra_burst").applyEffects(pokemon, List.of("prism_fusion=ultra"), null);
+        Effect.getEffect("mega_showdown:ultra_burst").applyEffects(pokemon, List.of("prism_fusion=ultra"), Optional.empty(), null);
         pokemon.setTradeable(false);
     }
 
@@ -51,7 +54,7 @@ public class UltraGimmick {
         String org_form = pokemon.getPersistentData().getString("necrozma_form");
         pokemon.getPersistentData().remove("necrozma_form");
 
-        Effect.getEffect("mega_showdown:ultra_burst").revertEffects(pokemon, List.of(org_form), null);
+        Effect.getEffect("mega_showdown:ultra_burst").revertEffects(pokemon, List.of(org_form), Optional.empty(), null);
         pokemon.setTradeable(true);
     }
 
@@ -60,6 +63,7 @@ public class UltraGimmick {
             AspectUtils.appendRevertDataPokemon(
                     Effect.getEffect("mega_showdown:ultra_burst"),
                     List.of("prism_fusion=dawn"),
+                    Optional.empty(),
                     pokemon,
                     "battle_end_revert"
             );
@@ -67,12 +71,13 @@ public class UltraGimmick {
             AspectUtils.appendRevertDataPokemon(
                     Effect.getEffect("mega_showdown:ultra_burst"),
                     List.of("prism_fusion=dusk"),
+                    Optional.empty(),
                     pokemon,
                     "battle_end_revert"
             );
         }
 
-        Effect.getEffect("mega_showdown:ultra_burst").applyEffectsBattle(pokemon, List.of("prism_fusion=ultra"), null, battlePokemon);
+        Effect.getEffect("mega_showdown:ultra_burst").applyEffectsBattle(pokemon, List.of("prism_fusion=ultra"), Optional.empty(), null, battlePokemon);
     }
 
     public static boolean canUltraBurst(Pokemon pokemon) {

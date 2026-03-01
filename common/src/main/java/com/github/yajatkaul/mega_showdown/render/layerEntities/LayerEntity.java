@@ -10,10 +10,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 
 public class LayerEntity {
+    public final PosableState state;
+    public float ticks;
     protected double animSeconds = 0.0;
     protected long lastTimeNs = -1L;
-    public float ticks;
-    public final PosableState state;
 
     public LayerEntity(PosableState state) {
         this.state = state;

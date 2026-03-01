@@ -6,6 +6,7 @@ import com.github.yajatkaul.mega_showdown.item.custom.ToolTipItem;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 
 public class FormChangeHeldItem extends ToolTipItem {
@@ -33,7 +34,7 @@ public class FormChangeHeldItem extends ToolTipItem {
             if (onApplyCallback != null) {
                 onApplyCallback.accept(pokemon);
             }
-            Effect.getEffect(effectId).applyEffects(pokemon, List.of(applyAspect), null);
+            Effect.getEffect(effectId).applyEffects(pokemon, List.of(applyAspect), Optional.empty(), null);
             if (!tradable) {
                 pokemon.setTradeable(false);
             }
@@ -45,7 +46,7 @@ public class FormChangeHeldItem extends ToolTipItem {
             if (onRevertCallback != null) {
                 onRevertCallback.accept(pokemon);
             }
-            Effect.getEffect(effectId).revertEffects(pokemon, List.of(revertAspect), null);
+            Effect.getEffect(effectId).revertEffects(pokemon, List.of(revertAspect), Optional.empty(), null);
             if (!tradable) {
                 pokemon.setTradeable(true);
             }

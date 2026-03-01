@@ -23,12 +23,12 @@ public record BattleEffect(
         HAZARD,
         WEATHER;
 
+        public static final Codec<BattleEffectType> CODEC =
+                StringRepresentable.fromEnum((BattleEffectType::values));
+
         @Override
         public @NotNull String getSerializedName() {
             return name().toLowerCase();
         }
-
-        public static final Codec<BattleEffectType> CODEC =
-                StringRepresentable.fromEnum((BattleEffectType::values));
     }
 }

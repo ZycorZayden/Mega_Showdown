@@ -18,6 +18,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.List;
+import java.util.Optional;
 
 public record MegaGimmick(
         String showdown_id,
@@ -64,20 +65,22 @@ public record MegaGimmick(
 
         if (megaGimmick != null || pokemon.getSpecies().getName().equals("Rayquaza")) {
             if (pokemon.getSpecies().getName().equals("Rayquaza")) {
-                Effect.getEffect("mega_showdown:mega_evolution").applyEffectsBattle(pokemon, List.of("mega_evolution=mega"), null, battlePokemon);
+                Effect.getEffect("mega_showdown:mega_evolution").applyEffectsBattle(pokemon, List.of("mega_evolution=mega"), Optional.empty(), null, battlePokemon);
 
                 AspectUtils.appendRevertDataPokemon(
                         Effect.getEffect("mega_showdown:mega_evolution"),
                         List.of("mega_evolution=none"),
+                        Optional.empty(),
                         pokemon,
                         "battle_end_revert"
                 );
             } else {
-                Effect.getEffect("mega_showdown:mega_evolution").applyEffectsBattle(pokemon, megaGimmick.aspect_conditions.aspectApply().aspects(), null, battlePokemon);
+                Effect.getEffect("mega_showdown:mega_evolution").applyEffectsBattle(pokemon, megaGimmick.aspect_conditions.aspectApply().aspects(), Optional.empty(), null, battlePokemon);
 
                 AspectUtils.appendRevertDataPokemon(
                         Effect.getEffect("mega_showdown:mega_evolution"),
                         megaGimmick.aspect_conditions.aspectRevert().aspects(),
+                        Optional.empty(),
                         pokemon,
                         "battle_end_revert"
                 );
@@ -102,9 +105,9 @@ public record MegaGimmick(
         MegaGimmick megaGimmick = RegistryLocator.getComponent(MegaGimmick.class, heldItem);
 
         if (pokemon.getSpecies().getName().equals("Rayquaza")) {
-            Effect.getEffect("mega_showdown:mega_evolution").applyEffects(pokemon, List.of("mega_evolution=mega"), null);
+            Effect.getEffect("mega_showdown:mega_evolution").applyEffects(pokemon, List.of("mega_evolution=mega"), Optional.empty(), null);
         } else if (megaGimmick != null) {
-            Effect.getEffect("mega_showdown:mega_evolution").applyEffects(pokemon, megaGimmick.aspect_conditions.aspectApply().aspects(), null);
+            Effect.getEffect("mega_showdown:mega_evolution").applyEffects(pokemon, megaGimmick.aspect_conditions.aspectApply().aspects(), megaGimmick.aspect_conditions.aspectApply().pokemonProperties(), null);
         }
         pokemon.getPersistentData().putBoolean(IS_MEGA_TAG, true);
         pokemon.setTradeable(false);
@@ -112,7 +115,7 @@ public record MegaGimmick(
 
     public static void unmegaEvolve(Pokemon pokemon) {
         pokemon.getPersistentData().remove(IS_MEGA_TAG);
-        Effect.getEffect("mega_showdown:mega_evolution").revertEffects(pokemon, List.of("mega_evolution=none"), null);
+        Effect.getEffect("mega_showdown:mega_evolution").revertEffects(pokemon, List.of("mega_evolution=none"), Optional.empty(), null);
         pokemon.setTradeable(true);
     }
 

@@ -12,6 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Optional;
 
 public class RotomUnitItem extends PokemonSelectingBlockItem {
     private static final List<String> rotomAspects = List.of(
@@ -34,7 +35,7 @@ public class RotomUnitItem extends PokemonSelectingBlockItem {
             return InteractionResultHolder.fail(itemStack);
         }
 
-        Effect.getEffect("mega_showdown:rotom_" + form + "_effect").applyEffects(pokemon, List.of(String.format("appliance=%s", this.form)), null);
+        Effect.getEffect("mega_showdown:rotom_" + form + "_effect").applyEffects(pokemon, List.of(String.format("appliance=%s", this.form)), Optional.empty(), null);
         itemStack.consume(1, serverPlayer);
         AdvancementHelper.grantAdvancement(serverPlayer, "rotom/rotom_form_change");
         return InteractionResultHolder.success(itemStack);

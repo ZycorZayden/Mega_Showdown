@@ -9,6 +9,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 
 import java.util.List;
+import java.util.Optional;
 
 public class SecretSwordMoveSwapHandler {
     public static void handle(SecretSwordMoveSwapPacket packet, NetworkManager.PacketContext context) {
@@ -27,9 +28,9 @@ public class SecretSwordMoveSwapHandler {
                 boolean isResolute = pokemon.getAspects().contains("resolute-form");
 
                 if (!isResolute && hasSecretSword) {
-                    Effect.getEffect("mega_showdown:keldeo_effect").applyEffects(pokemon, List.of("sword_form=resolute"), null);
+                    Effect.getEffect("mega_showdown:keldeo_effect").applyEffects(pokemon, List.of("sword_form=resolute"), Optional.empty(), null);
                 } else if (isResolute && !hasSecretSword) {
-                    Effect.getEffect("mega_showdown:keldeo_effect").revertEffects(pokemon, List.of("sword_form=ordinary"), null);
+                    Effect.getEffect("mega_showdown:keldeo_effect").revertEffects(pokemon, List.of("sword_form=ordinary"), Optional.empty(), null);
                 }
             }
         }

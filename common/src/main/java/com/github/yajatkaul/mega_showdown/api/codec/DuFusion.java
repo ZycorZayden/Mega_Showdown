@@ -100,9 +100,9 @@ public record DuFusion(
 
                 if (pokemons1.contains(pokemonInside.getSpecies().getName()) &&
                         pokemon_1_aspect_conditions.validate_revert(pokemon)) {
-                    Effect.getEffect(effect1.get()).revertEffects(pokemon, pokemon_1_aspect_conditions.aspectRevert().aspects(), null);
+                    Effect.getEffect(effect1.get()).revertEffects(pokemon, pokemon_1_aspect_conditions.aspectRevert().aspects(), pokemon_1_aspect_conditions.aspectRevert().pokemonProperties(), null);
                 } else if (pokemon_2_aspect_conditions.validate_revert(pokemon)) {
-                    Effect.getEffect(effect2.get()).revertEffects(pokemon, pokemon_2_aspect_conditions.aspectRevert().aspects(), null);
+                    Effect.getEffect(effect2.get()).revertEffects(pokemon, pokemon_2_aspect_conditions.aspectRevert().aspects(), pokemon_2_aspect_conditions.aspectRevert().pokemonProperties(), null);
                 } else {
                     return InteractionResultHolder.pass(stack);
                 }
@@ -123,16 +123,16 @@ public record DuFusion(
 
                 if (pokemons1.contains(pokemonStored.getSpecies().getName()) &&
                         pokemon_1_aspect_conditions.validate_apply(pokemon)) {
-                    Effect.getEffect(effect1.get()).applyEffects(pokemon, pokemon_1_aspect_conditions.aspectApply().aspects(), null);
+                    Effect.getEffect(effect1.get()).applyEffects(pokemon, pokemon_1_aspect_conditions.aspectApply().aspects(), pokemon_1_aspect_conditions.aspectApply().pokemonProperties(), null);
                 } else if (pokemon_2_aspect_conditions.validate_apply(pokemon)) {
-                    Effect.getEffect(effect1.get()).applyEffects(pokemon, pokemon_2_aspect_conditions.aspectApply().aspects(), null);
+                    Effect.getEffect(effect2.get()).applyEffects(pokemon, pokemon_2_aspect_conditions.aspectApply().aspects(), pokemon_2_aspect_conditions.aspectApply().pokemonProperties(), null);
                 } else {
                     return InteractionResultHolder.pass(stack);
                 }
 
             } else if (pokemonStored == null &&
-                    pokemons1.contains(pokemon.getSpecies().getName()) ||
-                    pokemons2.contains(pokemon.getSpecies().getName())
+                    (pokemons1.contains(pokemon.getSpecies().getName()) ||
+                    pokemons2.contains(pokemon.getSpecies().getName()))
             ) {
                 stack.set(MegaShowdownDataComponents.POKEMON_STORAGE.get(), pokemonStorge.save(registryAccess, pokemon));
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown." + namespace + ".charged"));
