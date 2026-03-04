@@ -653,5 +653,14 @@
 
   "config.jade.plugin_mega_showdown.jade": "MSD Jade",
   "ui.mega_showdown.idle": "Idle",
-  "ui.mega_showdown.ready": "Ready"
+  "ui.mega_showdown.ready": "Ready",
+
+  "gui.battle.mega_showdown.ability": "Ability",
+  "gui.battle.mega_showdown.ability.temp": "%1$s (%2$s)",
+  "gui.battle.mega_showdown.field.empty": "---",
+  "gui.battle.mega_showdown.field.unknown": "???",
+  "gui.battle.mega_showdown.form": "Form",
+  "gui.battle.mega_showdown.item": "Item",
+  "gui.battle.mega_showdown.move.pp": "%1$s / %2$s",
+  "gui.battle.mega_showdown.moves": "Moves"
 }
