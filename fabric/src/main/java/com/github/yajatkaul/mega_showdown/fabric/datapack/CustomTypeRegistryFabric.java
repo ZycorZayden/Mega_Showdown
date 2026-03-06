@@ -12,6 +12,7 @@ import com.cobblemon.mod.common.util.MiscUtilsKt;
 import com.cobblemon.mod.relocations.graalvm.polyglot.Value;
 import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.datapack.CustomTypeRegistry;
+import com.github.yajatkaul.mega_showdown.mixin.ElementsAccessor;
 import com.github.yajatkaul.mega_showdown.mixin.TeraTypesAccessor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -86,6 +87,7 @@ public class CustomTypeRegistryFabric implements JsonDataRegistry<CustomTypeRegi
                 ));
 
                 CustomTypeRegistry.customTypes.put(newType.getShowdownId(), newType);
+                ElementsAccessor.getTypes().add(newType);
 
                 // Create and register TeraType
                 TeraType newTeraType = new ElementalTypeTeraType(newType);
@@ -98,7 +100,6 @@ public class CustomTypeRegistryFabric implements JsonDataRegistry<CustomTypeRegi
                     }
                     return Unit.INSTANCE;
                 });
-//                Cobblemon.LOGGER.info("Loaded custom type: {} ({})", identifier, typeData.name);
             } catch (Exception e) {
                 Cobblemon.LOGGER.error("Error loading custom type {}: {}", identifier, e.getMessage());
             }

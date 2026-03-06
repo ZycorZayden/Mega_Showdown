@@ -19,6 +19,7 @@
     "minecraft.ItemInHandRendererMixin"
   ],
   "mixins": [
+    "ElementsAccessor",
     "GraalShowdownUnbundlerMixin",
     "MovesAccessor",
     "PlayerPartyStoreMixin",
@@ -37,6 +38,7 @@
     "battle.StartInstructionMixin",
     "client.ui.TypeIconMixin",
     "minecraft.ItemStackMixin",
+    "packet.CobblemonNetworkMixin",
     "packet.MovePartyPokemonToPCHandlerMixin"
   ],
   "injectors": {

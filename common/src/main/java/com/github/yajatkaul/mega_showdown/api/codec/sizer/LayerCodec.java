@@ -3,7 +3,6 @@ package com.github.yajatkaul.mega_showdown.api.codec.sizer;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;

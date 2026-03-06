@@ -16,7 +16,8 @@ public abstract class BattleTargetSelectionMixin {
     @Shadow
     private String gimmickID;
     @Final
-    @Shadow private InBattleMove move;
+    @Shadow
+    private InBattleMove move;
 
     @Redirect(
             method = "<init>",

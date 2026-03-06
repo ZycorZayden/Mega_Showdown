@@ -1,6 +1,7 @@
 package com.github.yajatkaul.mega_showdown.networking.server;
 
 import com.github.yajatkaul.mega_showdown.networking.client.packet.ConfigSyncPacket;
+import com.github.yajatkaul.mega_showdown.networking.client.packet.ElementsSyncPacket;
 import com.github.yajatkaul.mega_showdown.networking.client.packet.InteractionWheelPacket;
 import com.github.yajatkaul.mega_showdown.networking.server.handler.MegaEvoHandler;
 import com.github.yajatkaul.mega_showdown.networking.server.handler.SecretSwordMoveSwapHandler;
@@ -29,6 +30,10 @@ public class MegaShowdownNetworkHandlerServer {
         NetworkManager.registerS2CPayloadType(
                 ConfigSyncPacket.TYPE,
                 ConfigSyncPacket.STREAM_CODEC
+        );
+        NetworkManager.registerS2CPayloadType(
+                ElementsSyncPacket.TYPE,
+                ElementsSyncPacket.STREAM_CODEC
         );
     }
 

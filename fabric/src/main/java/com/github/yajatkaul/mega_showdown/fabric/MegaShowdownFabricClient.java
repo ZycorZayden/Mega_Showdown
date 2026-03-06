@@ -6,6 +6,9 @@ import com.github.yajatkaul.mega_showdown.block.MegaShowdownBlockEntities;
 import com.github.yajatkaul.mega_showdown.block.MegaShowdownBlocks;
 import com.github.yajatkaul.mega_showdown.block.block_entity.renderer.MegaStoneStandRenderer;
 import com.github.yajatkaul.mega_showdown.block.block_entity.renderer.PedestalBlockEntityRenderer;
+import com.github.yajatkaul.mega_showdown.datapack.CustomTypeRegistry;
+import com.github.yajatkaul.mega_showdown.datapack.CustomTypeStatusRegistry;
+import com.github.yajatkaul.mega_showdown.fabric.datapack.CustomTypeRegistryFabric;
 import com.github.yajatkaul.mega_showdown.render.LayerDataLoader;
 import com.github.yajatkaul.mega_showdown.render.ItemRenderingLoader;
 import com.github.yajatkaul.mega_showdown.render.RegisterShaderEvent;
@@ -15,18 +18,21 @@ import com.github.yajatkaul.mega_showdown.screen.MegaShowdownMenuTypes;
 import com.github.yajatkaul.mega_showdown.screen.custom.screen.TeraPouchScreen;
 import com.github.yajatkaul.mega_showdown.screen.custom.screen.ZygardeCubeScreen;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
+import dev.architectury.event.events.common.PlayerEvent;
 import dev.architectury.registry.ReloadListenerRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
+import net.minecraft.server.packs.resources.ResourceManager;
 
 public final class MegaShowdownFabricClient implements ClientModInitializer {
     @Override
