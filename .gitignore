@@ -5,6 +5,6 @@ run
 
 .architectury-transformer
 .kotlin
-generated
 bin
 .env
+.cache

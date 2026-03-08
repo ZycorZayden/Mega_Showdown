@@ -175,7 +175,9 @@
         "tutor:glaciallance",
         "tutor:irondefense",
         "tutor:lashout",
-        "tutor:psychic"
+        "tutor:psychic",
+        "legacy:round",
+        "legacy:snore"
       ],
       "labels": [
         "gen8",
@@ -344,7 +346,10 @@
         "tutor:expandingforce",
         "tutor:gigadrain",
         "tutor:lashout",
-        "tutor:psychic"
+        "tutor:psychic",
+        "legacy:round",
+        "legacy:snore",
+        "legacy:uproar"
       ],
       "labels": [
         "gen8",
@@ -450,7 +455,10 @@
     "tm:zenheadbutt",
     "tutor:expandingforce",
     "tutor:gigadrain",
-    "tutor:psychic"
+    "tutor:psychic",
+    "legacy:round",
+    "legacy:snore",
+    "legacy:uproar"
   ],
   "labels": [
     "gen8",

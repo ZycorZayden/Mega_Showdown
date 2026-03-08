@@ -178,7 +178,17 @@
     "tutor:sleeptalk",
     "tutor:stoneedge",
     "tutor:swift",
-    "tutor:zenheadbutt"
+    "tutor:zenheadbutt",
+    "legacy:confide",
+    "legacy:doubleteam",
+    "legacy:frustration",
+    "legacy:hiddenpower",
+    "legacy:return",
+    "legacy:round",
+    "legacy:secretpower",
+    "legacy:snore",
+    "legacy:swagger",
+    "legacy:toxic"
   ],
   "evolutions": [],
   "forms": [
@@ -361,7 +371,18 @@
         "tutor:sleeptalk",
         "tutor:stoneedge",
         "tutor:swift",
-        "tutor:zenheadbutt"
+        "tutor:zenheadbutt",
+        "legacy:confide",
+        "legacy:doubleteam",
+        "legacy:frustration",
+        "legacy:hiddenpower",
+        "legacy:return",
+        "legacy:round",
+        "legacy:secretpower",
+        "legacy:snore",
+        "legacy:swagger",
+        "legacy:toxic"
+
       ],
       "evolutions": [],
       "battleOnly": false
@@ -545,7 +566,17 @@
         "tutor:sleeptalk",
         "tutor:stoneedge",
         "tutor:swift",
-        "tutor:zenheadbutt"
+        "tutor:zenheadbutt",
+        "legacy:confide",
+        "legacy:doubleteam",
+        "legacy:frustration",
+        "legacy:hiddenpower",
+        "legacy:return",
+        "legacy:round",
+        "legacy:secretpower",
+        "legacy:snore",
+        "legacy:swagger",
+        "legacy:toxic"
       ],
       "evolutions": [],
       "battleOnly": false

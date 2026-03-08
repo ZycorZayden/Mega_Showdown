@@ -19,7 +19,7 @@ public class MegaShowdownConfig {
 
     public static int teraShardRequired = 50;
     public static boolean outSideMega = true;
-    public static boolean outSideUltraBurst = false;
+    public static boolean outSideUltraBurst = true;
     public static boolean multipleMegas = false;
     public static boolean showdownFilesLoading = true;
 

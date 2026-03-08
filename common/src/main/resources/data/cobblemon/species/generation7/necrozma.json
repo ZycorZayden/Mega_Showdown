@@ -6,22 +6,11 @@
   "maleRatio": -1,
   "height": 24,
   "weight": 2300,
-  "pokedex": [
-    "cobblemon.species.necrozma.desc"
-  ],
-  "labels": [
-    "gen7",
-    "legendary",
-    "restricted"
-  ],
+  "pokedex": ["cobblemon.species.necrozma.desc"],
+  "labels": ["gen7", "legendary", "restricted"],
   "aspects": [],
-  "abilities": [
-    "prismarmor",
-    "h:prismarmor"
-  ],
-  "eggGroups": [
-    "undiscovered"
-  ],
+  "abilities": ["prismarmor", "h:prismarmor"],
+  "eggGroups": ["undiscovered"],
   "baseStats": {
     "hp": 97,
     "attack": 107,
@@ -38,6 +27,121 @@
     "special_defence": 0,
     "speed": 0
   },
+  "riding": {
+    "behaviours": {
+      "AIR": {
+        "key": "cobblemon:air/hover",
+        "rideSounds": [
+          {
+            "muffleEnabled": true,
+            "pitchExpr": "math.max(1.0 ,0.2 + math.pow(math.min(q.ride_velocity() / 1.5, 1.0),2))",
+            "playForNonPassengers": false,
+            "playForPassengers": true,
+            "soundLocation": "cobblemon:ride.loop.wind.stereo",
+            "volumeExpr": "math.pow(math.min(q.ride_velocity() / 1.5, 1.0),2)"
+          },
+          {
+            "muffleEnabled": true,
+            "pitchExpr": "math.max(1.0 ,0.2 + math.pow(math.min(q.ride_velocity() / 1.5, 1.0),2))",
+            "playForNonPassengers": true,
+            "playForPassengers": false,
+            "soundLocation": "cobblemon:ride.loop.wind.mono",
+            "volumeExpr": "math.pow(math.min(q.ride_velocity() / 1.5, 1.0),2)"
+          },
+          {
+            "muffleEnabled": true,
+            "pitchExpr": "math.max(1.0 ,0.2 + math.pow(math.min(q.ride_velocity() / 1.5, 1.0),2))",
+            "playForNonPassengers": false,
+            "playForPassengers": true,
+            "soundLocation": "cobblemon:ride.loop.saucer.stereo",
+            "volumeExpr": "math.pow(math.min(q.ride_velocity() / 1.5, 1.0),2)"
+          },
+          {
+            "muffleEnabled": true,
+            "pitchExpr": "math.max(1.0 ,0.2 + math.pow(math.min(q.ride_velocity() / 1.5, 1.0),2))",
+            "playForNonPassengers": true,
+            "playForPassengers": false,
+            "soundLocation": "cobblemon:ride.loop.saucer.mono",
+            "volumeExpr": "math.pow(math.min(q.ride_velocity() / 1.5, 1.0),2)"
+          }
+        ],
+        "stats": {
+          "ACCELERATION": "65-90",
+          "JUMP": "45-65",
+          "SKILL": "41-80",
+          "SPEED": "34-70",
+          "STAMINA": "20-25"
+        }
+      }
+    },
+    "seats": [
+      {
+        "offset": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "poseOffsets": [
+          {
+            "offset": {
+              "x": 0.019022975,
+              "y": -1.2183496,
+              "z": 0.24997671
+            },
+            "poseTypes": ["STAND"]
+          },
+          {
+            "offset": {
+              "x": 0.023236014,
+              "y": -1.2679962,
+              "z": 0.12823626
+            },
+            "poseTypes": ["WALK"]
+          },
+          {
+            "offset": {
+              "x": 0.019022975,
+              "y": -1.2183496,
+              "z": 0.24997671
+            },
+            "poseTypes": ["HOVER"]
+          },
+          {
+            "offset": {
+              "x": 0.023236014,
+              "y": -1.2679962,
+              "z": 0.12823626
+            },
+            "poseTypes": ["FLY"]
+          },
+          {
+            "offset": {
+              "x": 0.019022975,
+              "y": -1.2183496,
+              "z": 0.24997671
+            },
+            "poseTypes": ["FLOAT"]
+          },
+          {
+            "offset": {
+              "x": 0.023236014,
+              "y": -1.2679962,
+              "z": 0.12823626
+            },
+            "poseTypes": ["SWIM"]
+          },
+          {
+            "offset": {
+              "x": 0.019022975,
+              "y": -1.2183496,
+              "z": 0.24997671
+            },
+            "poseTypes": ["GLIDE"]
+          }
+        ]
+      }
+    ]
+  },
   "baseExperienceYield": 300,
   "experienceGroup": "slow",
   "catchRate": 3,
@@ -46,7 +150,7 @@
   "baseScale": 1,
   "hitbox": {
     "width": 3,
-    "height": 3.5,
+    "height": 5,
     "fixed": false
   },
   "moves": [
@@ -173,7 +277,18 @@
     "tutor:swift",
     "tutor:telekinesis",
     "tutor:trick",
-    "tutor:xscissor"
+    "tutor:xscissor",
+    "legacy:breakingswipe",
+    "legacy:confide",
+    "legacy:doubleteam",
+    "legacy:frustration",
+    "legacy:hiddenpower",
+    "legacy:return",
+    "legacy:round",
+    "legacy:snore",
+    "legacy:swagger",
+    "legacy:thunderwave",
+    "legacy:toxic"
   ],
   "evolutions": [],
   "forms": [
@@ -184,23 +299,15 @@
       "maleRatio": -1,
       "height": 38,
       "weight": 4600,
-      "pokedex": [
-        "cobblemon.species.necrozma-duskmane.desc"
-      ],
+      "pokedex": ["cobblemon.species.necrozma-duskmane.desc"],
       "baseScale": 1,
       "hitbox": {
         "width": 4,
         "height": 4,
         "fixed": false
       },
-      "labels": [
-        "gen7",
-        "legendary",
-        "restricted"
-      ],
-      "aspects": [
-        "dusk-fusion"
-      ],
+      "labels": ["gen7", "legendary", "restricted"],
+      "aspects": ["dusk-fusion"],
       "baseStats": {
         "hp": 97,
         "attack": 157,
@@ -356,23 +463,15 @@
       "maleRatio": -1,
       "height": 42,
       "weight": 3500,
-      "pokedex": [
-        "cobblemon.species.necrozma-dawnwings.desc"
-      ],
+      "pokedex": ["cobblemon.species.necrozma-dawnwings.desc"],
       "baseScale": 1,
       "hitbox": {
         "width": 4,
         "height": 5,
         "fixed": false
       },
-      "labels": [
-        "gen7",
-        "legendary",
-        "restricted"
-      ],
-      "aspects": [
-        "dawn-fusion"
-      ],
+      "labels": ["gen7", "legendary", "restricted"],
+      "aspects": ["dawn-fusion"],
       "baseStats": {
         "hp": 97,
         "attack": 113,
@@ -528,25 +627,13 @@
       "maleRatio": -1,
       "height": 75,
       "weight": 2300,
-      "pokedex": [
-        "cobblemon.species.necrozma-ultra.desc"
-      ],
-      "labels": [
-        "gen7",
-        "legendary",
-        "restricted",
-        "ultra_burst"
-      ],
-      "aspects": [
-        "ultra-fusion"
-      ],
-      "abilities": [
-        "neuroforce",
-        "h:neuroforce"
-      ],
+      "pokedex": ["cobblemon.species.necrozma-ultra.desc"],
+      "labels": ["gen7", "legendary", "restricted", "ultra_burst"],
+      "aspects": ["ultra-fusion"],
+      "abilities": ["neuroforce", "h:neuroforce"],
       "hitbox": {
-        "width": 3,
-        "height": 4.45,
+        "width": 5,
+        "height": 12,
         "fixed": false
       },
       "baseStats": {
