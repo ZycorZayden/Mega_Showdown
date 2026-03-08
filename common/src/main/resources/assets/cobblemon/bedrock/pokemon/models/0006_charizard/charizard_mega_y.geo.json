@@ -460,7 +460,6 @@
 					"name": "wing_right_end",
 					"parent": "wing_right_elbow",
 					"pivot": [-30, 39.5, 5.25],
-					"rotation": [0, 0, 22.5],
 					"cubes": [
 						{"origin": [-33.2347, 40.24715, 4.75], "size": [2, 11, 1], "inflate": 0.02, "pivot": [-31.2347, 40.24715, 5.25], "rotation": [0, 0, -135], "uv": [172, 47]},
 						{"origin": [-33.2347, 51.24715, 4.75], "size": [2, 3, 1], "inflate": 0.02, "pivot": [-31.2347, 40.24715, 5.25], "rotation": [0, 0, -135], "uv": [172, 47]}
@@ -478,7 +477,6 @@
 					"name": "wing_right_end_membrane",
 					"parent": "wing_right_end",
 					"pivot": [-30, 39.5, 5.25],
-					"rotation": [0, 0, -22.5],
 					"cubes": [
 						{"origin": [-38, 17.5, 5.25], "size": [8, 22, 0], "inflate": 0.01, "uv": [182, 91], "mirror": true}
 					]
@@ -486,9 +484,9 @@
 				{
 					"name": "wing_right_end_membrane2",
 					"parent": "wing_right_end",
-					"pivot": [-32, 37.5, 5.25],
+					"pivot": [-34, 35.5, 5.25],
 					"cubes": [
-						{"origin": [-40, 15.5, 5.25], "size": [8, 22, 0], "inflate": 0.02, "uv": [182, 91], "mirror": true}
+						{"origin": [-42, 12.5, 5.25], "size": [8, 22, 0], "inflate": 0.03, "uv": [163, 91], "mirror": true}
 					]
 				},
 				{
@@ -608,7 +606,6 @@
 					"name": "wing_left_end",
 					"parent": "wing_left_elbow",
 					"pivot": [30, 39.5, 5.25],
-					"rotation": [0, 0, -22.5],
 					"cubes": [
 						{"origin": [31.2347, 40.24715, 4.75], "size": [2, 11, 1], "inflate": 0.02, "pivot": [31.2347, 40.24715, 5.25], "rotation": [0, 0, 135], "uv": [172, 47], "mirror": true},
 						{"origin": [31.2347, 51.24715, 4.75], "size": [2, 3, 1], "inflate": 0.02, "pivot": [31.2347, 40.24715, 5.25], "rotation": [0, 0, 135], "uv": [172, 47], "mirror": true}
@@ -626,7 +623,6 @@
 					"name": "wing_left_end_membrane",
 					"parent": "wing_left_end",
 					"pivot": [30, 39.5, 5.25],
-					"rotation": [0, 0, 22.5],
 					"cubes": [
 						{"origin": [30, 17.5, 5.25], "size": [8, 22, 0], "inflate": 0.01, "uv": [182, 91]}
 					]
@@ -634,9 +630,9 @@
 				{
 					"name": "wing_left_end_membrane2",
 					"parent": "wing_left_end",
-					"pivot": [32, 37.5, 5.25],
+					"pivot": [34, 35.5, 5.25],
 					"cubes": [
-						{"origin": [32, 15.5, 5.25], "size": [8, 22, 0], "inflate": 0.02, "uv": [182, 91]}
+						{"origin": [34, 12.5, 5.25], "size": [8, 22, 0], "inflate": 0.03, "uv": [163, 91]}
 					]
 				},
 				{

@@ -165,7 +165,8 @@
     "tutor:shadowball",
     "tutor:sleeptalk",
     "tutor:sludgebomb",
-    "tutor:spikes"
+    "legacy:round",
+    "legacy:snore"
   ],
   "evolutions": [],
   "forms": [

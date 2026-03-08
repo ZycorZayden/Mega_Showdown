@@ -3,11 +3,9 @@
   "order": 1,
   "variations": [
     {
-      "aspects": [
-        "mega_y"
-      ],
+      "aspects": ["mega_y"],
       "model": "cobblemon:charizard_mega_y.geo",
-      "texture": "cobblemon:textures/pokemon/0006_charizard/megacharizardy.png",
+      "texture": "cobblemon:textures/pokemon/0006_charizard/charizard_mega_y.png",
       "layers": [
         {
           "name": "flame",
@@ -24,12 +22,9 @@
       ]
     },
     {
-      "aspects": [
-        "mega_y",
-        "shiny"
-      ],
+      "aspects": ["mega_y", "shiny"],
       "model": "cobblemon:charizard_mega_y.geo",
-      "texture": "cobblemon:textures/pokemon/0006_charizard/megacharizardy_shiny.png",
+      "texture": "cobblemon:textures/pokemon/0006_charizard/charizard_mega_y_shiny.png",
       "layers": [
         {
           "name": "flame",
@@ -46,11 +41,9 @@
       ]
     },
     {
-      "aspects": [
-        "mega_y"
-      ],
+      "aspects": ["mega_y"],
       "model": "cobblemon:charizard_mega_y.geo",
-      "texture": "cobblemon:textures/pokemon/0006_charizard/megacharizardy.png",
+      "texture": "cobblemon:textures/pokemon/0006_charizard/charizard_mega_y.png",
       "layers": [
         {
           "name": "flame",
@@ -67,12 +60,9 @@
       ]
     },
     {
-      "aspects": [
-        "mega_y",
-        "shiny"
-      ],
+      "aspects": ["mega_y", "shiny"],
       "model": "cobblemon:charizard_mega_y.geo",
-      "texture": "cobblemon:textures/pokemon/0006_charizard/megacharizardy_shiny.png",
+      "texture": "cobblemon:textures/pokemon/0006_charizard/charizard_mega_y_shiny.png",
       "layers": [
         {
           "name": "flame",
