@@ -130,7 +130,7 @@
             "predicate_type": "minecraft:always_true"
           },
           "output_state": {
-            "Name": "mega_showdown:mega_meteorid_block"
+            "Name": "mega_showdown:mega_meteorid_dusk_ore"
           }
         },
         {
