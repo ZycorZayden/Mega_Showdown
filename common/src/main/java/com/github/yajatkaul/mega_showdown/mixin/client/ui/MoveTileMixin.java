@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(BattleMoveSelection.MoveTile.class)
+@Mixin(value = BattleMoveSelection.MoveTile.class, remap = false)
 public abstract class MoveTileMixin {
     @Shadow
     public abstract boolean isHovered(double mouseX, double mouseY);
