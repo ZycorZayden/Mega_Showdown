@@ -40,6 +40,11 @@ public class MegaShowdownConfig {
 
     public static int minBondingRequired = 200;
 
+    // Battle HUD
+    public static boolean showBattleHUD = true;
+    public static boolean showStatChanges = true;
+    public static boolean showMoveInspector = true;
+
     public static boolean debugMode = false;
 
     private static void save() {
@@ -76,6 +81,9 @@ public class MegaShowdownConfig {
         json.addProperty("outSideUltraBurst", outSideUltraBurst);
         json.addProperty("teraHats", teraHats);
         json.addProperty("legacyTeraEffect", legacyTeraEffect);
+        json.addProperty("showBattleHUD", showBattleHUD);
+        json.addProperty("showStatChanges", showStatChanges);
+        json.addProperty("showMoveTooltips", showMoveInspector);
         json.addProperty("debugMode", debugMode);
         return json;
     }
@@ -145,6 +153,15 @@ public class MegaShowdownConfig {
             }
             if (json.has("legacyTeraEffect")) {
                 legacyTeraEffect = json.get("legacyTeraEffect").getAsBoolean();
+            }
+            if (json.has("showBattleHUD")) {
+                showBattleHUD = json.get("showBattleHUD").getAsBoolean();
+            }
+            if (json.has("showStatChanges")) {
+                showStatChanges = json.get("showStatChanges").getAsBoolean();
+            }
+            if (json.has("showMoveTooltips")) {
+                showMoveInspector = json.get("showMoveTooltips").getAsBoolean();
             }
             if (json.has("debugMode")) {
                 debugMode = json.get("debugMode").getAsBoolean();
