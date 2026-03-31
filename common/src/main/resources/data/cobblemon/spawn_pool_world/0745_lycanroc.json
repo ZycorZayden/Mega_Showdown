@@ -6,6 +6,9 @@
     {
       "id": "lycanroc-1",
       "pokemon": "lycanroc",
+      "presets": [
+        "natural"
+      ],
       "type": "pokemon",
       "spawnablePositionType": "grounded",
       "bucket": "uncommon",

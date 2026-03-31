@@ -6,6 +6,9 @@
     {
       "id": "cherrim-1",
       "pokemon": "cherrim blossom_form=overcast",
+      "presets": [
+        "natural"
+      ],
       "type": "pokemon",
       "spawnablePositionType": "grounded",
       "bucket": "uncommon",
@@ -23,6 +26,9 @@
     {
       "id": "cherrim-2",
       "pokemon": "cherrim blossom_form=sunshine",
+      "presets": [
+        "natural"
+      ],
       "type": "pokemon",
       "spawnablePositionType": "grounded",
       "bucket": "uncommon",

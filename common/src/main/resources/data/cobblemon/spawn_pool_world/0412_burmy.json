@@ -7,6 +7,9 @@
       "id": "burmy-1",
       "pokemon": "burmy bagworm_cloak=plant",
       "type": "pokemon",
+      "presets": [
+        "natural"
+      ],
       "spawnablePositionType": "grounded",
       "bucket": "common",
       "level": "17-19",
@@ -20,6 +23,9 @@
     {
       "id": "burmy-2",
       "pokemon": "burmy bagworm_cloak=plant",
+      "presets": [
+        "natural"
+      ],
       "type": "pokemon",
       "spawnablePositionType": "grounded",
       "bucket": "common",

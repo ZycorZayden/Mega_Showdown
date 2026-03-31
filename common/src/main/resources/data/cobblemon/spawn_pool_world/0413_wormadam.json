@@ -6,6 +6,9 @@
     {
       "id": "wormadam-1",
       "pokemon": "wormadam bagworm_cloak=plant",
+      "presets": [
+        "natural"
+      ],
       "type": "pokemon",
       "spawnablePositionType": "grounded",
       "bucket": "uncommon",
@@ -20,6 +23,9 @@
     {
       "id": "wormadam-2",
       "pokemon": "wormadam bagworm_cloak=plant",
+      "presets": [
+        "natural"
+      ],
       "type": "pokemon",
       "spawnablePositionType": "grounded",
       "bucket": "uncommon",

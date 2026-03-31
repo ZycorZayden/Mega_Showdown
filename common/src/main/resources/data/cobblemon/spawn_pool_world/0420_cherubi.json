@@ -6,6 +6,9 @@
     {
       "id": "cherubi-1",
       "pokemon": "cherubi",
+      "presets": [
+        "natural"
+      ],
       "type": "pokemon",
       "spawnablePositionType": "grounded",
       "bucket": "common",
