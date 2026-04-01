@@ -1,0 +1,18 @@
+{
+  "species": "cobblemon:garbodor",
+  "order": 1,
+  "variations": [
+    {
+      "aspects": ["gmax"],
+      "poser": "cobblemon:gmaxgarbodor",
+      "model": "cobblemon:gmax_garbodor.geo",
+      "texture": "cobblemon:textures/pokemon/0569_garbodor/gmax_garbodor.png",
+      "layers": []
+    },
+    {
+      "aspects": ["gmax", "shiny"],
+      "texture": "cobblemon:textures/pokemon/0569_garbodor/gmax_garbodor_shiny.png",
+      "layers": []
+    }
+  ]
+}

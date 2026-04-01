@@ -1,0 +1,19 @@
+{
+  "portraitScale": 1.0,
+  "portraitTranslation": [0.0, 0.0, 0],
+  "profileScale": 0.85,
+  "profileTranslation": [0.0, 0.0, 0],
+  "rootBone": "garbodor",
+  "poses": {
+    "standing": {
+      "poseName": "standing",
+      "poseTypes": ["STAND", "NONE", "PORTRAIT", "PROFILE", "FLOAT"],
+      "animations": ["q.bedrock('gmaxgarbodor', 'ground_idle')"]
+    },
+    "walking": {
+      "poseName": "walking",
+      "poseTypes": ["WALK", "SWIM"],
+      "animations": ["q.bedrock('gmaxgarbodor', 'ground_idle')"]
+    }
+  }
+}

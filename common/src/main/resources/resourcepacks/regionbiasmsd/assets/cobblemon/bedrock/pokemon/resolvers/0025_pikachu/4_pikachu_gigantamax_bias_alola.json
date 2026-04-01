@@ -1,12 +1,12 @@
 {
   "species": "cobblemon:pikachu",
-  "order": 2,
+  "order": 4,
   "variations": [
     {
-      "aspects": ["gmax"],
+      "aspects": ["gmax", "region-bias-alola"],
       "poser": "cobblemon:pikachu_gigantamax",
       "model": "cobblemon:pikachu_gigantamax.geo",
-      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_gigantamax.png",
+      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_gigantamax_bias_alola.png",
       "layers": [
         {
           "name": "emissive",
@@ -16,10 +16,10 @@
       ]
     },
     {
-      "aspects": ["gmax", "shiny"],
+      "aspects": ["gmax", "shiny", "region-bias-alola"],
       "poser": "cobblemon:pikachu_gigantamax",
       "model": "cobblemon:pikachu_gigantamax.geo",
-      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_gigantamax_shiny.png",
+      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_gigantamax_shiny_bias_alola.png",
       "layers": [
         {
           "name": "emissive",

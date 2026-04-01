@@ -1,0 +1,22 @@
+{
+  "portraitScale": 1.0,
+  "portraitTranslation": [0.0, 0.0, 0],
+  "profileScale": 0.85,
+  "profileTranslation": [0.0, 0.0, 0],
+  "rootBone": "gmax_duraludon",
+  "poses": {
+    "standing": {
+      "poseName": "standing",
+      "poseTypes": ["STAND", "NONE", "PORTRAIT", "PROFILE", "FLOAT"],
+      "transformTicks": 10,
+      "condition": "!q.in_battle",
+      "animations": ["q.bedrock('gmaxduraludon', 'ground_idle')"]
+    },
+    "walking": {
+      "poseName": "walking",
+      "poseTypes": ["WALK", "SWIM"],
+      "transformTicks": 10,
+      "animations": ["q.bedrock('gmaxduraludon', 'ground_walk')"]
+    }
+  }
+}
