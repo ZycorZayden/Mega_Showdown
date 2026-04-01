@@ -16,26 +16,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Locale;
 
 public class GlowHandler {
-    private static final float[] WHITE = {1.0f, 1.0f, 1.0f, 1.0f};
-    private static final float[] FIRE = {1.0f, 0.30f, 0.20f, 1.0f};
-    private static final float[] WATER = {0.30f, 0.60f, 1.00f, 1.0f};
-    private static final float[] GRASS = {0.30f, 1.00f, 0.40f, 1.0f};
-    private static final float[] ELECTRIC = {1.00f, 1.00f, 0.30f, 1.0f};
-    private static final float[] ICE = {0.60f, 0.90f, 1.00f, 1.0f};
-    private static final float[] FIGHTING = {0.80f, 0.30f, 0.20f, 1.0f};
-    private static final float[] POISON = {0.70f, 0.30f, 0.80f, 1.0f};
-    private static final float[] GROUND = {0.80f, 0.65f, 0.40f, 1.0f};
-    private static final float[] FLYING = {0.70f, 0.70f, 1.00f, 1.0f};
-    private static final float[] PSYCHIC = {1.00f, 0.40f, 0.70f, 1.0f};
-    private static final float[] BUG = {0.60f, 0.80f, 0.20f, 1.0f};
-    private static final float[] ROCK = {0.70f, 0.60f, 0.40f, 1.0f};
-    private static final float[] GHOST = {0.60f, 0.50f, 0.90f, 1.0f};
-    private static final float[] DRAGON = {0.50f, 0.40f, 1.00f, 1.0f};
-    private static final float[] DARK = {0.30f, 0.30f, 0.30f, 1.0f};
-    private static final float[] STEEL = {0.70f, 0.75f, 0.80f, 1.0f};
-    private static final float[] FAIRY = {1.00f, 0.60f, 0.90f, 1.0f};
-    private static final float[] NORMAL = {0.90f, 0.90f, 0.90f, 1.0f};
-
     public static void applyDynamaxGlow(@Nullable PokemonEntity pokemonEntity) {
         if (pokemonEntity == null) return;
 
@@ -80,10 +60,12 @@ public class GlowHandler {
             PlayerTeam team = scoreboard.getPlayerTeam(teamName);
 
             ChatFormatting color = getFormattingForColor(aspect);
+
             if (team == null) {
                 team = scoreboard.addPlayerTeam(teamName);
-                team.setColor(color);
             }
+
+            team.setColor(color);
 
             scoreboard.addPlayerToTeam(pokemonEntity.getScoreboardName(), team);
         }
@@ -93,21 +75,24 @@ public class GlowHandler {
         if (pokemon.level() instanceof ServerLevel serverLevel) {
             pokemon.setGlowingTag(true);
             ServerScoreboard scoreboard = serverLevel.getScoreboard();
+
             String teamName = "glow_type_" + zCrystal.color().toLowerCase(Locale.ROOT);
+            ChatFormatting color = getGlowForColor(zCrystal.color());
 
             PlayerTeam team = scoreboard.getPlayerTeam(teamName);
 
-            ChatFormatting color = getGlowForColor(zCrystal.color());
             if (team == null) {
                 team = scoreboard.addPlayerTeam(teamName);
-                team.setColor(color);
             }
+
+            team.setColor(color);
 
             scoreboard.addPlayerToTeam(pokemon.getScoreboardName(), team);
 
+            PlayerTeam finalTeam = team;
             pokemon.after(7f, () -> {
                 pokemon.setGlowingTag(false);
-                scoreboard.removePlayerFromTeam(pokemon.getScoreboardName());
+                scoreboard.removePlayerFromTeam(pokemon.getScoreboardName(), finalTeam);
                 return Unit.INSTANCE;
             });
         }
@@ -152,34 +137,6 @@ public class GlowHandler {
             case "light_purple" -> ChatFormatting.LIGHT_PURPLE;
             case "yellow" -> ChatFormatting.YELLOW;
             default -> ChatFormatting.WHITE;
-        };
-    }
-
-    public static float[] getTeraColor(String teraId) {
-        if (teraId == null) {
-            return WHITE;
-        }
-
-        return switch (teraId) {
-            case "msd:tera_fire" -> FIRE;
-            case "msd:tera_water" -> WATER;
-            case "msd:tera_grass" -> GRASS;
-            case "msd:tera_electric" -> ELECTRIC;
-            case "msd:tera_ice" -> ICE;
-            case "msd:tera_fighting" -> FIGHTING;
-            case "msd:tera_poison" -> POISON;
-            case "msd:tera_ground" -> GROUND;
-            case "msd:tera_flying" -> FLYING;
-            case "msd:tera_psychic" -> PSYCHIC;
-            case "msd:tera_bug" -> BUG;
-            case "msd:tera_rock" -> ROCK;
-            case "msd:tera_ghost" -> GHOST;
-            case "msd:tera_dragon" -> DRAGON;
-            case "msd:tera_dark" -> DARK;
-            case "msd:tera_steel" -> STEEL;
-            case "msd:tera_fairy" -> FAIRY;
-            case "msd:tera_normal" -> NORMAL;
-            default -> WHITE;
         };
     }
 }
