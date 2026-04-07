@@ -21,4 +21,6 @@ dependencies {
 
     modCompileOnly "io.wispforest:accessories-common:${project.accessories_version}"
     modCompileOnly "com.cobblemon:mod:${project.cobblemon_version}"
+
+    modCompileOnly "maven.modrinth:jade:${project.jade_version_fabric}"
 }

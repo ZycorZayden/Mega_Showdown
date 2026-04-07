@@ -219,7 +219,7 @@ public class CobbleEvents {
             });
             if (pokemon.getEntity() != null) {
                 if (MegaShowdownConfig.legacyTeraEffect) {
-                    pokemon.getEntity().removeEffect(MobEffects.GLOWING);
+                    pokemon.getEntity().setGlowingTag(false);
                 }
             }
             pokemon.getPersistentData().remove("is_tera");
@@ -372,6 +372,9 @@ public class CobbleEvents {
     }
 
     private static void hookBattleStarted(BattleStartedEvent.Post event) {
+        if (MegaShowdownConfig.debugMode) {
+            event.getBattle().setMute(false);
+        }
         event.getBattle().getOnEndHandlers().add((battle -> {
             battle.getPlayers().forEach(AspectUtils::revertPokemonsIfRequiredBattleEnd);
             return Unit.INSTANCE;

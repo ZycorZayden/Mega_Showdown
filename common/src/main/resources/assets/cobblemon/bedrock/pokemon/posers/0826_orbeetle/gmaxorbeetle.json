@@ -1,0 +1,29 @@
+{
+  "portraitScale": 1.0,
+  "portraitTranslation": [0.0, 0.0, 0],
+  "profileScale": 0.85,
+  "profileTranslation": [0.0, 0.0, 0],
+  "rootBone": "gmax_orbeetle",
+  "poses": {
+    "standing": {
+      "poseName": "standing",
+      "poseTypes": ["STAND", "FLOAT", "HOVER", "PROFILE", "PORTRAIT"],
+      "transformTicks": 10,
+      "condition": "!q.in_battle",
+      "animations": ["q.bedrock('gmaxorbeetle', 'ground_idle')"]
+    },
+    "walking": {
+      "poseName": "walking",
+      "poseTypes": ["WALK", "SWIM", "FLY"],
+      "transformTicks": 10,
+      "animations": ["q.bedrock('gmaxorbeetle', 'ground_walk')"]
+    },
+    "battle_idle": {
+      "poseName": "battle_idle",
+      "poseTypes": ["STAND", "FLOAT", "HOVER"],
+      "transformTicks": 10,
+      "condition": "q.in_battle",
+      "animations": ["q.bedrock('gmaxorbeetle', 'ground_walk')"]
+    }
+  }
+}

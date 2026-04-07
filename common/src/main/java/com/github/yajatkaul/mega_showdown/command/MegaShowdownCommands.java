@@ -2,11 +2,17 @@ package com.github.yajatkaul.mega_showdown.command;
 
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.pokemon.feature.SpeciesFeatureAssignments;
+import com.cobblemon.mod.common.api.storage.PokemonStore;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
+import com.cobblemon.mod.common.api.storage.pc.PCStore;
+import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.cobblemon.mod.common.pokemon.properties.UnaspectPropertyType;
+import com.github.yajatkaul.mega_showdown.api.codec.Effect;
 import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.github.yajatkaul.mega_showdown.datapack.MegaShowdownDatapackRegister;
+import com.github.yajatkaul.mega_showdown.gimmick.MaxGimmick;
 import com.github.yajatkaul.mega_showdown.gimmick.MegaGimmick;
 import com.github.yajatkaul.mega_showdown.utils.RegistryLocator;
 import com.mojang.brigadier.CommandDispatcher;
@@ -16,8 +22,13 @@ import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.ServerScoreboard;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
+
+import java.util.List;
+import java.util.Optional;
 
 import static net.minecraft.commands.Commands.argument;
 import static net.minecraft.commands.Commands.literal;
@@ -25,8 +36,8 @@ import static net.minecraft.commands.Commands.literal;
 public class MegaShowdownCommands {
     public static void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext context, Commands.CommandSelection environment) {
         dispatcher.register(literal("msd")
-                .then(literal("hard_reset_mega")
-                        .executes(MegaShowdownCommands::hard_reset_mega))
+                .then(literal("hard_reset")
+                        .executes(MegaShowdownCommands::hard_reset))
                 .then(literal("reload")
                         .requires(req -> req.hasPermission(4))
                         .executes(MegaShowdownCommands::reload))
@@ -100,23 +111,69 @@ public class MegaShowdownCommands {
         return 1;
     }
 
-    private static int hard_reset_mega(CommandContext<CommandSourceStack> context) {
+    private static int hard_reset(CommandContext<CommandSourceStack> context) {
         ServerPlayer player = context.getSource().getPlayer();
         if (player == null) {
             return 0;
         }
 
         PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
+        reset(playerPartyStore);
+        PCStore pcStore = Cobblemon.INSTANCE.getStorage().getPC(player);
+        reset(pcStore);
 
-        for (Pokemon pokemon : playerPartyStore) {
+        return 1;
+    }
+
+    private static void reset(PokemonStore<?> pokemonStore) {
+        for (Pokemon pokemon : pokemonStore) {
             boolean hasMega = SpeciesFeatureAssignments.getFeatures(pokemon.getSpecies()).stream()
                     .anyMatch(pokemon.getAspects()::contains);
             if (hasMega) {
                 MegaGimmick.unmegaEvolve(pokemon);
             }
-        }
 
-        return 1;
+            if (pokemon.getAspects().contains("gmax")) {
+                Effect.getEffect("mega_showdown:dynamax").revertEffects(pokemon, List.of("dynamax_form=none"), Optional.empty(), null);
+
+                if (pokemon.getEntity() != null) {
+                    MaxGimmick.startGradualScalingDown(pokemon);
+                } else {
+                    float targetScale = pokemon.getPersistentData().getFloat("orignal_size");
+                    if (targetScale != 0) {
+                        pokemon.setScaleModifier(targetScale);
+                    }
+                }
+            } else if (pokemon.getAspects().contains("msd:dmax")){
+                UnaspectPropertyType.INSTANCE.fromString("msd:dmax").apply(pokemon);
+                Effect.getEffect("mega_showdown:dynamax").revertEffects(pokemon, List.of(), Optional.empty(), null);
+
+                if (pokemon.getEntity() != null) {
+                    MaxGimmick.startGradualScalingDown(pokemon);
+                } else {
+                    float targetScale = pokemon.getPersistentData().getFloat("orignal_size");
+                    if (targetScale != 0) {
+                        pokemon.setScaleModifier(targetScale);
+                    }
+                }
+            }
+
+            if (pokemon.getAspects().stream().anyMatch((a -> a.startsWith("msd:tera_")))) {
+                pokemon.getAspects().stream().filter(a -> a.startsWith("msd:tera_")).forEach(name -> {
+                    UnaspectPropertyType.INSTANCE.fromString(name).apply(pokemon);
+                });
+                UnaspectPropertyType.INSTANCE.fromString("play_tera").apply(pokemon);
+                if (pokemon.getEntity() instanceof PokemonEntity pokemonEntity) {
+                    if (MegaShowdownConfig.legacyTeraEffect) {
+                        pokemon.getEntity().setGlowingTag(false);
+                        if (pokemonEntity.level() instanceof ServerLevel serverLevel) {
+                            ServerScoreboard scoreboard = serverLevel.getScoreboard();
+                            scoreboard.removePlayerFromTeam(pokemonEntity.getScoreboardName());
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private static int applyComponent(CommandContext<CommandSourceStack> context) {

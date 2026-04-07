@@ -1,0 +1,83 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.gmaxduraludon.ground_idle": {
+      "loop": true,
+      "bones": {
+        "torso": {
+          "rotation": ["-0-math.sin(query.anim_time*90*1-120)*1", 0, 0]
+        },
+        "arm_left2": {
+          "rotation": [
+            "-0-math.sin(query.anim_time*90*1-120)*-5",
+            45,
+            "00+math.cos(query.anim_time*90*1-120)*-5"
+          ]
+        },
+        "hand_left": {
+          "rotation": [
+            "-0-math.cos(query.anim_time*90*1-120)*-5",
+            "-0-math.sin(query.anim_time*90*1-120)*-5",
+            "0+math.sin(query.anim_time*90*1-120)*-5"
+          ]
+        },
+        "arm_right2": {
+          "rotation": [
+            "-0-math.sin(query.anim_time*90*1-120)*5",
+            -45,
+            "0+math.cos(query.anim_time*90*1-120)*5"
+          ]
+        },
+        "hand_right": {
+          "rotation": [
+            "-0-math.cos(query.anim_time*90*1-120)*5",
+            "-0-math.sin(query.anim_time*90*1-120)*5",
+            "0+math.sin(query.anim_time*90*1-120)*5"
+          ]
+        },
+        "swirlies": {
+          "rotation": [0, "-0-math.sin(query.anim_time*90*0.0001-120)*90000", 0]
+        }
+      }
+    },
+    "animation.gmaxduraludon.ground_walk": {
+      "loop": true,
+      "bones": {
+        "torso": {
+          "rotation": [0, 0, "0+math.sin(query.anim_time*90*1-120)*5"]
+        },
+        "arm_left": {
+          "rotation": [0, 20, 0]
+        },
+        "arm_left2": {
+          "rotation": [0, 25, 0]
+        },
+        "leg_left": {
+          "rotation": ["-0-math.cos(query.anim_time*90*1-120)*15", 0, 0],
+          "position": [
+            0,
+            "0+math.sin(query.anim_time*150*1-120)*0.5",
+            "0+math.sin(query.anim_time*150*1-120)*0.5"
+          ]
+        },
+        "leg_right": {
+          "rotation": ["-0-math.cos(query.anim_time*90*1-120)*-15", 0, 0],
+          "position": [
+            0,
+            "0+math.sin(query.anim_time*150*1-120)*1",
+            "0+math.cos(query.anim_time*150*1-120)*1"
+          ]
+        },
+        "arm_right": {
+          "rotation": [0, -20, 0]
+        },
+        "arm_right2": {
+          "rotation": [0, -25, 0]
+        },
+        "swirlies": {
+          "rotation": [0, "-0-math.sin(query.anim_time*90*0.0001-120)*90000", 0]
+        }
+      }
+    }
+  }
+}

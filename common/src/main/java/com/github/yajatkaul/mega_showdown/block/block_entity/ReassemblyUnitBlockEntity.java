@@ -132,4 +132,18 @@ public class ReassemblyUnitBlockEntity extends BlockEntity {
             return name().toLowerCase(Locale.ROOT);
         }
     }
+
+    public int getCookTime() {
+        return cookTime;
+    }
+
+    public int getMaxCookTime() {
+        return maxCookTime;
+    }
+
+    public int getState() {
+        if (isIdle()) return 0;
+        else if (isCooking()) return 1;
+        else return 2;
+    }
 }

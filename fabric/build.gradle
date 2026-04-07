@@ -36,6 +36,8 @@ dependencies {
 
     modImplementation "io.wispforest:accessories-fabric:${project.accessories_version}"
     modImplementation "com.cobblemon:fabric:${project.cobblemon_version}"
+
+    modImplementation "maven.modrinth:jade:${project.jade_version_fabric}"
 }
 
 processResources {

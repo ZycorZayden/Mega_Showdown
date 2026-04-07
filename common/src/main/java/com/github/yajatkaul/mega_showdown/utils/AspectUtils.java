@@ -3,12 +3,14 @@ package com.github.yajatkaul.mega_showdown.utils;
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.api.battles.model.actor.ActorType;
+import com.cobblemon.mod.common.api.moves.*;
 import com.cobblemon.mod.common.api.pokemon.PokemonProperties;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.battles.ActiveBattlePokemon;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
+import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleTransformPokemonPacket;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdatePacket;
@@ -21,14 +23,20 @@ import com.github.yajatkaul.mega_showdown.gimmick.MegaGimmick;
 import com.github.yajatkaul.mega_showdown.tag.MegaShowdownTags;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import kotlin.Unit;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.nbt.Tag;
+import net.minecraft.server.ServerScoreboard;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.effect.MobEffects;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.levelgen.structure.Structure;
 
 import java.util.*;
+import java.util.stream.StreamSupport;
 
 public class AspectUtils {
     public static final Set<UUID> battleDisconnecter = new HashSet<>();
@@ -42,6 +50,7 @@ public class AspectUtils {
                 new StringSpeciesFeature(aspect_split[0], aspect_split[1]).apply(pokemon);
             }
         }
+        cleanMoveset(pokemon);
     }
 
     public static void applyProperties(Pokemon pokemon, Optional<String> propertyString) {
@@ -50,6 +59,60 @@ public class AspectUtils {
                     properties.apply(pokemon);
                 }
         );
+        cleanMoveset(pokemon);
+    }
+
+    private static void cleanMoveset(Pokemon pokemon) {
+        MoveSet moveSet = pokemon.getMoveSet();
+        BenchedMoves benchedMoves = pokemon.getBenchedMoves();
+        if (moveSet.getMoves()
+                .stream()
+                .anyMatch(m -> m.getName().equals("sketch"))) {
+            return;
+        }
+
+        if (StreamSupport.stream(benchedMoves.spliterator(), false)
+                .anyMatch(m -> m.getMoveTemplate().getName().equals("sketch"))) {
+            return;
+        }
+
+        moveSet.doWithoutEmitting(() -> {
+            for (int i = 0; i < MoveSet.MOVE_COUNT; i++) {
+                Move move = moveSet.get(i);
+                if (move == null) continue;
+
+                MoveTemplate template = move.getTemplate();
+                boolean isLegal = pokemon.getForm().getMoves().getAllLegalMoves().stream()
+                        .anyMatch(m -> m.getName().equals(template.getName()));
+                boolean isLegacy = pokemon.getForm().getMoves().getLegacyMoves().stream()
+                        .anyMatch(m -> m.getName().equals(template.getName()));
+
+                if (!isLegal && !isLegacy) {
+                    moveSet.setMove(i, null);
+                }
+            }
+            return Unit.INSTANCE;
+        });
+        moveSet.update();
+
+        benchedMoves.doWithoutEmitting(() -> {
+            Iterator<BenchedMove> iterator = benchedMoves.iterator();
+            while (iterator.hasNext()) {
+                BenchedMove benchedMove = iterator.next();
+                MoveTemplate template = benchedMove.getMoveTemplate();
+
+                boolean isLegal = pokemon.getForm().getMoves().getAllLegalMoves().stream()
+                        .anyMatch(m -> m.getName().equals(template.getName()));
+                boolean isLegacy = pokemon.getForm().getMoves().getLegacyMoves().stream()
+                        .anyMatch(m -> m.getName().equals(template.getName()));
+
+                if (!isLegal && !isLegacy) {
+                    iterator.remove();
+                }
+            }
+            return Unit.INSTANCE;
+        });
+        benchedMoves.update();
     }
 
     public static void appendRevertDataPokemon(Effect effect, List<String> aspects, Optional<String> properties, Pokemon pokemon, String tagName) {
@@ -95,16 +158,29 @@ public class AspectUtils {
             if (pokemon.getSpecies().getName().equals("Burmy")) {
                 Holder<Biome> biomeHolder = player.serverLevel().getBiome(player.blockPosition());
 
-                boolean isSandy = biomeHolder.is(MegaShowdownTags.Biomes.sandyKey);
-                boolean isForest = biomeHolder.is(MegaShowdownTags.Biomes.forestKey);
-                boolean isTrash = biomeHolder.is(MegaShowdownTags.Biomes.trashKey);
+                ServerLevel serverLevel = (ServerLevel) player.level();
+                boolean isTrash = serverLevel.structureManager()
+                        .getStructureWithPieceAt(player.blockPosition(), MegaShowdownTags.Biomes.VILLAGE)
+                        .isValid();
 
-                if (isForest) {
+
+                boolean isPlant = false;
+                boolean isSandy = false;
+
+                if (!isTrash) {
+                    isSandy = MegaShowdownTags.Biomes.SANDY_BIOMES
+                            .stream().anyMatch(biomeHolder::is);
+
+                    isPlant = MegaShowdownTags.Biomes.PLANT_BIOMES
+                            .stream().anyMatch(biomeHolder::is);
+                }
+
+                if (isTrash) {
+                    new StringSpeciesFeature("bagworm_cloak", "trash").apply(pokemon);
+                } else if (isPlant) {
                     new StringSpeciesFeature("bagworm_cloak", "plant").apply(pokemon);
                 } else if (isSandy) {
                     new StringSpeciesFeature("bagworm_cloak", "sandy").apply(pokemon);
-                } else if (isTrash) {
-                    new StringSpeciesFeature("bagworm_cloak", "trash").apply(pokemon);
                 }
             }
         }
@@ -174,9 +250,13 @@ public class AspectUtils {
                 UnaspectPropertyType.INSTANCE.fromString(name).apply(pokemon);
             });
             UnaspectPropertyType.INSTANCE.fromString("play_tera").apply(pokemon);
-            if (pokemon.getEntity() != null) {
+            if (pokemon.getEntity() instanceof PokemonEntity pokemonEntity) {
                 if (MegaShowdownConfig.legacyTeraEffect) {
-                    pokemon.getEntity().removeEffect(MobEffects.GLOWING);
+                    pokemon.getEntity().setGlowingTag(false);
+                    if (pokemonEntity.level() instanceof ServerLevel serverLevel) {
+                        ServerScoreboard scoreboard = serverLevel.getScoreboard();
+                        scoreboard.removePlayerFromTeam(pokemonEntity.getScoreboardName());
+                    }
                 }
             }
             pokemon.getPersistentData().remove("is_tera");

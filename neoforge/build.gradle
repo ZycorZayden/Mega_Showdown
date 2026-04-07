@@ -61,6 +61,8 @@ dependencies {
     forgeRuntimeLibrary("io.wispforest.endec:netty:0.1.2")
 
     modImplementation "com.cobblemon:neoforge:${project.cobblemon_version}"
+
+    modImplementation "maven.modrinth:jade:${project.jade_version_neo}"
 }
 
 processResources {

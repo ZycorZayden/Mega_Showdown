@@ -4,6 +4,7 @@ import com.cobblemon.mod.common.CobblemonNetwork;
 import com.cobblemon.mod.common.api.net.NetworkPacket;
 import com.cobblemon.mod.common.api.types.ElementalType;
 import com.cobblemon.mod.common.net.messages.client.data.MovesRegistrySyncPacket;
+import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.api.codec.ElementMSD;
 import com.github.yajatkaul.mega_showdown.datapack.CustomTypeRegistry;
 import com.github.yajatkaul.mega_showdown.networking.client.packet.ElementsSyncPacket;
@@ -16,7 +17,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(CobblemonNetwork.class)
 public class CobblemonNetworkMixin {
-
     @Inject(
             method = "sendPacketToPlayer",
             at = @At("HEAD")

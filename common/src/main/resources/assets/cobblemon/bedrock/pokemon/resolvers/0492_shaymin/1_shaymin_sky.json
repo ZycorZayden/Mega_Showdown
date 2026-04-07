@@ -6,11 +6,13 @@
       "aspects": ["sky-forme"],
       "poser": "cobblemon:shaymin_sky",
       "model": "cobblemon:shaymin_sky.geo",
-      "texture": "cobblemon:textures/pokemon/0492_shaymin/shaymin_sky.png",
-      "layers": []
+      "texture": "cobblemon:textures/pokemon/0492_shaymin/shaymin_sky.png"
     },
     {
-      "aspects": ["sky-forme", "shiny"],
+      "aspects": [
+        "shiny",
+        "sky-forme"
+      ],
       "texture": "cobblemon:textures/pokemon/0492_shaymin/shaymin_sky_shiny.png"
     }
   ]

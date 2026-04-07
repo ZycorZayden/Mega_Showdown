@@ -1,0 +1,44 @@
+{
+  "species": "cobblemon:orbeetle",
+  "order": 1,
+  "variations": [
+    {
+      "aspects": ["gmax"],
+      "poser": "cobblemon:gmaxorbeetle",
+      "model": "cobblemon:gmax_orbeetle.geo",
+      "texture": "cobblemon:textures/pokemon/blank.png",
+      "layers": [
+        {
+          "name": "translucent",
+          "texture": "cobblemon:textures/pokemon/0826_orbeetle/gmax_orbeetle.png",
+          "emissive": false,
+          "translucent": true
+        },
+        {
+          "name": "emissive",
+          "texture": "cobblemon:textures/pokemon/0826_orbeetle/gmax_orbeetle_e.png",
+          "emissive": true,
+          "translucent": true
+        }
+      ]
+    },
+    {
+      "aspects": ["gmax", "shiny"],
+      "texture": "cobblemon:textures/pokemon/blank.png",
+      "layers": [
+        {
+          "name": "translucent",
+          "texture": "cobblemon:textures/pokemon/0826_orbeetle/gmax_orbeetle_shiny.png",
+          "emissive": false,
+          "translucent": true
+        },
+        {
+          "name": "emissive",
+          "texture": "cobblemon:textures/pokemon/0826_orbeetle/gmax_orbeetle_e.png",
+          "emissive": true,
+          "translucent": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,6 +1,13 @@
 {
-  "implemented": true,
   "target": "cobblemon:shaymin",
+  "implemented": true,
+  "shoulderMountable": true,
+  "baseScale": 0.7,
+  "hitbox": {
+    "width": 0.5,
+    "height": 0.5,
+    "fixed": false
+  },
   "behaviour": {
     "resting": {
       "canSleep": true,
@@ -10,7 +17,7 @@
     "moving": {
       "canLook": false,
       "walk": {
-        "walkSpeed": 0.25,
+	      "walkSpeed": 0.250,
         "canWalk": true,
         "avoidsLand": false
       },
@@ -20,11 +27,5 @@
         "canBreatheUnderwater": false
       }
     }
-  },
-  "baseScale": 0.4,
-  "hitbox": {
-    "width": 0.6,
-    "height": 1,
-    "fixed": false
   }
 }
