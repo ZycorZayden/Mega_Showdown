@@ -1,13 +1,13 @@
 {
   "pokemons": ["Arceus"],
-  "showdown_form_change_id": "flying",
+  "showdown_form_change_id": "fighting",
   "aspect_conditions": {
     "apply": {
-      "aspects": ["multitype=flying"]
+      "aspects": ["multitype=fighting"]
     },
     "revert": {
       "aspects": ["multitype=normal"]
     }
   },
-  "effect": "mega_showdown:arceus_flying"
+  "effect": "mega_showdown:arceus_fighting"
 }

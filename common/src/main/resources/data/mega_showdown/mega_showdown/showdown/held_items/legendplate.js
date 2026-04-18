@@ -16,6 +16,7 @@ name: "Legend Plate",
       if (sp.exists && this.dex.species.get(f).exists && p.species.name !== f) p.formeChange(f, null, true);
       m.type = btFinal, m.ignoreAbility = true;
     },
+	onTakeItem: false,
     num: 2000,
     gen: 9,
   }

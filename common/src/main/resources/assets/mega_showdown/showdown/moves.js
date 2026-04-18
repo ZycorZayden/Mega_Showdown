@@ -3468,15 +3468,17 @@ const Moves = {
     flags: { bypasssub: 1, metronome: 1 },
     volatileStatus: "curse",
 	onModifyMove(move, source, target) {
+		const isGhost = source.hasType("Ghost");
+		const isGhostTera = source.teraType === "Ghost" || (source.hasType("Ghost") && source.teraType === "Stellar");
 		if (!source.terastallized) {
-			if (!source.hasType("Ghost")) {
+			if (!isGhost) {
 				move.target = move.nonGhostTarget;
 			} else if (source.isAlly(target)) {
 				move.target = "randomNormal";
 			}
 		}
 		if (source.terastallized) {
-			if (source.teraType !== "Ghost") {
+			if (!isGhostTera) {
 				move.target = move.nonGhostTarget;
 			} else if (source.isAlly(target)) {
 				move.target = "randomNormal";
@@ -3484,8 +3486,10 @@ const Moves = {
 		}
 	},
     onTryHit(target, source, move) {
+		const isGhost = source.hasType("Ghost");
+		const isGhostTera = source.teraType === "Ghost" || (source.hasType("Ghost") && source.teraType === "Stellar");
       if (!source.terastallized) {
-		  if (!source.hasType("Ghost")) {
+		  if (!isGhost) {
 			  delete move.volatileStatus;
 			  delete move.onHit;
 			  move.self = { boosts: { spe: -1, atk: 1, def: 1 } };
@@ -3494,7 +3498,7 @@ const Moves = {
 		  }
 	  }
 	  if (source.terastallized) {
-		  if (source.teraType !== "Ghost") {
+		  if (!isGhostTera) {
 			  delete move.volatileStatus;
 			  delete move.onHit;
 			  move.self = { boosts: { spe: -1, atk: 1, def: 1 } };

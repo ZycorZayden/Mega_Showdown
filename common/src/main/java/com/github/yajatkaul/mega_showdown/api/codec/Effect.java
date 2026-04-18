@@ -1,10 +1,12 @@
 package com.github.yajatkaul.mega_showdown.api.codec;
 
+import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.api.codec.particles.MinecraftParticle;
 import com.github.yajatkaul.mega_showdown.api.codec.particles.SnowStormParticle;
+import com.github.yajatkaul.mega_showdown.api.event.MSDFormChanging;
 import com.github.yajatkaul.mega_showdown.datapack.MegaShowdownDatapackRegister;
 import com.github.yajatkaul.mega_showdown.utils.AspectUtils;
 import com.mojang.serialization.Codec;
@@ -48,6 +50,22 @@ public record Effect(
     }
 
     public void applyEffects(Pokemon context, List<String> aspects, Optional<String> properties, @Nullable PokemonEntity other) {
+        PokemonEntity entity = context.getEntity();
+        PokemonBattle battle = null;
+
+        if (entity != null) {
+            battle = entity.getBattle();
+        }
+
+        MSDFormChanging.FormChangeEvent event =
+                new MSDFormChanging.FormChangeEvent(context, battle, MSDFormChanging.State.Apply);
+
+        MSDFormChanging.EVENT.invoker().onFormChange(event);
+
+        if (event.isCancelled()) {
+            return;
+        }
+
         if (context.getEntity() == null) {
             AspectUtils.applyAspects(context, aspects);
             AspectUtils.applyProperties(context, properties);
@@ -69,6 +87,22 @@ public record Effect(
     }
 
     public void revertEffects(Pokemon context, List<String> aspects, Optional<String> properties, @Nullable PokemonEntity other) {
+        PokemonEntity entity = context.getEntity();
+        PokemonBattle battle = null;
+
+        if (entity != null) {
+            battle = entity.getBattle();
+        }
+
+        MSDFormChanging.FormChangeEvent event =
+                new MSDFormChanging.FormChangeEvent(context, battle, MSDFormChanging.State.Revert);
+
+        MSDFormChanging.EVENT.invoker().onFormChange(event);
+
+        if (event.isCancelled()) {
+            return;
+        }
+
         if (context.getEntity() == null) {
             AspectUtils.applyAspects(context, aspects);
             AspectUtils.applyProperties(context, properties);
@@ -90,6 +124,22 @@ public record Effect(
     }
 
     public void applyEffectsBattle(Pokemon context, List<String> aspects, Optional<String> properties, @Nullable PokemonEntity other, BattlePokemon battlePokemon) {
+        PokemonEntity entity = context.getEntity();
+        PokemonBattle battle = null;
+
+        if (entity != null) {
+            battle = entity.getBattle();
+        }
+
+        MSDFormChanging.FormChangeEvent event =
+                new MSDFormChanging.FormChangeEvent(context, battle, MSDFormChanging.State.Apply);
+
+        MSDFormChanging.EVENT.invoker().onFormChange(event);
+
+        if (event.isCancelled()) {
+            return;
+        }
+
         if (context.getEntity() == null) {
             AspectUtils.applyAspects(context, aspects);
             AspectUtils.applyProperties(context, properties);
@@ -114,6 +164,22 @@ public record Effect(
     }
 
     public void revertEffectsBattle(Pokemon context, List<String> aspects, Optional<String> properties, @Nullable PokemonEntity other, BattlePokemon battlePokemon) {
+        PokemonEntity entity = context.getEntity();
+        PokemonBattle battle = null;
+
+        if (entity != null) {
+            battle = entity.getBattle();
+        }
+
+        MSDFormChanging.FormChangeEvent event =
+                new MSDFormChanging.FormChangeEvent(context, battle, MSDFormChanging.State.Revert);
+
+        MSDFormChanging.EVENT.invoker().onFormChange(event);
+
+        if (event.isCancelled()) {
+            return;
+        }
+
         if (context.getEntity() == null) {
             AspectUtils.applyAspects(context, aspects);
             AspectUtils.applyProperties(context, properties);
