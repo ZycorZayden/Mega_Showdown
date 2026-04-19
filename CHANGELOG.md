@@ -1,4 +1,4 @@
-# 1.7.5+1.7.3-release
+# 1.8+1.7.3-release
 - Fixed z move glow coloring
 - Added showdown items so they dont get knocked off
 - Switched to new dmax clouds
@@ -7,3 +7,9 @@
 - Fixes in game Arceus Fighting transformation visual
 - Fixed Legend Plate being able to knock off
 - Added battle.js to showdown loadout folder for disabling tera after dynamaxing (Yajat needs to get this to load on start)
+- New Copperajah Gmax Model
+- New Coalossal Gmax Model
+- New Minior Animations 
+- New Pikachu gmax from Darzoth
+- New Blastoise Gmax Model (credits: quinn284)
+- Fixed Toxtricity textures
