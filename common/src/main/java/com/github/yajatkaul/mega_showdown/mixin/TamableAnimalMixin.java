@@ -2,7 +2,6 @@ package com.github.yajatkaul.mega_showdown.mixin;
 
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.level.Level;

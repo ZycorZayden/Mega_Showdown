@@ -6,7 +6,6 @@ import com.github.yajatkaul.mega_showdown.utils.GlowHandler;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.world.effect.MobEffects;
 
 import java.util.HashMap;
 import java.util.Iterator;

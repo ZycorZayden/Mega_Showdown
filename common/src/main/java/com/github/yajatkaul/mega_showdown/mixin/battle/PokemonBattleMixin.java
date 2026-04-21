@@ -51,7 +51,7 @@ public abstract class PokemonBattleMixin {
     }
 
     @Inject(method = "turn", at = @At("HEAD"))
-    private void updateBattleGuiPackets (int newTurnNumber, CallbackInfo info) {
-        BattlePacketManager.update((PokemonBattle)(Object)this);
+    private void updateBattleGuiPackets(int newTurnNumber, CallbackInfo info) {
+        BattlePacketManager.update((PokemonBattle) (Object) this);
     }
 }

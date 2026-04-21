@@ -22,16 +22,16 @@ public record PokemonPropertiesSupplier(String underlying) implements Supplier<P
         this(properties.asString(" "));
     }
 
-    public PokemonProperties get (String delimiter, String assigner) {
+    public PokemonProperties get(String delimiter, String assigner) {
         return PokemonProperties.Companion.parse(this.underlying, delimiter, assigner);
     }
 
-    public PokemonProperties get (String delimiter) {
+    public PokemonProperties get(String delimiter) {
         return PokemonProperties.Companion.parse(this.underlying, delimiter);
     }
 
     @Override
-    public PokemonProperties get () {
+    public PokemonProperties get() {
         return PokemonProperties.Companion.parse(this.underlying);
     }
 }

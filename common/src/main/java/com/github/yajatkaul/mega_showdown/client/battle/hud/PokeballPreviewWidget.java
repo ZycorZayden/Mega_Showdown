@@ -43,14 +43,14 @@ public class PokeballPreviewWidget extends AbstractWidget {
     private final BattlePokemonMemory underlying;
     private final boolean isLeft;
 
-    public PokeballPreviewWidget (boolean isLeft, BattlePokemonMemory state) {
+    public PokeballPreviewWidget(boolean isLeft, BattlePokemonMemory state) {
         super(0, 0, WIDTH, HEIGHT, Component.literal("Pokemon"));
         this.isLeft = isLeft;
         this.underlying = state;
     }
 
     @Override
-    protected void renderWidget (GuiGraphics context, int mouseX, int mouseY, float delta) {
+    protected void renderWidget(GuiGraphics context, int mouseX, int mouseY, float delta) {
         ClientBattle battle = CobblemonClient.INSTANCE.getBattle();
         if (this.underlying == null || battle == null) return;
 
@@ -61,19 +61,17 @@ public class PokeballPreviewWidget extends AbstractWidget {
             else texture = this.isLeft ? ALIVE_LEFT_HOVERED : ALIVE_RIGHT_HOVERED;
 
             this.underlying.render(
-                context,
-                this.isLeft ? this.getX() + WIDTH + 5 : this.getX() - BattlePokemonMemory.PANEL_WIDTH - 5,
-                (Minecraft.getInstance().getWindow().getGuiScaledHeight() - BattlePokemonMemory.PANEL_HEIGHT) / 2,
-                delta,
-                this.isLeft
+                    context,
+                    this.isLeft ? this.getX() + WIDTH + 5 : this.getX() - BattlePokemonMemory.PANEL_WIDTH - 5,
+                    (Minecraft.getInstance().getWindow().getGuiScaledHeight() - BattlePokemonMemory.PANEL_HEIGHT) / 2,
+                    delta,
+                    this.isLeft
             );
-        }
-        else if (this.underlying.isActive()) {
+        } else if (this.underlying.isActive()) {
             if (!this.underlying.isAlive()) texture = this.isLeft ? FAINTED_LEFT_ACTIVE : FAINTED_RIGHT_ACTIVE;
             else if (this.underlying.hasStatus()) texture = this.isLeft ? STATUS_LEFT_ACTIVE : STATUS_RIGHT_ACTIVE;
             else texture = this.isLeft ? ALIVE_LEFT_ACTIVE : ALIVE_RIGHT_ACTIVE;
-        }
-        else {
+        } else {
             if (!this.underlying.isAlive()) texture = this.isLeft ? FAINTED_LEFT : FAINTED_RIGHT;
             else if (this.underlying.hasStatus()) texture = this.isLeft ? STATUS_LEFT : STATUS_RIGHT;
             else texture = this.isLeft ? ALIVE_LEFT : ALIVE_RIGHT;
@@ -84,28 +82,28 @@ public class PokeballPreviewWidget extends AbstractWidget {
             ResourceLocation hpTexture = this.underlying.hasStatus() ? STATUS_HP : ALIVE_HP;
 
             int hpX = this.isLeft ? this.getX() + 1 : this.getX() + WIDTH - 2;
-            int hpHeight = (int)(this.underlying.lerpHealthPercentage(delta) * HP_HEIGHT);
+            int hpHeight = (int) (this.underlying.lerpHealthPercentage(delta) * HP_HEIGHT);
             context.blit(
-                hpTexture,
-                hpX, this.getY() + 4 + (HP_HEIGHT - hpHeight), 1,
-                0, 1f - (float)this.underlying.getHealthPercentage(),
-                HP_WIDTH, hpHeight,
-                HP_WIDTH, hpHeight
+                    hpTexture,
+                    hpX, this.getY() + 4 + (HP_HEIGHT - hpHeight), 1,
+                    0, 1f - (float) this.underlying.getHealthPercentage(),
+                    HP_WIDTH, hpHeight,
+                    HP_WIDTH, hpHeight
             );
         }
     }
 
     @Override
-    protected boolean isValidClickButton (int button) {
+    protected boolean isValidClickButton(int button) {
         return false;
     }
 
     @Override
-    protected void updateWidgetNarration (NarrationElementOutput narrationElementOutput) {
+    protected void updateWidgetNarration(NarrationElementOutput narrationElementOutput) {
 
     }
 
-    public BattlePokemonMemory getBattleMemory () {
+    public BattlePokemonMemory getBattleMemory() {
         return this.underlying;
     }
 }

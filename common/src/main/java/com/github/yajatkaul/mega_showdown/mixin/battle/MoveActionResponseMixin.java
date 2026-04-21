@@ -23,7 +23,7 @@ public class MoveActionResponseMixin {
      * @reason TargetSelection
      */
     @Overwrite
-    public boolean isValid (ActiveBattlePokemon activeBattlePokemon, ShowdownMoveset showdownMoveSet, boolean forceSwitch) {
+    public boolean isValid(ActiveBattlePokemon activeBattlePokemon, ShowdownMoveset showdownMoveSet, boolean forceSwitch) {
         if (forceSwitch || showdownMoveSet == null) {
             return false;
         }
@@ -43,8 +43,7 @@ public class MoveActionResponseMixin {
         List<Targetable> availableTargets;
         if (gimmickID != null && validGimmickMove && !gimmickID.equalsIgnoreCase("mega") && !gimmickID.equalsIgnoreCase("terastal")) {
             availableTargets = gimmickMove.getTarget().getTargetList().invoke(activeBattlePokemon);
-        }
-        else {
+        } else {
             availableTargets = move.getTarget().getTargetList().invoke(activeBattlePokemon);
         }
 

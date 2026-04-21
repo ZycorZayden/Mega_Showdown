@@ -20,16 +20,23 @@ public abstract class MoveTileMixin {
     @Shadow
     public abstract boolean isHovered(double mouseX, double mouseY);
 
-    @Shadow private MoveTemplate moveTemplate;
-    @Shadow @Final private Pokemon pokemon;
-    @Shadow @Final private ElementalType elementalType;
+    @Shadow
+    private MoveTemplate moveTemplate;
+    @Shadow
+    @Final
+    private Pokemon pokemon;
+    @Shadow
+    @Final
+    private ElementalType elementalType;
 
-    @Unique private MovePreviewWidget mega_showdown$previewWidget;
+    @Unique
+    private MovePreviewWidget mega_showdown$previewWidget;
 
     @Inject(method = "render", at = @At("TAIL"))
-    private void addPreview (GuiGraphics context, int mouseX, int mouseY, float delta, CallbackInfo info) {
+    private void addPreview(GuiGraphics context, int mouseX, int mouseY, float delta, CallbackInfo info) {
         if (this.isHovered(mouseX, mouseY) && MegaShowdownConfig.showMoveInspector) {
-            if (this.mega_showdown$previewWidget == null) this.mega_showdown$previewWidget = new MovePreviewWidget(this.moveTemplate);
+            if (this.mega_showdown$previewWidget == null)
+                this.mega_showdown$previewWidget = new MovePreviewWidget(this.moveTemplate);
             this.mega_showdown$previewWidget.setSTAB(this.pokemon, this.elementalType);
             this.mega_showdown$previewWidget.render(context, mouseX, mouseY, delta);
         }

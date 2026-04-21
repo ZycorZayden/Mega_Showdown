@@ -14,6 +14,19 @@
           "texture": "cobblemon:textures/dmax/dmax_clouds.png"
         }
       ]
+    },
+    {
+      "aspects": ["blue"],
+      "poser": "cobblemon:dmax_clouds",
+      "model": "cobblemon:dmax_clouds.geo",
+      "texture": "cobblemon:textures/dmax/dmax_clouds_blue.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "emissive": true,
+          "texture": "cobblemon:textures/dmax/dmax_clouds_blue.png"
+        }
+      ]
     }
   ]
 }

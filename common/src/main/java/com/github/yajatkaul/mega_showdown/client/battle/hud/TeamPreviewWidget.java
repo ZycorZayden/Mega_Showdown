@@ -24,13 +24,13 @@ public class TeamPreviewWidget extends AbstractWidget {
     private final List<PokeballPreviewWidget> party = new ArrayList<>();
     private final boolean isLeft;
 
-    public TeamPreviewWidget (int x, int y, boolean isLeft) {
+    public TeamPreviewWidget(int x, int y, boolean isLeft) {
         super(x, y, WIDTH, BORDER_HEIGHT * 2, Component.literal(""));
         this.isLeft = isLeft;
     }
 
     @Override
-    protected void renderWidget (GuiGraphics context, int mouseX, int mouseY, float delta) {
+    protected void renderWidget(GuiGraphics context, int mouseX, int mouseY, float delta) {
         if (!MegaShowdownConfig.showBattleHUD || this.party.isEmpty()) return;
 
         context.blit(isLeft ? TOP_LEFT_BORDER : TOP_RIGHT_BORDER, this.getX(), this.getY(), 0, 0, WIDTH, BORDER_HEIGHT, WIDTH, BORDER_HEIGHT);
@@ -38,7 +38,7 @@ public class TeamPreviewWidget extends AbstractWidget {
         context.blit(isLeft ? BOTTOM_LEFT_BORDER : BOTTOM_RIGHT_BORDER, this.getX(), this.getY() + this.getHeight() - BORDER_HEIGHT, 0, 0, WIDTH, BORDER_HEIGHT, WIDTH, BORDER_HEIGHT);
     }
 
-    public void realignToScreen () {
+    public void realignToScreen() {
         int screenHeight = Minecraft.getInstance().getWindow().getGuiScaledHeight();
         int screenWidth = Minecraft.getInstance().getWindow().getGuiScaledWidth();
         this.setX(this.isLeft ? 0 : screenWidth - WIDTH);
@@ -51,25 +51,25 @@ public class TeamPreviewWidget extends AbstractWidget {
         }
     }
 
-    public void addPartyMember (PokeballPreviewWidget widget) {
+    public void addPartyMember(PokeballPreviewWidget widget) {
         this.party.add(widget);
         this.height += PokeballPreviewWidget.HEIGHT;
     }
 
-    public boolean hasPartyMember (UUID uuid) {
+    public boolean hasPartyMember(UUID uuid) {
         return this.party.stream().anyMatch(widget -> widget.getBattleMemory().getUuid().equals(uuid));
     }
 
-    public void clearParty () {
+    public void clearParty() {
         this.party.clear();
         this.height = BORDER_HEIGHT * 2;
     }
 
-    public int getPartySize () {
+    public int getPartySize() {
         return this.party.size();
     }
 
-    public boolean isLeft () {
+    public boolean isLeft() {
         return this.isLeft;
     }
 

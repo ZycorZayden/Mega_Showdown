@@ -34,6 +34,10 @@ public class DynamaxCloudsLayer extends LayerEntity {
     @Override
     public void render(RenderContext context, PokemonClientDelegate clientDelegate, PokemonEntity entity, Pokemon pokemon, float entityYaw, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
         super.render(context, clientDelegate, entity, pokemon, entityYaw, poseStack, buffer, packedLight);
+
+        if (entity.getPokemon().getSpecies().getName().equals("Calyrex")) {
+            aspects.add("blue");
+        }
         state.setCurrentAspects(aspects);
 
         Map<String, MatrixWrapper> locatorStates = clientDelegate.getLocatorStates();

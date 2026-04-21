@@ -144,7 +144,7 @@ public class MegaShowdownCommands {
                         pokemon.setScaleModifier(targetScale);
                     }
                 }
-            } else if (pokemon.getAspects().contains("msd:dmax")){
+            } else if (pokemon.getAspects().contains("msd:dmax")) {
                 UnaspectPropertyType.INSTANCE.fromString("msd:dmax").apply(pokemon);
                 Effect.getEffect("mega_showdown:dynamax").revertEffects(pokemon, List.of(), Optional.empty(), null);
 

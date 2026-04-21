@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(value = BattleMessageHandler.class)
 public class BattleMessagePacketHandlerMixin {
     @Inject(method = "handle(Lcom/cobblemon/mod/common/net/messages/client/battle/BattleMessagePacket;Lnet/minecraft/client/Minecraft;)V", at = @At("TAIL"))
-    private void grabMessage (BattleMessagePacket packet, Minecraft client, CallbackInfo info) {
+    private void grabMessage(BattleMessagePacket packet, Minecraft client, CallbackInfo info) {
         BattleHUD.messageCallback(packet.getMessages());
     }
 }
